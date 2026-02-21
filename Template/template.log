@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  20 FEB 2026 10:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  21 FEB 2026 23:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/TRPL/SEM 4/TEMPLATE-LATEX/Template/template.tex"
-(d:/TRPL/SEM 4/TEMPLATE-LATEX/Template/template.tex
+**"d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex"
+(d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -251,27 +251,40 @@ Package chngcntr Info: \counterwithout already defined.
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count286
 \l__pdf_internal_box=\box55
-) (template.aux)
+) (template.aux
+
+LaTeX Warning: Label `fig:1' multiply defined.
+
+
+LaTeX Warning: Label `fig:1' multiply defined.
+
+
+LaTeX Warning: Label `fig:1' multiply defined.
+
+
+LaTeX Warning: Label `fig:1' multiply defined.
+
+)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
+LaTeX Font Info:    ... okay on input line 69.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -327,51 +340,122 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count293
-Package hyperref Info: Link coloring OFF on input line 19.
+Package hyperref Info: Link coloring OFF on input line 69.
  (template.out) (template.out)
 \@outlinefile=\write3
 \openout3 = `template.out'.
 
-<../images/ugm.png, id=19, 1606.0pt x 1606.0pt>
+<../images/ugm.png, id=43, 1606.0pt x 1606.0pt>
 File: ../images/ugm.png Graphic file (type png)
 <use ../images/ugm.png>
-Package pdftex.def Info: ../images/ugm.png  used on input line 32.
+Package pdftex.def Info: ../images/ugm.png  used on input line 82.
 (pdftex.def)             Requested size: 199.15665pt x 199.16928pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 40.
+(Font)              <12> on input line 90.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 40.
+(Font)              <8> on input line 90.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 40.
+(Font)              <6> on input line 90.
  [1
 
 {C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>]
-No file template.bbl.
+Overfull \hbox (6.01675pt too wide) in paragraph at lines 118--119
+[]\OT1/cmr/m/n/12 Mahasiswa mema-hami cara mem-buat database di MySQL dan menghubungkan-
+ []
+
+<../images/remote-ssh.png, id=53, 555.57562pt x 295.1025pt>
+File: ../images/remote-ssh.png Graphic file (type png)
+<use ../images/remote-ssh.png>
+Package pdftex.def Info: ../images/remote-ssh.png  used on input line 130.
+(pdftex.def)             Requested size: 256.07741pt x 136.01895pt.
+
+Overfull \hbox (6.27916pt too wide) in paragraph at lines 135--136
+[]\OT1/cmr/m/n/12 Untuk mengkon-fig-urasi koneksi SSH, prak-tikan da-pat mem-buka Com-mand Palette
+ []
+
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 \end{document}
-                    [1] (template.aux)
+l.136 
+       [1 <../images/remote-ssh.png>]
+<../images/connect.png, id=62, 322.20375pt x 108.405pt>
+File: ../images/connect.png Graphic file (type png)
+<use ../images/connect.png>
+Package pdftex.def Info: ../images/connect.png  used on input line 139.
+(pdftex.def)             Requested size: 256.07741pt x 86.16005pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--145
+
+ []
+
+<../images/ssh-connect.png, id=63, 568.37344pt x 121.95563pt>
+File: ../images/ssh-connect.png Graphic file (type png)
+<use ../images/ssh-connect.png>
+Package pdftex.def Info: ../images/ssh-connect.png  used on input line 152.
+(pdftex.def)             Requested size: 298.75264pt x 64.1058pt.
+[2 <../images/connect.png> <../images/ssh-connect.png>]
+Overfull \hbox (0.78708pt too wide) in paragraph at lines 170--171
+[]\OT1/cmr/m/n/12 Setelah proses in-sta-lasi se-le-sai, Apache akan otoma-tis ber-jalan. Un-tuk memeriksa
+ []
+
+<../images/status-apache.png, id=75, 866.48718pt x 292.84406pt>
+File: ../images/status-apache.png Graphic file (type png)
+<use ../images/status-apache.png>
+Package pdftex.def Info: ../images/status-apache.png  used on input line 177.
+(pdftex.def)             Requested size: 384.1096pt x 129.81696pt.
+<../images/apache-server.png, id=77, 1029.09468pt x 714.41907pt>
+File: ../images/apache-server.png Graphic file (type png)
+<use ../images/apache-server.png>
+Package pdftex.def Info: ../images/apache-server.png  used on input line 185.
+(pdftex.def)             Requested size: 341.43437pt x 237.03445pt.
+[3 <../images/status-apache.png>]
+<../images/php-v.png, id=90, 469.755pt x 88.83188pt>
+File: ../images/php-v.png Graphic file (type png)
+<use ../images/php-v.png>
+Package pdftex.def Info: ../images/php-v.png  used on input line 204.
+(pdftex.def)             Requested size: 341.43437pt x 64.56613pt.
+ [4 <../images/apache-server.png> <../images/php-v.png>]
+Overfull \hbox (0.6695pt too wide) in paragraph at lines 217--218
+[]\OT1/cmr/m/n/12 Setelah proses in-sta-lasi se-le-sai, jalankan per-in-tah berikut un-tuk ma-suk ke MySQL
+ []
+
+<../images/sudo-mysql.png, id=104, 574.39594pt x 234.1247pt>
+File: ../images/sudo-mysql.png Graphic file (type png)
+<use ../images/sudo-mysql.png>
+Package pdftex.def Info: ../images/sudo-mysql.png  used on input line 223.
+(pdftex.def)             Requested size: 341.43437pt x 139.17195pt.
+<../images/tes-koneksi.png, id=106, 993.7125pt x 363.3575pt>
+File: ../images/tes-koneksi.png Graphic file (type png)
+<use ../images/tes-koneksi.png>
+Package pdftex.def Info: ../images/tes-koneksi.png  used on input line 235.
+(pdftex.def)             Requested size: 341.43437pt x 124.84837pt.
+[5 <../images/sudo-mysql.png>]
+No file template.bbl.
+[6 <../images/tes-koneksi.png (PNG copy)>] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 5FDEE1C88612456C51D2C3AFB5617159;397.
+(rerunfilecheck)             Checksum: 7B30B4A603BF6BE9D98940B59588D92C;1682.
  ) 
 Here is how much of TeX's memory you used:
- 11327 strings out of 474486
- 174455 string characters out of 5744228
- 1931542 words of memory out of 5000000
- 33481 multiletter control sequences out of 15000+600000
- 562323 words of font info for 50 fonts, out of 8000000 for 9000
+ 11719 strings out of 474486
+ 179151 string characters out of 5744228
+ 1950542 words of memory out of 5000000
+ 33831 multiletter control sequences out of 15000+600000
+ 562960 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,298b,509s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on template.pdf (2 pages, 2897597 bytes).
+ 75i,7n,79p,413b,2044s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on template.pdf (7 pages, 3156099 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 6 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 126 words of extra memory for PDF output out of 10000 (max. 10000000)
 

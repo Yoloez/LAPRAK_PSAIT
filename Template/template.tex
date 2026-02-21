@@ -16,6 +16,56 @@
 % \usepackage[natbibapa]{apacite}
 \usepackage{natbib}
 \usepackage{chngcntr}
+
+% ...existing code...
+
+% Define Ubuntu Server terminal style
+\definecolor{terminalbg}{RGB}{48, 10, 36}       % Ubuntu terminal dark purple background
+\definecolor{terminaltxt}{RGB}{255, 255, 255}    % White text
+\definecolor{terminalgreen}{RGB}{78, 154, 6}     % Green for username@host
+\definecolor{terminalblue}{RGB}{52, 101, 164}    % Blue for path
+\definecolor{terminalcyan}{RGB}{6, 152, 154}     % Cyan accent
+\definecolor{terminalyellow}{RGB}{196, 160, 0}   % Yellow for commands
+
+\lstdefinelanguage{terminal}{
+    sensitive=true,
+    morecomment=[l]{\#},
+    morestring=[b]",
+    morestring=[b]',
+}
+
+\lstdefinestyle{ubuntuserver}{
+    language=terminal,
+    backgroundcolor=\color{terminalbg},
+    basicstyle=\ttfamily\small\color{terminaltxt},
+    keywordstyle=\color{terminalyellow}\bfseries,
+    commentstyle=\color{terminalcyan}\itshape,
+    stringstyle=\color{terminalgreen},
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    frame=single,
+    framerule=0pt,
+    rulecolor=\color{terminalgreen},
+    numbers=none,
+    xleftmargin=10pt,
+    xrightmargin=10pt,
+    framexleftmargin=10pt,
+    framexrightmargin=10pt,
+    framextopmargin=6pt,
+    framexbottommargin=6pt,
+    keepspaces=true,
+    columns=flexible,
+    lineskip=2pt,
+}
+% ...existing code...
+
+\renewcommand{\figurename}{Gambar}
+\renewcommand\thesection{\Alph{section}}
+
 \begin{document}
 
 \begin{titlepage}
@@ -25,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI UBUNTU, WEB SERVER DI VIRTUALBOX}} \\[1.5cm]
+    { \textbf{PERTEMUAN 2}}\\[0.3cm]
+    { \textbf{Konfigurasi Terminal Emulator, PHP MYSQL di Ubuntu Server}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -61,9 +111,132 @@ Disusun oleh:\\[0.3cm]
 
 \doublespacing 
 
+\section{Tujuan}
+\begin{enumerate}
+    \item Memahami konsep terminal emulator dan cara mengkonfigurasinya.
+    \item Memahami cara menginstal dan mengkonfigurasi PHP dan MySQL di Ubuntu Server.      
+    \item Mahasiswa memahami cara membuat database di MySQL dan menghubungkannya dengan PHP.
+\end{enumerate}
 \section{Dasar Teori}
-\section{Hasil dan Pemabahasan}
-\subsection{}
+\subsection{Terminal Emulator}
+\subsection{LAMP Stack}
+
+
+\section{Hasil dan Pembahasan}
+\subsection{Instalasi Ekstensi Remote - SSH}
+Untuk menginstall ekstensi Remote - SSH, dapat masuk ke menu Extensions di Visual Studio Code, kemudian cari "Remote - SSH" dan klik Install. Setelah terinstal, praktikan dapat menggunakan ekstensi ini untuk terhubung ke server Ubuntu yang telah dikonfigurasi dengan SSH.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../images/remote-ssh.png}
+    \caption{Ekstensi Remote - SSH di Visual Studio Code}
+    \label{fig:1}
+\end{figure}
+
+Untuk mengkonfigurasi koneksi SSH, praktikan dapat membuka Command Palette (Ctrl+Shift+P) atau tekan tombol di pojok kiri bawah vscode. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../images/connect.png}
+    \caption{Command Palette di Visual Studio Code}
+    \label{fig:1}
+\end{figure}
+
+Pilih "Remote-SSH: Connect to Host...". Kemudian, praktikan dapat memasukkan alamat IP atau hostname dari server Ubuntu yang ingin dihubungkan dengan perintah sebagai berikut \\
+
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+ssh praktikan@10.33.35.71
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../images/ssh-connect.png}
+    \caption{Menghubungkan ke Host menggunakan Remote - SSH}
+    \label{fig:1}
+\end{figure}
+
+Setelah menambahkan host ke vscode, praktikan akan diminta memasukkan password lalu akan dihubungkan dengan server ubuntu. Setelah berhasil terhubung, praktikan dapat membuka terminal di Visual Studio Code yang terhubung langsung ke server Ubuntu, sehingga dapat menjalankan perintah-perintah seperti menggunakan terminal di server tersebut.
+
+\subsection{Instalasi Web Server Apache di Ubuntu Server}
+Sebelum menginstal Apache, pastikan sistem operasi Ubuntu Server sudah terupdate dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo apt-get update
+\end{lstlisting}
+
+Setelah itu, untuk menginstal Apache, jalankan perintah berikut:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo apt install apache2 -y
+\end{lstlisting}
+
+Setelah proses instalasi selesai, Apache akan otomatis berjalan. Untuk memeriksa status Apache, jalankan perintah berikut:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo systemctl status apache2
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/status-apache.png}
+    \caption{Status Apache setelah instalasi}
+    \label{status-apache}
+\end{figure}
+
+Dapat dilihat pada gambar \ref{status-apache}, bahwa Apache telah berjalan dengan status "active (running)". Untuk menguji apakah Apache sudah terinstal dengan benar, praktikan dapat membuka browser dan memasukkan alamat IP server Ubuntu. Jika muncul halaman default Apache, berarti instalasi berhasil.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/apache-server.png}
+    \caption{Halaman default Apache setelah instalasi}
+    \label{fig:1}
+\end{figure}
+
+
+
+\subsection{Instalasi Php di Ubuntu Server}
+Untuk menginstall PHP beserta modul-modul yang diperlukan, jalankan perintah berikut di terminal:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo apt install php libapache2-mod-php php-mysql -y
+\end{lstlisting}
+Setelah proses instalasi selesai, untuk memeriksa versi PHP yang terinstal, jalankan perintah berikut:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+php -v
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/php-v.png}
+    \caption{Versi PHP yang terinstal di Ubuntu Server}
+    \label{php-v}
+\end{figure}
+
+Dapat dilihat pada gambar \ref{php-v}, bahwa PHP versi 8.3.6 telah berhasil diinstal di Ubuntu Server. 
+
+\subsection{Instalasi Databse MySQL di Ubuntu Server}
+Untuk menginstall sistem manajemen basis data MySQL, jalankan perintah berikut di terminal:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo apt install mysql-server 
+\end{lstlisting}
+
+Setelah proses instalasi selesai, jalankan perintah berikut untuk masuk ke MySQL Shell:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+sudo mysql
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/sudo-mysql.png}
+    \caption{MySQL Shell setelah instalasi}
+    \label{mysql-shell}
+\end{figure}
+Jika berhasil, muncul tampilan Welcome dari MySQL Shell seperti pada gambar \ref{mysql-shell}. 
+Sebelum melakukan uji coba koneksi, pastikan tujuan dari koneksinya sudah terbuat terlebih dahulu. Buat database baru di MySQL dengan nama sait\_db, dengan menjalankan perintah berikut:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+CREATE DATABASE sait_db;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/tes-koneksi.png}
+    \caption{File tes-koneksi.php untuk menguji koneksi ke database MySQL}
+    \label{fig:1}
+\end{figure}
+
 
 
 
