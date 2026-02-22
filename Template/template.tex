@@ -118,8 +118,17 @@ Disusun oleh:\\[0.3cm]
     \item Mahasiswa memahami cara membuat database di MySQL dan menghubungkannya dengan PHP.
 \end{enumerate}
 \section{Dasar Teori}
-\subsection{Terminal Emulator}
+\subsection{VPS}
+VPS (Virtual Private Server) adalah sebuah layanan hosting yang menyediakan sumber daya server virtual yang terisolasi secara independen di dalam sebuah server fisik. Dengan menggunakan VPS, pengguna dapat memiliki kontrol penuh atas lingkungan server mereka, termasuk instalasi perangkat lunak, konfigurasi, dan manajemen sumber daya. Jika dianalogikan, server fisik adalah rumah, sedangkan VPS adalah kamar-kamar dalam rumah tersebut. Setiap kamar (VPS) memiliki pintu sendiri, sehingga pengguna dapat mengakses dan mengelola kamar mereka tanpa mempengaruhi kamar lain di dalam rumah yang sama \cite{codepolitanVPSPengertian}.
+
+\subsection{SSH}
+SSH (Secure Shell) adalah protokol jaringan yang digunakan untuk melakukan remote server atau hosting dengan aman. Hal ini memungkinkan pengguna untuk mengakses dan mengelola server dari jarak jauh melalui koneksi terenkripsi, sehingga data yang dikirimkan antara klien dan server tetap aman dari potensi ancaman keamanan \cite{rumahwebSSHPengertian}.
+
+Cara menggunakan SSH di layanan VPS hampir mirip dengan menggunakan SSH di server lokal. Pengguna dapat menggunakan terminal atau command prompt untuk menjalankan perintah SSH, seperti "ssh username@hostname" untuk terhubung ke server VPS. Setelah terhubung, pengguna dapat menjalankan perintah-perintah untuk mengelola server, seperti menginstal perangkat lunak, mengelola file, dan melakukan konfigurasi.
+
 \subsection{LAMP Stack}
+LAMP Stack adalah singkatan dari Linux, Apache, MySQL, dan PHP. Dengan menggunakan keempat komponen tersebut, pengguna dapat membangun dan menjalankan aplikasi web yang kuat, fleksibel, dan hemat biaya. Keunggulannya terletak pada kemampuannya untuk menawarkan solusi berbasis open-source untuk pengembangan web \cite{idwebhostLAMPStack}.
+
 
 
 \section{Hasil dan Pembahasan}
@@ -129,7 +138,7 @@ Untuk menginstall ekstensi Remote - SSH, dapat masuk ke menu Extensions di Visua
     \centering
     \includegraphics[width=0.6\textwidth]{../images/remote-ssh.png}
     \caption{Ekstensi Remote - SSH di Visual Studio Code}
-    \label{fig:1}
+    \label{f:1}
 \end{figure}
 
 Untuk mengkonfigurasi koneksi SSH, praktikan dapat membuka Command Palette (Ctrl+Shift+P) atau tekan tombol di pojok kiri bawah vscode. 
@@ -138,7 +147,7 @@ Untuk mengkonfigurasi koneksi SSH, praktikan dapat membuka Command Palette (Ctrl
     \centering
     \includegraphics[width=0.6\textwidth]{../images/connect.png}
     \caption{Command Palette di Visual Studio Code}
-    \label{fig:1}
+    \label{fg:1}
 \end{figure}
 
 Pilih "Remote-SSH: Connect to Host...". Kemudian, praktikan dapat memasukkan alamat IP atau hostname dari server Ubuntu yang ingin dihubungkan dengan perintah sebagai berikut \\
@@ -151,7 +160,7 @@ ssh praktikan@10.33.35.71
     \centering
     \includegraphics[width=0.7\textwidth]{../images/ssh-connect.png}
     \caption{Menghubungkan ke Host menggunakan Remote - SSH}
-    \label{fig:1}
+    \label{fi:1}
 \end{figure}
 
 Setelah menambahkan host ke vscode, praktikan akan diminta memasukkan password lalu akan dihubungkan dengan server ubuntu. Setelah berhasil terhubung, praktikan dapat membuka terminal di Visual Studio Code yang terhubung langsung ke server Ubuntu, sehingga dapat menjalankan perintah-perintah seperti menggunakan terminal di server tersebut.
@@ -184,7 +193,7 @@ Dapat dilihat pada gambar \ref{status-apache}, bahwa Apache telah berjalan denga
     \centering
     \includegraphics[width=0.8\textwidth]{../images/apache-server.png}
     \caption{Halaman default Apache setelah instalasi}
-    \label{fig:1}
+    \label{fig}
 \end{figure}
 
 
@@ -227,21 +236,78 @@ sudo mysql
 Jika berhasil, muncul tampilan Welcome dari MySQL Shell seperti pada gambar \ref{mysql-shell}. 
 Sebelum melakukan uji coba koneksi, pastikan tujuan dari koneksinya sudah terbuat terlebih dahulu. Buat database baru di MySQL dengan nama sait\_db, dengan menjalankan perintah berikut:
 \begin{lstlisting}[language=terminal, style=ubuntuserver]
-CREATE DATABASE sait_db;
+create database sait_db;
 \end{lstlisting}
+
+Setelah database berhasil dibuat, buat user baru dengan nama "mahasiswa" dan password "password123", serta berikan hak akses penuh ke database sait\_db dengan menjalankan perintah berikut:
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+    create user 'mahasiswa'@'localhost' identified by 'password123';
+\end{lstlisting}
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+    grant all privileges on sait_db.* to 'mahasiswa'@'localhost';
+\end{lstlisting}
+
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+    flush privileges;
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/create-db.png}
+    \caption{Membuat database dan user baru di MySQL}
+    \label{create-db}
+\end{figure}
+
+Setelah database dan user berhasil dibuat, praktikan dapat membuat file PHP untuk menguji koneksi ke database MySQL. Untuk membuat file php, buka folder web server di VScode yang terhubung ke server Ubuntu, yang berada di folder /var/www/html. User tidak memiliki akses untuk membuat file baru di folder tersebut, sehingga perlu menjalankan perintah berikut di terminal untuk memberikan hak akses ke folder tersebut:
+
+\begin{lstlisting}[language=terminal, style=ubuntuserver]
+    sudo usermod -aG www-data $USER
+    sudo chown -R www-data:www-data /var/www/html
+    sudo chmod -R 775 /var/www/html
+\end{lstlisting}
+
+Untuk memastikan bahwa izin telah dijalankan sistem, jalankan perintah "id". 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/id.png}
+    \caption{Memeriksa grup pengguna setelah memberikan hak akses ke folder web server}
+    \label{id}
+\end{figure}
+
+Dapat dilihat pada gambar \ref{id}, bahwa praktikan belum diizinkan untuk mengakses folder web server. Oleh karena itu, perlu menjalankan perintah "sudo reboot" untuk merestart server agar perubahan izin dapat diterapkan. Setelah server berhasil direstart, jalankan kembali perintah "id" untuk memastikan bahwa praktikan sudah memiliki akses ke folder web server.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/success-id.png}
+    \caption{Memeriksa grup pengguna setelah merestart server}
+    \label{id-2}
+\end{figure}
+
+Dapat dilihat pada gambar \ref{id-2}, bahwa terdapat 33(www-data) yang berarti praktikan sudah memiliki akses ke folder web server. Setelah itu, buat file php dengan nama tes-koneksi.php di folder /var/www/html dengan isi sebagai berikut:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/tes-koneksi.png}
     \caption{File tes-koneksi.php untuk menguji koneksi ke database MySQL}
-    \label{fig:1}
+    \label{tes-koneksi}
 \end{figure}
 
+Buka browser dan akses file tes-koneksi.php dengan alamat http://10.33.35.71/tes-koneksi.php. Jika muncul pesan "Koneksi berhasil ke database MySQL!", berarti koneksi antara PHP dan MySQL sudah berhasil.
 
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/web-output.png}
+    \caption{Hasil uji koneksi ke database MySQL melalui browser}
+    \label{web-output}
+\end{figure}
 
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa praktikan telah berhasil menginstal dan mengkonfigurasi terminal emulator, PHP, dan MySQL di Ubuntu Server. Praktikan juga berhasil membuat database di MySQL dan menghubungkannya dengan PHP untuk menguji koneksi antara keduanya.
+
+Selain itu, praktikan juga berhasil menggunakan ekstensi Remote - SSH di Visual Studio Code untuk terhubung ke server Ubuntu dan menjalankan perintah-perintah di terminal yang terhubung langsung ke server tersebut. Dengan demikian, tujuan praktikum telah tercapai dengan baik.
+\newpage
+
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
-\bibliography{Template/ref}
+\bibliography{ref}
 \end{document}
