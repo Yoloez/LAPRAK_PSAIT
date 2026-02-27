@@ -15,6 +15,50 @@
 \usepackage{setspace}
 % \usepackage[natbibapa]{apacite}
 \usepackage{natbib}
+
+% ===== PHP & HTML Dark Theme Listing Style =====
+\definecolor{codebg}{RGB}{30,30,46}
+\definecolor{codetext}{RGB}{220,220,220}
+\definecolor{phpkw}{RGB}{255,100,180}
+\definecolor{phpstr}{RGB}{255,170,50}
+\definecolor{phpfunc}{RGB}{255,215,70}
+\definecolor{phpvar}{RGB}{255,150,210}
+\definecolor{htmltagcol}{RGB}{80,210,210}
+\definecolor{linenumcol}{RGB}{100,100,130}
+\definecolor{commentcol}{RGB}{100,170,100}
+
+\lstdefinestyle{phphtml}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{codetext},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{linenumcol},
+    numbersep=10pt,
+    frame=single,
+    rulecolor=\color{gray!40},
+    framesep=5pt,
+    xleftmargin=18pt,
+    % PHP language & keywords (pink/magenta)
+    language=PHP,
+    morekeywords={include, echo, while, if, else},
+    keywordstyle=\color{phpkw}\bfseries,
+    % Strings (orange)
+    stringstyle=\color{phpstr},
+    % Comments (green)
+    commentstyle=\color{commentcol}\itshape,
+    % Functions (yellow/gold)
+    emph={mysqli_num_rows, mysqli_fetch_assoc, mysqli_close},
+    emphstyle=\color{phpfunc},
+    % Variables $... (pink)
+    alsoletter={\$},
+    emph={[2]\$result,\$row,\$koneksi},
+    emphstyle={[2]\color{phpvar}},
+    % HTML tags (cyan)
+    moredelim=[s][\color{htmltagcol}\bfseries]{<}{>},
+}
 \usepackage{chngcntr}
 \begin{document}
 
@@ -71,8 +115,74 @@ Disusun oleh:\\[0.3cm]
 
 \section{Dasar Teori}
 \section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
+\subsection{Modifikasi bind-address pada MySQL}
+Pada praktikum sebelumnya, Web Server Apache dan Database MySQL diinstal pada komputer yang sama. Pada praktikum ini, Web Server Apache dan Database MySQL diinstal pada komputer yang berbeda. Praktikan akan menggunakan komputer host untuk menginstall laragon untuk web server Apache serta VPS untuk database MySQL.
+
+Untuk mengakses database MySQL yang terinstal pada VPS, praktikan perlu memodifikasi konfigurasi bind-address pada MySQL agar dapat menerima koneksi dari komputer lain. Berikut tahapannya:
+\begin{enumerate}
+    \item Buka VsCode yang sudah terhubung dengan VPS melalui SSH.
+    \item Jalankan perintah berikut:
+    \begin{lstlisting}[style=phphtml]
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+    \end{lstlisting}
+    \item Setelah dijalankan, akan muncul tampilan seperti berikut:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/sudo-nano.png}
+        \caption{Tampilan file mysqld.cnf}
+    \end{figure}
+    \item 
+    \end{enumerate}
+\subsection{Membuat User baru pada MySQL}
+
 \subsection{}
+
+\begin{lstlisting}[style=phphtml]
+<?php
+
+include 'tes_koneksi.php';
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Data Mahasiswa</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NIM</th>
+        <th>Nama</th>
+        <th>Jurusan</th>
+        <th>Angkatan</th>
+        <th>Created At</th>
+    </tr>
+    <?php
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['nim'] . "</td>";
+            echo "<td>" . $row['nama'] . "</td>";
+            echo "<td>" . $row['jurusan'] . "</td>";
+            echo "<td>" . $row['angkatan'] . "</td>";
+            echo "<td>" . $row['created_at'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='6'>Tidak ada data</td></tr>";
+    }
+
+    mysqli_close($koneksi);
+    ?>
+</table>
+
+</body>
+</html>
+\end{lstlisting}
 
 
 
