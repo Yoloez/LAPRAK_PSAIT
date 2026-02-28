@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  28 FEB 2026 19:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  28 FEB 2026 19:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,12 +237,6 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 \Hy@SectionHShift=\skip67
 ) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/tools\indentfirst.sty
 Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
-) (D:\MiKTeX\tex/latex/natbib\natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip68
-\bibsep=\skip69
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count285
 ) (D:\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
  (D:\MiKTeX\tex/latex/caption\caption3.sty
@@ -257,8 +251,8 @@ Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
 \caption@hangindent=\dimen166
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count286
-\c@continuedfloat=\count287
+\c@caption@flags=\count285
+\c@continuedfloat=\count286
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -268,7 +262,7 @@ Package chngcntr Info: \counterwithout already defined.
 (chngcntr)             Quitting chngcntr on input line 21.
 ) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count288
+\l__color_backend_stack_int=\count287
 \l__pdf_internal_box=\box55
 ) (template.aux)
 \openout1 = `template.aux'.
@@ -328,16 +322,16 @@ LaTeX Font Info:    ... okay on input line 67.
 
 (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count289
+\scratchcounter=\count288
 \scratchdimen=\dimen167
 \scratchbox=\box56
-\nofMPsegments=\count290
-\nofMParguments=\count291
+\nofMPsegments=\count289
+\nofMParguments=\count290
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count292
+\MPscratchCnt=\count291
 \MPscratchDim=\dimen168
-\MPnumerator=\count293
-\makeMPintoPDFobject=\count294
+\MPnumerator=\count292
+\makeMPintoPDFobject=\count293
 \everyMPtoPDFconversion=\toks23
 ) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -345,7 +339,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count295
+\c@lstlisting=\count294
 Package hyperref Info: Link coloring OFF on input line 67.
  (template.out) (template.out)
 \@outlinefile=\write3
@@ -366,94 +360,110 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 92.
  [1
 
-{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>] (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.133 
+       [1] (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 ) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
 File: lstlang2.sty 2023/02/27 1.9 listings language file
 )
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.137     \end{lstlisting}
-                           [1]
-<../images/sudo-nano.png, id=65, 824.32968pt x 584.1825pt>
+<../images/sudo-nano.png, id=67, 824.32968pt x 584.1825pt>
 File: ../images/sudo-nano.png Graphic file (type png)
 <use ../images/sudo-nano.png>
-Package pdftex.def Info: ../images/sudo-nano.png  used on input line 141.
+Package pdftex.def Info: ../images/sudo-nano.png  used on input line 144.
 (pdftex.def)             Requested size: 384.1096pt x 272.21254pt.
- [2 <../images/sudo-nano.png>]
-<../images/ipconfig.png, id=82, 558.58687pt x 228.855pt>
+ [2]
+<../images/ipconfig.png, id=79, 558.58687pt x 228.855pt>
 File: ../images/ipconfig.png Graphic file (type png)
 <use ../images/ipconfig.png>
-Package pdftex.def Info: ../images/ipconfig.png  used on input line 157.
+Package pdftex.def Info: ../images/ipconfig.png  used on input line 160.
 (pdftex.def)             Requested size: 341.43437pt x 139.89117pt.
-
-Overfull \hbox (19.36801pt too wide) in paragraph at lines 161--162
+ [3 <../images/sudo-nano.png>]
+Overfull \hbox (19.36801pt too wide) in paragraph at lines 164--165
 []\OT1/cmr/m/n/12 Dapat dil-i-hat pada gam-bar []2[], bahwa ala-mat IP kom-puter host adalah 10.33.88.135. 
  []
 
-[3 <../images/ipconfig.png>]
-<../images/sudo-mysql.png, id=97, 555.57562pt x 359.84438pt>
+<../images/sudo-mysql.png, id=92, 555.57562pt x 359.84438pt>
 File: ../images/sudo-mysql.png Graphic file (type png)
 <use ../images/sudo-mysql.png>
-Package pdftex.def Info: ../images/sudo-mysql.png  used on input line 177.
+Package pdftex.def Info: ../images/sudo-mysql.png  used on input line 180.
 (pdftex.def)             Requested size: 384.1096pt x 248.78705pt.
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 188.
+[4 <../images/ipconfig.png>]
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 191.
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 188.
- [4 <../images/sudo-mysql.png>]
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 190.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 191.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 193.
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 191.
-<../images/tes-koneksi.png, id=110, 554.07pt x 294.34969pt>
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 194.
+ [5 <../images/sudo-mysql.png>]
+<../images/tes-koneksi.png, id=124, 554.07pt x 294.34969pt>
 File: ../images/tes-koneksi.png Graphic file (type png)
 <use ../images/tes-koneksi.png>
-Package pdftex.def Info: ../images/tes-koneksi.png  used on input line 202.
+Package pdftex.def Info: ../images/tes-koneksi.png  used on input line 205.
 (pdftex.def)             Requested size: 341.43437pt x 181.38553pt.
 
-Overfull \hbox (22.04092pt too wide) in paragraph at lines 199--207
+Overfull \hbox (22.04092pt too wide) in paragraph at lines 202--210
 []\OT1/cmr/m/n/12 Setelah itu, buka browser dan ak-ses ala-mat http://localhost/psait/tes[]koneksi.php. 
  []
 
 
-Overfull \hbox (10.87132pt too wide) in paragraph at lines 210--210
+Overfull \hbox (10.87132pt too wide) in paragraph at lines 213--213
 []\OT1/cmr/bx/n/14.4 Membuat Tabel baru di MySQL server dan Menampilkan
  []
 
-[5 <../images/tes-koneksi.png>]
-<../images/table-mahasiswa.png, id=130, 462.97969pt x 269.50688pt>
+[6 <../images/tes-koneksi.png>]
+<../images/table-mahasiswa.png, id=139, 462.97969pt x 269.50688pt>
 File: ../images/table-mahasiswa.png Graphic file (type png)
 <use ../images/table-mahasiswa.png>
-Package pdftex.def Info: ../images/table-mahasiswa.png  used on input line 217.
+Package pdftex.def Info: ../images/table-mahasiswa.png  used on input line 220.
 (pdftex.def)             Requested size: 341.43437pt x 198.75754pt.
- [6 <../images/table-mahasiswa.png>]
+ [7 <../images/table-mahasiswa.png>]
 
 LaTeX Font Warning: Font shape `TS1/cmtt/bx/n' undefined
 (Font)              using `TS1/cmtt/m/n' instead
-(Font)              for symbol `textdollar' on input line 251.
+(Font)              for symbol `textdollar' on input line 254.
 
-[7]
-<../images/output-mhs.png, id=178, 1443.14156pt x 529.98pt>
+[8]
+<../images/output-mhs.png, id=192, 1443.14156pt x 529.98pt>
 File: ../images/output-mhs.png Graphic file (type png)
 <use ../images/output-mhs.png>
-Package pdftex.def Info: ../images/output-mhs.png  used on input line 274.
+Package pdftex.def Info: ../images/output-mhs.png  used on input line 277.
 (pdftex.def)             Requested size: 384.1096pt x 141.05862pt.
- [8 <../images/output-mhs.png>]
-Overfull \hbox (5.07777pt too wide) in paragraph at lines 286--287
+ [9 <../images/output-mhs.png>]
+Overfull \hbox (5.07777pt too wide) in paragraph at lines 289--290
 \OT1/cmr/m/n/12 prak-tikan berhasil men-gin-sta-lasi web server Apache pada kom-puter host dan database
  []
 
-[9] (template.bbl
+[10] (template.bbl
+Underfull \hbox (badness 10000) in paragraph at lines 25--30
+[]\OT1/cmr/m/n/12 Prasatya, ``Apa Itu VPS? Penger-tian, Fungsi, dan Ke-
+ []
 
-Package natbib Warning: Empty `thebibliography' environment on input line 24.
 
-) [10] (template.aux)
+Underfull \hbox (badness 10000) in paragraph at lines 25--30
+\OT1/cmr/m/n/12 ung-gu-lan-nya un-tuk Web-site Anda - CODE-POLI-TAN
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--30
+\OT1/cmr/m/n/12 --- code-poli-tan.com,'' []$https : / / www . codepolitan . com / blog /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--30
+\OT1/cmr/m/n/12 apa-[]itu-[]vps-[]pengertian-[]fungsi-[]dan-[]keunggulannya-[]untuk-[]website-[]anda/$[], [Ac-
+ []
+
+) [11] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -463,20 +473,20 @@ L3 programming layer <2024-01-04>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: C0692E2E49B84C737D980FF14CE43EFF;2128.
+(rerunfilecheck)             Checksum: D799CAD25D802AB14595DAECE5CB0076;2032.
  ) 
 Here is how much of TeX's memory you used:
- 15090 strings out of 474486
- 240309 string characters out of 5744228
- 1986542 words of memory out of 5000000
- 37111 multiletter control sequences out of 15000+600000
+ 14762 strings out of 474486
+ 236354 string characters out of 5744228
+ 1999542 words of memory out of 5000000
+ 36784 multiletter control sequences out of 15000+600000
  563258 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,789b,3172s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on template.pdf (11 pages, 3130264 bytes).
+Output written on template.pdf (12 pages, 3134893 bytes).
 PDF statistics:
- 265 PDF objects out of 1000 (max. 8388607)
- 115 named destinations out of 1000 (max. 500000)
+ 276 PDF objects out of 1000 (max. 8388607)
+ 118 named destinations out of 1000 (max. 500000)
  124 words of extra memory for PDF output out of 10000 (max. 10000000)
 
