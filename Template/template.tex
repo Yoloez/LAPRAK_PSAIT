@@ -15,6 +15,10 @@
 \usepackage{setspace}
 % \usepackage[natbibapa]{apacite}
 \usepackage{natbib}
+\usepackage{caption}
+
+\renewcommand{\figurename}{Gambar}
+\renewcommand\thesection{\Alph{section}}
 
 % ===== PHP & HTML Dark Theme Listing Style =====
 \definecolor{codebg}{RGB}{30,30,46}
@@ -70,10 +74,13 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
+    { \textbf{PERTEMUAN 3}}\\[0.3cm]
     { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
+
+    
+    -
     \includegraphics[height=7cm]{../images/ugm.png}
     
     % Identitas
@@ -114,6 +121,9 @@ Disusun oleh:\\[0.3cm]
 \end{enumerate}
 
 \section{Dasar Teori}
+\subsection{VPS}
+\subsection{Bind-Address pada MySQL}
+
 \section{Hasil dan Pemabahasan}
 \subsection{Modifikasi bind-address pada MySQL}
 Pada praktikum sebelumnya, Web Server Apache dan Database MySQL diinstal pada komputer yang sama. Pada praktikum ini, Web Server Apache dan Database MySQL diinstal pada komputer yang berbeda. Praktikan akan menggunakan komputer host untuk menginstall laragon untuk web server Apache serta VPS untuk database MySQL.
@@ -128,21 +138,98 @@ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
     \item Setelah dijalankan, akan muncul tampilan seperti berikut:
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.8\textwidth]{../images/sudo-nano.png}
-        \caption{Tampilan file mysqld.cnf}
+        \includegraphics[width=0.9\textwidth]{../images/sudo-nano.png}
+        \caption{Mengubah konfigurasi bind-address pada MySQL di VPS}
+        \label{sudo-nano}
     \end{figure}
-    \item 
+    \item Terdapat bagian bind-address yang secara default bernilai 127.0.0.1. Ubah nilai tersebut menjadi 0.0.0.0. Perubahan tersebut dilakukan agar MySQL dapat menerima koneksi dari semua alamat IP, bukan hanya dari localhost. 
+    \item Simpan perubahan dengan menekan tombol Ctrl + X, lalu tekan Y, dan terakhir tekan Enter.
+    \item Agar perubahan konfigurasi bind-address dapat diterapkan, jalankan perintah \begin{lstlisting}[style=phphtml]
+sudo service mysql restart
+    \end{lstlisting}
     \end{enumerate}
 \subsection{Membuat User baru pada MySQL}
+Agar komputer host dapat mengakses database MySQL yang terinstal pada VPS, praktikan perlu membuat user baru pada MySQL dengan hak akses yang sesuai. Berikut tahapannya:
+\begin{enumerate}
+    \item Buka CMD pada komputer host. Lalu jalankan ipconfig untuk mengetahui alamat IP komputer host.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/ipconfig.png}
+        \caption{Mengecek Ip Address komputer host}
+        \label{ipconfig}
+    \end{figure}
+    \item Dapat dilihat pada gambar \ref{ipconfig}, bahwa alamat IP komputer host adalah 10.33.88.135.
+    \item Setelah mendapatkan alamat IP komputer host, buka VsCode yang sudah terhubung dengan VPS melalui SSH. Lalu jalankan perintah sudo mysql untuk masuk ke MySQL.
+    \item Setelah masuk ke MySQL, jalankan perintah berikut untuk membuat user baru 
+    \begin{lstlisting}[style=phphtml]
+CREATE USER 'praktikan_host'@'10.33.88.135' IDENTIFIED BY '123123123';
+    \end{lstlisting}
+    \item Setelah user baru berhasil dibuat, jalankan perintah berikut untuk memberikan hak akses kepada user baru tersebut agar dapat mengakses database yang telah dibuat pada praktikum sebelumnya (sait\_db).
+    \begin{lstlisting}[style=phphtml]
+GRANT ALL PRIVILEGES ON *.* TO 'praktikan_host'@'10.33.88.135';
+    \end{lstlisting}
+    \item Jalankan 
+    \begin{lstlisting}[style=phphtml]
+FLUSH PRIVILEGES;
+    \end{lstlisting} untuk menerapkan perubahan hak akses yang telah diberikan.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/sudo-mysql.png}
+        \caption{Membuat user baru pada MySQL dan memberikan hak akses}
+        \label{create-user}
+    \end{figure}
+\end{enumerate}
 
-\subsection{}
 
-\begin{lstlisting}[style=phphtml]
-<?php
-
-include 'tes_koneksi.php';
-
-?>
+\subsection{Menghubungkan Website Apache pada Host dengan Database MySQL di VPS}
+Untuk menghubungkan website Apache yang terinstal pada komputer host dengan database MySQL yang terinstal pada VPS, praktikan perlu menjalankan Apache pada laragon. Berikut tahapannya:
+\begin{enumerate}
+    \item Jalankan laragon pada komputer host. Lalu klik menu, hover ke Apache, dan klik Start untuk menjalankan Apache.
+    \item Masuk ke dalam folder \textbackslash laragon\textbackslash www. Lalu buat folder baru dengan nama psait. Di dalam folder psait, buat file baru dengan nama tes\_koneksi.php yang berisi kode berikut:
+    \begin{lstlisting}[style=phphtml]
+$koneksi = mysqli_connect("10.33.35.71", "praktikan_host", "123123123", "sait_db");
+if (!$koneksi) {
+    echo("Koneksi gagal: " . mysqli_connect_error());
+}
+else {
+    echo "<h1>KONEKSI BERHASIL</h1>";
+}
+    \end{lstlisting}
+    Kode tersebut digunakan untuk menguji koneksi antara website Apache pada komputer host dengan database MySQL yang terinstal pada VPS. Pastikan untuk mengganti alamat IP dengan IP VPS, serta username, password, dan nama database sesuai dengan konfigurasi yang telah dibuat sebelumnya.
+    \item Setelah itu, buka browser dan akses alamat http://localhost/psait/tes\_koneksi.php. 
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/tes-koneksi.png}
+        \captionsetup{font=small}
+        \captionsetup{justification=centering}
+        \caption{Koneksi berhasil antara website Apache pada host dengan database MySQL di VPS}     
+        \label{koneksi-berhasil}
+    \end{figure}
+\end{enumerate}
+    
+\subsection{Membuat Tabel baru di MySQL server dan Menampilkan Data pada Website}
+Untuk membuat tabel baru di MySQL server, praktikan perlu masuk ke MySQL pada VPS dan menjalankan perintah-perintah SQL untuk membuat tabel baru. Setelah itu, praktikan dapat menampilkan data dari tabel tersebut pada website Apache di komputer host. Berikut tahapannya:
+\begin{enumerate}
+    \item Masuk ke MySQL pada VPS dengan menjalankan perintah sudo mysql.
+    \item Jalankan perintah berikut untuk membuat tabel mahasiswa beserta isinya
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/table-mahasiswa.png}
+        \caption{Membuat tabel mahasiswa beserta isinya pada MySQL di VPS}
+        \label{create-table}
+    \end{figure}
+    \item Setelah tabel mahasiswa berhasil dibuat, masuk kembali ke folder psait yang telah dibuat sebelumnya. Tambahkan kode berikut pada file tes\_koneksi.php.
+    \begin{lstlisting}[style=phphtml]
+        $query = "SELECT * FROM mahasiswa";
+        $result = mysqli_query($koneksi, $query);
+        if (!$result) {
+            die("Query gagal: " . mysqli_error($koneksi));
+        }
+    \end{lstlisting}
+    Kode tersebut digunakan untuk mengambil data dari tabel mahasiswa yang telah dibuat pada MySQL di VPS.
+    \item Setelah itu, buat file baru dengan nama mahasiswa.php yang digunakan untuk menampilkan data dari tabel mahasiswa. Berikut kode lengkapnya
+    \begin{lstlisting}[style=phphtml]
+<?php include 'tes_koneksi.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,18 +262,32 @@ include 'tes_koneksi.php';
     } else {
         echo "<tr><td colspan='6'>Tidak ada data</td></tr>";
     }
-
     mysqli_close($koneksi);
     ?>
 </table>
-
 </body>
 </html>
 \end{lstlisting}
+    \item Buka http://localhost/psait/mahasiswa.php pada browser untuk melihat data mahasiswa yang telah ditampilkan.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/output-mhs.png}
+        \captionsetup{font=small}
+        \captionsetup{justification=centering}
+        \caption{Data mahasiswa (dari database VPS) yang berhasil ditampilkan pada website Apache di komputer host}     
+        \label{data-mahasiswa}
+    \end{figure}
+\end{enumerate}
 
 
 
+\newpage
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa praktikan berhasil menginstalasi web server Apache pada komputer host dan database MySQL pada VPS. Praktikan juga berhasil memodifikasi konfigurasi bind-address pada MySQL agar dapat menerima koneksi dari komputer lain, serta membuat user baru dengan hak akses yang sesuai untuk mengakses database MySQL di VPS. Selain itu, praktikan berhasil menghubungkan website Apache pada komputer host dengan database MySQL di VPS, serta menampilkan data dari tabel mahasiswa yang telah dibuat pada MySQL di VPS ke dalam website Apache di komputer host. Hal ini menunjukkan bahwa praktikan telah memahami cara menginstalasi dan mengkonfigurasi web server
+
+Dengan adanya praktikum ini, praktikan dapat memahami konsep dasar tentang bagaimana web server dan database dapat berkomunikasi satu sama lain, meskipun berada pada komputer yang berbeda. Praktikum ini juga memberikan pengalaman praktis dalam mengelola database MySQL dan menghubungkannya dengan aplikasi web, yang merupakan keterampilan penting dalam pengembangan web modern.
+
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
