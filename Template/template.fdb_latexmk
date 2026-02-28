@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1772273214.02379 "template.aux" "template.bbl" "template" 1772273216.75091 0
+["bibtex template"] 1772280320.44962 "template.aux" "template.bbl" "template" 1772280323.14304 0
   "./ref.bib" 1772172023.5068 0 d41d8cd98f00b204e9800998ecf8427e ""
   "D:/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "template.aux" 1772273215.89208 3454 a8f074e4eecf85bca5d93f0340b3a826 "pdflatex"
+  "template.aux" 1772280322.26373 3453 f6719050cbb8962cb1889d8022719519 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1772273214.39705 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1772273216.75197 0
+["pdflatex"] 1772280320.85279 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1772280323.1441 0
   "../images/ipconfig.png" 1772166646.1002 25427 49c143f315fa13b6037142e710382bca ""
   "../images/output-mhs.png" 1772166918.63761 50471 2cbcdf962f091453b7fa910a29a0d9a4 ""
   "../images/sudo-mysql.png" 1772158381.83599 38327 97c68cc613be89c3e0b9ea804b22b3f9 ""
@@ -102,10 +102,10 @@
   "D:/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "D:/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "D:/MiKTeX/tex/latex/titling/titling.sty" 1252048308 7358 95ac619994bd30d405a74f3eca431c84 ""
-  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1772273210.88318 13083 a9fec5f23ae10370c654007b4d161faf ""
-  "template.aux" 1772273215.89208 3454 a8f074e4eecf85bca5d93f0340b3a826 "pdflatex"
-  "template.bbl" 1772273214.30855 901 1275951483efd19a714db164ecc0791b "bibtex template"
-  "template.out" 1772273215.89468 2133 0863ff3d1505167907a62eea6fdec44b "pdflatex"
+  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1772280315.57606 13082 80a63ba7d92486208acdcb5bdf06d849 ""
+  "template.aux" 1772280322.26373 3453 f6719050cbb8962cb1889d8022719519 "pdflatex"
+  "template.bbl" 1772280320.76603 901 1275951483efd19a714db164ecc0791b "bibtex template"
+  "template.out" 1772280322.26576 2128 c0692e2e49b84c737d980ff14ce43eff "pdflatex"
   (generated)
   "template.aux"
   "template.log"
