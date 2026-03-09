@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1772162585.51515 "template.aux" "template.bbl" "template" 1772162587.50821 0
-  "./ref.bib" 1771751353.34194 0 d41d8cd98f00b204e9800998ecf8427e ""
+["bibtex template"] 1773042942.157 "template.aux" "template.bbl" "template" 1773049918.4025 0
+  "./ref.bib" 1773042936.86527 0 d41d8cd98f00b204e9800998ecf8427e ""
   "D:/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "template.aux" 1772162586.73446 747 f56ac32d5bd00b9006fa034f1cfd26cd "pdflatex"
+  "template.aux" 1773049917.58857 747 f56ac32d5bd00b9006fa034f1cfd26cd "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1772162585.84883 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1772162587.50909 0
+["pdflatex"] 1773049916.72301 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773049918.40343 0
   "../images/ugm.png" 1767958562.62108 2028757 04c6fdad5deebfe4be1d85c1de5bd48d ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1763343021.46995 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767958122.25231 24224573 5f82ad2ae3ac2ed63391480a509c0180 ""
@@ -81,10 +81,10 @@
   "D:/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "D:/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "D:/MiKTeX/tex/latex/titling/titling.sty" 1252048308 7358 95ac619994bd30d405a74f3eca431c84 ""
-  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1772162583.14935 2600 6bf8b2ff305d0b254224b47c7f31912a ""
-  "template.aux" 1772162586.73446 747 f56ac32d5bd00b9006fa034f1cfd26cd "pdflatex"
-  "template.bbl" 1772162585.76727 901 1275951483efd19a714db164ecc0791b "bibtex template"
-  "template.out" 1772162586.73546 513 89557277fe19c1fb48774411fc0d5b2c "pdflatex"
+  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773049916.38255 2516 7cd7651444c5bb1eb4d19b2457367099 ""
+  "template.aux" 1773049917.58857 747 f56ac32d5bd00b9006fa034f1cfd26cd "pdflatex"
+  "template.bbl" 1773042942.43827 901 1275951483efd19a714db164ecc0791b "bibtex template"
+  "template.out" 1773049917.58957 513 89557277fe19c1fb48774411fc0d5b2c "pdflatex"
   (generated)
   "template.aux"
   "template.log"
