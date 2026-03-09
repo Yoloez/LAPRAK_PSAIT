@@ -14,7 +14,7 @@
 \usepackage{indentfirst}
 \usepackage{setspace}
 % \usepackage[natbibapa]{apacite}
-\usepackage{natbib}
+% \usepackage{natbib}
 \usepackage{chngcntr}
 \begin{document}
 
@@ -44,11 +44,7 @@ Disusun oleh:\\[0.3cm]
         Dosen Pengampu & : & Dr.Imam Fahrurrozi, S.T., M.Cs.
     \end{tabular}
 \end{center}
-
-
-    
     \vspace{1.5cm}
-    
     % Footer bawah
     { \textbf{PROGRAM STUDI D-IV TEKNOLOGI REKAYASA PERANGKAT LUNAK}}\\[0.3cm]
     { \textbf{DEPARTEMEN TEKNIK ELEKTRO DAN INFORMATIKA}}\\[0.3cm]
@@ -61,11 +57,87 @@ Disusun oleh:\\[0.3cm]
 
 \doublespacing 
 
-\section{Dasar Teori}
-\section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\section{Tujuan}
+\begin{enumerate}
+    \item Mahasiswa mampu memahami arsitektur Client-Server dengan memisahkan sisi Backend (API di Ubuntu Server) dan sisi Frontend di Komputer Host.
+    \item Mahasiswa mampu melakukan pengujian fungsionalitas REST API (GET, POST, DELETE) menggunakan aplikasi Postman. 
+    \item Mahasiswa mampu mengintegrasikan aplikasi Frontend berbasis PHP di sisi klien agar dapat berkomunikasi dan bertukar data dengan REST API yang berada di server.
+\end{enumerate}
 
+\section{Dasar Teori}
+\subsection{REST API}
+REST atau \textit{Representational State Transfer} adalah salah satu arsitektur yang digunakan untuk membangun layanan web yang dapat diakses melalui protokol HTTP. REST API menggunakan pola request-response untuk berkomunikasi antara client dan server. REST API menggunakan metode HTTP seperti GET, POST, PUT, DELETE, dan lain-lain untuk melakukan operasi pada sumber daya yang tersedia di server \cite{dicodingRESTService}
+
+\subsection{JSON}
+JSON adalah singkatan dari Javascript Object Notation. JSON adalah format file berbasis teks yang umumnya digunakan dalam proses pertukaran data antara server dan client. JSON banyak digunakan karena formatnya sederhana, sehingga mudah dipahami dan digunakan oleh banyak bahasa pemrograman \cite{hostingerJSONPenjelasan}. 
+
+Kelebihan dari JSON yaitu ringan, serta Bahasa yang independen atau tidak bergantung dan dapat bekerja pada bahasa pemrograman JavaScript dan bahasa pemrograman modern lainnya. Seperti Java, C++, Python, PHP, Ruby, AJAX, dan Perl. Akan tetapi, JSON juga memiliki kekurangan yaitu tidak mendukung komentar, sehingga sulit untuk memberikan penjelasan atau catatan pada data yang disimpan dalam format JSON. Selain itu, JSON tidak memiliki schema yang membuat developer memiliki fleksibilitas total untuk mewakili data dengan cara apa pun dan secara tidak sengaja membuat data yang salah dengan sangat mudah \cite{domainesiaKenalanDengan}.
+
+\subsection{Postman}
+Postman adalah sebuah tools atau alat yang populer digunakan untuk mengembangkan dan menguji API (Application Programming Interface). Dengan menggunakan Postman, pengembang dapat membuat permintaan HTTP dan mengirimnya ke server untuk menguji fungsionalitas API yang sedang dikembangkan. Postman menyediakan antarmuka pengguna yang intuitif dan mudah digunakan, sehingga memudahkan pengembang dalam melakukan pengujian API \cite{codepolitanUntukPemula}.
+
+
+
+\section{Hasil dan Pemabahasan}
+
+\subsection{Deploy REST API di Ubuntu Server}
+Pada praktikum ini, praktikan akan menerapkan arsitektur Client-Server dengan memisahkan sisi Backend (API di Ubuntu Server) dan sisi Frontend di Komputer Host. Untuk membuat REST API di Ubuntu Server, berikut tahapan yang dilakukan:
+\begin{enumerate}
+    \item Mengunduh folder kode sumber (source code) API yang telah disediakan. 
+    \item Buka VS Code yang terhubung dengan Ubuntu Server (Remote SSH).
+    \item Copy semua file dari folder kode sumber API ke dalam www/.
+\end{enumerate}
+
+\subsection{Test REST API di Postman}
+Setelah REST API berhasil dideploy di Ubuntu Server, langkah selanjutnya adalah melakukan pengujian fungsionalitas REST API (GET, POST, DELETE) menggunakan aplikasi Postman. 
+\subsubsection{Http Method GET}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/get.png}
+    \caption{Hasil pengujian REST API dengan Http Method GET}
+    \label{get}
+\end{figure}
+
+Dapat dilihat pada gambar \ref{get}. Method GET berhasil dijalankan dengan status code 200 OK. Pada bagian Body, terdapat data yang dikirimkan oleh server dalam format JSON. Data tersebut berisi informasi tentang mahasiswa, seperti id mahasiswa, nama, dan alamat.
+
+\subsubsection{Http Method POST (Menambahkan Data Baru)} 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/post.png}
+    \caption{Hasil pengujian REST API dengan Http Method POST}
+    \label{post}
+\end{figure}
+Dapat dilihat pada gambar \ref{post}. Method POST berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Added Successfully". Pada bagian Body, terdapat data yang akan dikirimkan ke server dalam format JSON. Data tersebut berisi informasi tentang nama dan alamat mahasiswa. Setelah data dikirimkan, server akan memproses data tersebut dan menambahkannya ke dalam database.
+
+\subsubsection{Http Method POST (Memperbarui Data)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/update.png}
+    \caption{Hasil pengujian REST API dengan Http Method POST untuk memperbarui data}
+    \label{put}
+\end{figure}
+Dapat dilihat pada gambar \ref{put}. Method POST berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Updated Successfully". Pada url, terdapat id mahasiswa (id\_mhs=5) yang akan diperbarui. Pada bagian Body, terdapat data yang akan diperbarui yaitu nama dan alamat mahasiswa. Setelah data dikirimkan, server akan memproses data tersebut dan memperbarui informasi mahasiswa dengan id\_mhs=5 di dalam database.
+
+\subsubsection{Http Method DELETE}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/delete.png}
+    \caption{Hasil pengujian REST API dengan Http Method DELETE}
+    \label{delete}
+\end{figure}
+Berdasarkan gambar \ref{delete}, Method DELETE berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Deleted Successfully". Pada url, terdapat id mahasiswa (id\_mhs=5) yang akan dihapus. Setelah permintaan DELETE dikirimkan, server akan memproses permintaan tersebut dan menghapus data mahasiswa dengan id\_mhs=5 dari database.
+
+\subsection{Menjalankan Frontend di komputer lokal}
+Siapkan folder \verb|sait_frontend| yang telah diunduh dari source code yang telah disediakan. 
+Buka folder \verb|\laragon\www\psait| yang telah dibuat pada praktikum sebelumnya. 
+Copy folder \verb|sait_frontend| ke dalam folder \verb|\laragon\www\psait|. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/output.png}
+    \caption{Tampilan halaman frontend yang terhubung dengan REST API di Ubuntu Server}
+    \label{frontend}
+\end{figure}
 
 
 \section{Kesimpulan}
