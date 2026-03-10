@@ -16,12 +16,52 @@
 % \usepackage[natbibapa]{apacite}
 % \usepackage{natbib}
 \usepackage{chngcntr}
+
+\renewcommand{\figurename}{Gambar}
+\renewcommand\thesection{\Alph{section}}
+
+
+\lstdefinestyle{phphtml}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{codetext},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{linenumcol},
+    numbersep=10pt,
+    frame=single,
+    rulecolor=\color{gray!40},
+    framesep=5pt,
+    xleftmargin=18pt,
+    % PHP language & keywords (pink/magenta)
+    language=PHP,
+    morekeywords={include, echo, while, if, else},
+    keywordstyle=\color{phpkw}\bfseries,
+    % Strings (orange)
+    stringstyle=\color{phpstr},
+    % Comments (green)
+    commentstyle=\color{commentcol}\itshape,
+    % Functions (yellow/gold)
+    emph={mysqli_num_rows, mysqli_fetch_assoc, mysqli_close},
+    emphstyle=\color{phpfunc},
+    % Variables $... (pink)
+    alsoletter={\$},
+    emph={[2]\$result,\$row,\$koneksi},
+    emphstyle={[2]\color{phpvar}},
+    % HTML tags (cyan)
+    moredelim=[s][\color{htmltagcol}\bfseries]{<}{>},
+}
+\usepackage{chngcntr}
+
 \begin{document}
+
+
 
 \begin{titlepage}
     \centering
     \onehalfspacing
-
     
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
