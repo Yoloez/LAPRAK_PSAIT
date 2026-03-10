@@ -1,21 +1,24 @@
 # Fdb version 4
-["bibtex template"] 1773070568.66269 "template.aux" "template.bbl" "template" 1773070573.64617 0
+["bibtex template"] 1773116220.82016 "template.aux" "template.bbl" "template" 1773116228.41306 0
   "./ref.bib" 1773070450.09816 1311 e344920ba86e26201b083a45419575c0 ""
   "D:/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "template.aux" 1773070572.78999 3679 55a95887bdf090dd1f377638bd3d962c "pdflatex"
+  "template.aux" 1773116227.56273 3940 0042d8367db65686e3504be49929cf06 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1773070571.5615 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773070573.64712 0
+["pdflatex"] 1773116226.30389 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773116228.41406 0
   "../images/delete.png" 1772764251.87913 50243 410f1d41a384fdb599c172cef0e9fbbd ""
   "../images/get.png" 1772763923.21829 72905 f64bd80563babd089087173a57f5c478 ""
   "../images/output.png" 1772768276.89176 71382 8f78768ab8b87d5fe6b38f6c2472348c ""
   "../images/post.png" 1772764059.23115 67401 9a6c337648aca7845bc82f40c8460985 ""
+  "../images/source-code.png" 1773115610.58515 18653 4a3a6b83cc03a52a933fcdc9e95d9ba2 ""
   "../images/ugm.png" 1767958562.62108 2028757 04c6fdad5deebfe4be1d85c1de5bd48d ""
   "../images/update.png" 1772764223.69597 55961 8b53740de595a6ff5be0f59652a36434 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1763343021.46995 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+  "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1771692688.59873 14064 92ff4e0e866895af6d18f410293a3418 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767958122.25231 24224573 5f82ad2ae3ac2ed63391480a509c0180 ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136765053 1524 4414a8315f39513458b80dfc63bff03a ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi6.tfm" 1136765053 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -30,6 +33,7 @@
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136765053 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt12.tfm" 1136765053 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 fa121aac0049305630cf160b86157ee4 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1247596666 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
@@ -43,6 +47,7 @@
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls" 1705273579 20144 147463a6a579f4597269ef9565205cfe ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/base/atbegshi-ltx.sty" 1705273578 3045 273c666a54e60b9f730964f431a56c1b ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/base/atveryend-ltx.sty" 1705273579 2462 6bc53756156dbd71c1ad550d30a3b93f ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/base/omlcmr.fd" 1705273579 2470 ec0f30a4dee212b06d8724b94d7d4f9a ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/base/size12.clo" 1705273578 8449 f07039d8e4e89f21078d9b5137579bfc ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1623003186 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etoolbox.sty" 1601897756 46845 3b58f70c6e861a13d927bff09d35ecbc ""
@@ -89,10 +94,10 @@
   "D:/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "D:/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "D:/MiKTeX/tex/latex/titling/titling.sty" 1252048308 7358 95ac619994bd30d405a74f3eca431c84 ""
-  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773070571.22277 7895 1ff086ebda8b1345dbcd9f73898c9155 ""
-  "template.aux" 1773070572.78999 3679 55a95887bdf090dd1f377638bd3d962c "pdflatex"
-  "template.bbl" 1773070568.93624 1995 ac4fb4a37efd1d6f74d19c44770cc515 "bibtex template"
-  "template.out" 1773070572.79299 2351 5fe3b5ac1df0ee663d07e88123289ada "pdflatex"
+  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773116226.00018 10324 43019535f1004746277d69fc096830e5 ""
+  "template.aux" 1773116227.56273 3940 0042d8367db65686e3504be49929cf06 "pdflatex"
+  "template.bbl" 1773116221.13876 1995 ac4fb4a37efd1d6f74d19c44770cc515 "bibtex template"
+  "template.out" 1773116227.56674 2351 5fe3b5ac1df0ee663d07e88123289ada "pdflatex"
   (generated)
   "template.aux"
   "template.log"

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  9 MAR 2026 22:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  10 MAR 2026 11:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -329,51 +329,79 @@ Package hyperref Info: Link coloring OFF on input line 19.
 <../images/ugm.png, id=63, 1606.0pt x 1606.0pt>
 File: ../images/ugm.png Graphic file (type png)
 <use ../images/ugm.png>
-Package pdftex.def Info: ../images/ugm.png  used on input line 32.
+Package pdftex.def Info: ../images/ugm.png  used on input line 36.
 (pdftex.def)             Requested size: 199.15665pt x 199.16928pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 40.
+(Font)              <12> on input line 44.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 40.
+(Font)              <8> on input line 44.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 40.
+(Font)              <6> on input line 44.
  [1
 
 {C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.75 
-      [1] [2]
-<../images/get.png, id=95, 819.06pt x 585.68813pt>
+l.79 
+      [1]
+<../images/source-code.png, id=86, 252.19218pt x 283.81032pt>
+File: ../images/source-code.png Graphic file (type png)
+<use ../images/source-code.png>
+Package pdftex.def Info: ../images/source-code.png  used on input line 95.
+(pdftex.def)             Requested size: 256.07741pt x 288.1835pt.
+ [2]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 103.
+ (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 103.
+
+Overfull \hbox (89.0325pt too wide) in paragraph at lines 103--104
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+<../images/get.png, id=96, 819.06pt x 585.68813pt>
 File: ../images/get.png Graphic file (type png)
 <use ../images/get.png>
-Package pdftex.def Info: ../images/get.png  used on input line 96.
+Package pdftex.def Info: ../images/get.png  used on input line 112.
 (pdftex.def)             Requested size: 384.1096pt x 274.67468pt.
-<../images/post.png, id=97, 803.25093pt x 411.78844pt>
+[3 <../images/source-code.png>]
+<../images/post.png, id=110, 803.25093pt x 411.78844pt>
 File: ../images/post.png Graphic file (type png)
 <use ../images/post.png>
-Package pdftex.def Info: ../images/post.png  used on input line 106.
+Package pdftex.def Info: ../images/post.png  used on input line 122.
 (pdftex.def)             Requested size: 384.1096pt x 196.92104pt.
- [3 <../images/get.png>]
-<../images/update.png, id=105, 621.07031pt x 387.69844pt>
+ [4 <../images/get.png>]
+<../images/update.png, id=118, 621.07031pt x 387.69844pt>
 File: ../images/update.png Graphic file (type png)
 <use ../images/update.png>
-Package pdftex.def Info: ../images/update.png  used on input line 115.
+Package pdftex.def Info: ../images/update.png  used on input line 131.
 (pdftex.def)             Requested size: 384.1096pt x 239.77896pt.
- [4 <../images/post.png>]
-<../images/delete.png, id=113, 589.4522pt x 344.03531pt>
+ [5 <../images/post.png>]
+<../images/delete.png, id=126, 589.4522pt x 344.03531pt>
 File: ../images/delete.png Graphic file (type png)
 <use ../images/delete.png>
-Package pdftex.def Info: ../images/delete.png  used on input line 124.
+Package pdftex.def Info: ../images/delete.png  used on input line 140.
 (pdftex.def)             Requested size: 384.1096pt x 224.18726pt.
- [5 <../images/update.png>]
-<../images/output.png, id=121, 1406.25375pt x 671.50874pt>
+ [6 <../images/update.png>]
+<../images/output.png, id=135, 1406.25375pt x 671.50874pt>
 File: ../images/output.png Graphic file (type png)
 <use ../images/output.png>
-Package pdftex.def Info: ../images/output.png  used on input line 137.
+Package pdftex.def Info: ../images/output.png  used on input line 153.
 (pdftex.def)             Requested size: 384.1096pt x 183.4103pt.
- [6 <../images/delete.png>] (template.bbl
+ [7 <../images/delete.png>] [8 <../images/output.png>]
+Overfull \hbox (7.27797pt too wide) in paragraph at lines 160--161
+\OT1/cmr/m/n/12 da-pat di-ak-ses melalui pro-tokol HTTP. REST API meng-gu-nakan pola request-response
+ []
+
+
+Overfull \hbox (4.57492pt too wide) in paragraph at lines 162--163
+\OT1/cmr/m/n/12 API (GET, POST, DELETE) meng-gu-nakan ap-likasi Post-man. Method GET berhasil
+ []
+
+[9] (template.bbl
 Underfull \hbox (badness 1590) in paragraph at lines 25--29
 []\OT1/cmr/m/n/12 R. Se-ti-awan, ``Apa itu REST Web Ser-vice: Tu-to-rial Back-End De-vel-
  []
@@ -398,7 +426,7 @@ Underfull \hbox (badness 1838) in paragraph at lines 43--47
 \OT1/cmr/m/n/12 CODE-POLI-TAN --- code-poli-tan.com,'' []$https : / / www . codepolitan . com / blog /
  []
 
-[7 <../images/output.png>]) [8] (template.aux)
+) [10] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -407,17 +435,17 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 5FE3B5AC1DF0EE663D07E88123289ADA;2351.
  ) 
 Here is how much of TeX's memory you used:
- 11107 strings out of 474486
- 172482 string characters out of 5744228
+ 11404 strings out of 474486
+ 175157 string characters out of 5744228
  1931542 words of memory out of 5000000
- 33226 multiletter control sequences out of 15000+600000
- 562839 words of font info for 52 fonts, out of 8000000 for 9000
+ 33512 multiletter control sequences out of 15000+600000
+ 563176 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,715b,561s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on template.pdf (9 pages, 3138886 bytes).
+ 75i,7n,79p,727b,1324s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on template.pdf (11 pages, 3159278 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
- 151 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 204 PDF objects out of 1000 (max. 8388607)
+ 47 named destinations out of 1000 (max. 500000)
+ 156 words of extra memory for PDF output out of 10000 (max. 10000000)
 

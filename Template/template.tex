@@ -18,6 +18,10 @@
 \usepackage{chngcntr}
 \begin{document}
 
+\renewcommand{\figurename}{Gambar}
+\renewcommand\thesection{\Alph{section}}
+
+
 \begin{titlepage}
     \centering
     \onehalfspacing
@@ -83,9 +87,21 @@ Postman adalah sebuah tools atau alat yang populer digunakan untuk mengembangkan
 \subsection{Deploy REST API di Ubuntu Server}
 Pada praktikum ini, praktikan akan menerapkan arsitektur Client-Server dengan memisahkan sisi Backend (API di Ubuntu Server) dan sisi Frontend di Komputer Host. Untuk membuat REST API di Ubuntu Server, berikut tahapan yang dilakukan:
 \begin{enumerate}
-    \item Mengunduh folder kode sumber (source code) API yang telah disediakan. 
+    \item Mengunduh folder kode sumber (source code) API yang telah disediakan yaitu folder sait\_api dan sait\_frontend. 
     \item Buka VS Code yang terhubung dengan Ubuntu Server (Remote SSH).
-    \item Copy semua file dari folder kode sumber API ke dalam www/.
+    \item Copy semua folder kode sumber API ke dalam var/www/html/psait.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../images/source-code.png}
+    \caption{Copy folder kode sumber API ke dalam var/www/html/psait}
+    \label{copy}
+    \end{figure}
+
+    \item Pada praktikum sebelumnya, praktikan telah membuat database dengan nama sait\_db dan tabel mahasiswa. Pastikan database dan tabel tersebut sudah dibuat sebelum menjalankan REST API di Ubuntu Server.
+    \item Jalankan perintah berikut untuk mengimport value dari file mahasiswa.sql yang berada di dalam folder sait\_api ke dalam database sait\_db.
+    \begin{lstlisting}[]
+mysql -u root -p sait_db < /var/www/html/psait/sait_api/mahasiswa.sql
+    \end{lstlisting}
 \end{enumerate}
 
 \subsection{Test REST API di Postman}
@@ -139,8 +155,15 @@ Copy folder \verb|sait_frontend| ke dalam folder \verb|\laragon\www\psait|.
     \label{frontend}
 \end{figure}
 
-
+\newpage
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa REST API adalah arsitektur yang digunakan untuk membangun layanan web yang dapat diakses melalui protokol HTTP. REST API menggunakan pola request-response untuk berkomunikasi antara client dan server. REST API menggunakan metode HTTP seperti GET, POST, PUT, DELETE, dan lain-lain untuk melakukan operasi pada sumber daya yang tersedia di server. JSON adalah format file berbasis teks yang umumnya digunakan dalam proses pertukaran data antara server dan client. JSON banyak digunakan karena formatnya sederhana, sehingga mudah dipahami dan digunakan oleh banyak bahasa pemrograman. 
+
+Selain itu, praktikan juga berhasil melakukan pengujian fungsionalitas REST API (GET, POST, DELETE) menggunakan aplikasi Postman. Method GET berhasil dijalankan dengan status code 200 OK dan data yang dikirimkan oleh server dalam format JSON. Method POST berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Added Successfully" untuk menambahkan data baru, serta dengan pesan "Mahasiswa Updated Successfully" untuk memperbarui data. Method DELETE berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Deleted Successfully".
+
+Praktikan juga berhasil menjalankan frontend di komputer lokal yang terhubung dengan REST API di Ubuntu Server. Hal ini menunjukkan bahwa frontend dapat berkomunikasi dan bertukar data dengan REST API yang berada di server, sehingga memungkinkan pengguna untuk mengakses dan memanipulasi data melalui antarmuka pengguna yang disediakan oleh frontend.
+\newpage
+    
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
