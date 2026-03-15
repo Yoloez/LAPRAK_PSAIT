@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  10 MAR 2026 11:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  15 MAR 2026 18:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -248,24 +248,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 ) (template.aux)
 \openout1 = `template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -321,7 +321,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 \c@lstlisting=\count292
-Package hyperref Info: Link coloring OFF on input line 58.
+Package hyperref Info: Link coloring OFF on input line 67.
  (template.out) (template.out)
 \@outlinefile=\write3
 \openout3 = `template.out'.
@@ -329,45 +329,97 @@ Package hyperref Info: Link coloring OFF on input line 58.
 <../images/ugm.png, id=27, 1606.0pt x 1606.0pt>
 File: ../images/ugm.png Graphic file (type png)
 <use ../images/ugm.png>
-Package pdftex.def Info: ../images/ugm.png  used on input line 73.
+Package pdftex.def Info: ../images/ugm.png  used on input line 82.
 (pdftex.def)             Requested size: 199.15665pt x 199.16928pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 81.
+(Font)              <12> on input line 90.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 81.
+(Font)              <8> on input line 90.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 81.
+(Font)              <6> on input line 90.
  [1
 
-{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>] (template.bbl
+{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>]
+<../images/jikan-api.png, id=37, 1412.27625pt x 684.30656pt>
+File: ../images/jikan-api.png Graphic file (type png)
+<use ../images/jikan-api.png>
+Package pdftex.def Info: ../images/jikan-api.png  used on input line 127.
+(pdftex.def)             Requested size: 341.43437pt x 165.43771pt.
+<../images/jikan-docs.png, id=39, 1443.14156pt x 720.44156pt>
+File: ../images/jikan-docs.png Graphic file (type png)
+<use ../images/jikan-docs.png>
+Package pdftex.def Info: ../images/jikan-docs.png  used on input line 135.
+(pdftex.def)             Requested size: 341.43437pt x 170.44705pt.
 
-LaTeX Warning: Empty `thebibliography' environment on input line 24.
-
-)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.120 \end{document}
-                     [1] (template.aux)
+l.138     \item P
+                 raktikan menggunakan endpoint https://api.jikan.moe/v4/top/... [1 <../images/jikan-api.png>] (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
+File: lstlang2.sty 2023/02/27 1.9 listings language file
+) [2 <../images/jikan-docs.png>]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 158.
+ [3] [4] [5]
+Overfull \hbox (9.66338pt too wide) in paragraph at lines 260--261
+\OT1/cmr/m/n/12 melakukan pars-ing data JSON terse-but da-pat meng-gu-nakan fungsi json[]decode()
+ []
+
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 264.
+(C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+
+LaTeX Font Warning: Font shape `TS1/cmtt/bx/n' undefined
+(Font)              using `TS1/cmtt/m/n' instead
+(Font)              for symbol `textdollar' on input line 264.
+
+[6]
+Overfull \hbox (20.00076pt too wide) in paragraph at lines 278--279
+[][][][][][][][][][][][][][][][][][][][][][][][][][]  
+ []
+
+[7]
+<../images/halaman-fetch-jikan.png, id=231, 1437.87187pt x 724.95844pt>
+File: ../images/halaman-fetch-jikan.png Graphic file (type png)
+<use ../images/halaman-fetch-jikan.png>
+Package pdftex.def Info: ../images/halaman-fetch-jikan.png  used on input line 310.
+(pdftex.def)             Requested size: 341.43437pt x 172.14622pt.
+<../images/hlm-final.png, id=232, 1128.46594pt x 697.10437pt>
+File: ../images/hlm-final.png Graphic file (type png)
+<use ../images/hlm-final.png>
+Package pdftex.def Info: ../images/hlm-final.png  used on input line 318.
+(pdftex.def)             Requested size: 341.43437pt x 210.91992pt.
+ [8 <../images/halaman-fetch-jikan.png>] (template.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 24.
+
+) [9 <../images/hlm-final.png>] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: FB3A50C7A7AB37ABC1CFD13C0F93E702;586.
+(rerunfilecheck)             Checksum: 1478B65442E7B3763C97493281A95668;803.
  ) 
 Here is how much of TeX's memory you used:
- 11014 strings out of 474486
- 170773 string characters out of 5744228
- 1931542 words of memory out of 5000000
- 33165 multiletter control sequences out of 15000+600000
- 562323 words of font info for 50 fonts, out of 8000000 for 9000
+ 13435 strings out of 474486
+ 210819 string characters out of 5744228
+ 1989542 words of memory out of 5000000
+ 35393 multiletter control sequences out of 15000+600000
+ 563258 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,6n,79p,815b,520s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on template.pdf (2 pages, 2901945 bytes).
+ 75i,7n,79p,462b,4008s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on template.pdf (10 pages, 5855703 bytes).
 PDF statistics:
- 56 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 191 named destinations out of 1000 (max. 500000)
+ 74 words of extra memory for PDF output out of 10000 (max. 10000000)
 

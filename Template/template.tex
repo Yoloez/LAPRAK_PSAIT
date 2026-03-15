@@ -20,6 +20,15 @@
 \renewcommand{\figurename}{Gambar}
 \renewcommand\thesection{\Alph{section}}
 
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codetext}{RGB}{40,40,40}
+\definecolor{linenumcol}{RGB}{120,120,120}
+\definecolor{phpkw}{RGB}{199,0,57}
+\definecolor{phpstr}{RGB}{255,140,0}
+\definecolor{commentcol}{RGB}{0,128,0}
+\definecolor{phpfunc}{RGB}{184,134,11}
+\definecolor{phpvar}{RGB}{199,0,57}
+\definecolor{htmltagcol}{RGB}{0,139,139}
 
 \lstdefinestyle{phphtml}{
     backgroundcolor=\color{codebg},
@@ -66,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 5}}\\[0.3cm]
+    { \textbf{MEMBANGUN DAN MENGAKSES REST API DI SERVER UBUNTU}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -104,12 +113,211 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa mampu menampilkan data dari dua sumber api yang berbeda dalam satu halaman web.
+    \item Mahasiswa mampu melakukan parsing (penguraian) data JSON yang kompleks dari 
+pihak ketiga menjadi struktur data (Array/Object) yang dapat dibaca oleh aplikasi. 
 \end{enumerate}
 \section{Dasar Teori}
 \section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\subsection{Fetch API dari Jikan API (Manga List)}
+Praktikan memilih Jikan API sebagai sumber data untuk fetch API pada praktikum ini. Jikan API adalah sebuah API yang menyediakan data terkait anime, manga, dan karakter dari situs MyAnimeList. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/jikan-api.png}
+    \caption{Website Jikan API}
+\end{figure}
+
+\begin{enumerate}
+    \item Untuk fetch API dari Jikan API, praktikan diharuskan membaca dokumentasi Jikan API yang tersedia pada link \url{https://docs.api.jikan.moe/#/} untuk memahami endpoint yang tersedia dan cara mengaksesnya.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/jikan-docs.png}
+        \caption{Dokumentasi Jikan API}
+    \end{figure} 
+    \item Praktikan menggunakan endpoint https://api.jikan.moe/v4/top/manga untuk mendapatkan daftar top manga.
+    \item Berdasarkan dokumentasi, respons dari endpoint tersebut berupa data JSON seperti berikut:
+        \begin{lstlisting}[style=phphtml]
+            {
+  "data": [
+    {
+      "mal_id": 0,
+      "url": "string",
+      "images": {
+        "jpg": {
+          "image_url": "string",
+          "small_image_url": "string",
+          "large_image_url": "string"
+        },
+        "webp": {
+          "image_url": "string",
+          "small_image_url": "string",
+          "large_image_url": "string"
+        }
+      },
+      "approved": true,
+      "titles": [
+        {
+          "type": "string",
+          "title": "string"
+        }
+      ],
+      "title": "string",
+      "title_english": "string",
+      "title_japanese": "string",
+      "type": "Manga",
+      "chapters": 0,
+      "volumes": 0,
+      "status": "Finished",
+      "publishing": true,
+      "published": {
+        "from": "string",
+        "to": "string",
+        "prop": {
+          "from": {
+            "day": 0,
+            "month": 0,
+            "year": 0
+          },
+          "to": {
+            "day": 0,
+            "month": 0,
+            "year": 0
+          },
+          "string": "string"
+        }
+      },
+      "score": 0.1,
+      "scored_by": 0,
+      "rank": 0,
+      "popularity": 0,
+      "members": 0,
+      "favorites": 0,
+      "synopsis": "string",
+      "background": "string",
+      "authors": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ],
+      "serializations": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ],
+      "genres": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ],
+      "explicit_genres": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ],
+      "themes": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ],
+      "demographics": [
+        {
+          "mal_id": 0,
+          "type": "string",
+          "name": "string",
+          "url": "string"
+        }
+      ]
+    }
+  ],
+  "pagination": {
+    "last_visible_page": 0,
+    "has_next_page": true,
+    "current_page": 0,
+    "items": {
+      "count": 0,
+      "total": 0,
+      "per_page": 0
+    }
+  }
+}
+        \end{lstlisting}
+    \item Praktikan melakukan parsing data JSON yang diperoleh dari endpoint tersebut untuk menampilkan informasi seperti judul manga, skor, dan jumlah anggota yang menyukai manga tersebut pada halaman web. Kode untuk melakukan parsing data JSON tersebut dapat menggunakan fungsi json\_decode() seperti berikut:
+        \begin{lstlisting}[style=phphtml]
+<div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <?php
+    $url = "https://api.jikan.moe/v4/top/manga?limit=10";
+
+    $json = @file_get_contents($url);
+    $data = json_decode($json, true);
+
+    if($data && isset($data['data'])){
+
+        echo "<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>";
+
+        foreach($data['data'] as $manga){
+
+            $title = $manga['title'];
+            $score = $manga['score'];
+            $chapters = $manga['chapters'];
+            $image = $manga['images']['jpg']['large_image_url'];
+            $synopsis = substr($manga['synopsis'],0,120) . "...";
+
+            echo "
+            <div class='border rounded-lg shadow hover:shadow-lg transition p-4'>
+                
+                <img src='$image' class='w-full h-64 object-cover rounded mb-3'>
+                
+                <h3 class='font-bold text-lg mb-1'>$title</h3>
+                
+                <p class='text-sm text-gray-600 mb-1'> Score: $score</p>
+                <p class='text-sm text-gray-600 mb-2'> Chapters: $chapters</p>
+                
+                <p class='text-sm text-gray-700'>$synopsis</p>
+            
+            </div>
+            ";
+        }
+
+        echo "</div>";
+
+    }else{
+        echo "<p class='text-red-500'>Gagal mengambil data manga.</p>";
+    }
+    ?>
+    
+</div>
+    \end{lstlisting}
+
+    \item Halaman web yang menampilkan data manga dari Jikan API dapat dilihat pada gambar berikut:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../images/halaman-fetch-jikan.png}
+        \caption{Hasil Fetch API dari Jikan API}
+    \end{figure}
+\end{enumerate}
+
+Halaman web gabungan dari fetch API dari VPS publik pada pertemuan 4 dan fetch API dari Jikan API pada pertemuan 5 dapat dilihat pada gambar berikut:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/hlm-final.png}
+    \caption{Halaman Web Gabungan Fetch API}
+    \end{figure} 
 
 
 
