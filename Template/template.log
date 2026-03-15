@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  15 MAR 2026 18:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  15 MAR 2026 20:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -326,7 +326,7 @@ Package hyperref Info: Link coloring OFF on input line 67.
 \@outlinefile=\write3
 \openout3 = `template.out'.
 
-<../images/ugm.png, id=27, 1606.0pt x 1606.0pt>
+<../images/ugm.png, id=31, 1606.0pt x 1606.0pt>
 File: ../images/ugm.png Graphic file (type png)
 <use ../images/ugm.png>
 Package pdftex.def Info: ../images/ugm.png  used on input line 82.
@@ -340,63 +340,60 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 {C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <../images/ugm.png>]
-<../images/jikan-api.png, id=37, 1412.27625pt x 684.30656pt>
-File: ../images/jikan-api.png Graphic file (type png)
-<use ../images/jikan-api.png>
-Package pdftex.def Info: ../images/jikan-api.png  used on input line 127.
-(pdftex.def)             Requested size: 341.43437pt x 165.43771pt.
-<../images/jikan-docs.png, id=39, 1443.14156pt x 720.44156pt>
-File: ../images/jikan-docs.png Graphic file (type png)
-<use ../images/jikan-docs.png>
-Package pdftex.def Info: ../images/jikan-docs.png  used on input line 135.
-(pdftex.def)             Requested size: 341.43437pt x 170.44705pt.
-
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.138     \item P
-                 raktikan menggunakan endpoint https://api.jikan.moe/v4/top/... [1 <../images/jikan-api.png>] (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+l.123 \newpage
+               [1]
+<../images/jikan-api.png, id=48, 1412.27625pt x 684.30656pt>
+File: ../images/jikan-api.png Graphic file (type png)
+<use ../images/jikan-api.png>
+Package pdftex.def Info: ../images/jikan-api.png  used on input line 131.
+(pdftex.def)             Requested size: 341.43437pt x 165.43771pt.
+<../images/jikan-docs.png, id=50, 1443.14156pt x 720.44156pt>
+File: ../images/jikan-docs.png Graphic file (type png)
+<use ../images/jikan-docs.png>
+Package pdftex.def Info: ../images/jikan-docs.png  used on input line 139.
+(pdftex.def)             Requested size: 341.43437pt x 170.44705pt.
+ [2 <../images/jikan-api.png> <../images/jikan-docs.png>] (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 ) (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
 File: lstlang2.sty 2023/02/27 1.9 listings language file
-) [2 <../images/jikan-docs.png>]
+)
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 158.
- [3] [4] [5]
-Overfull \hbox (9.66338pt too wide) in paragraph at lines 260--261
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 162.
+ [3] [4] [5] [6]
+Overfull \hbox (9.66338pt too wide) in paragraph at lines 264--265
 \OT1/cmr/m/n/12 melakukan pars-ing data JSON terse-but da-pat meng-gu-nakan fungsi json[]decode()
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 264.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 268.
 (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 
 LaTeX Font Warning: Font shape `TS1/cmtt/bx/n' undefined
 (Font)              using `TS1/cmtt/m/n' instead
-(Font)              for symbol `textdollar' on input line 264.
+(Font)              for symbol `textdollar' on input line 268.
 
-[6]
-Overfull \hbox (20.00076pt too wide) in paragraph at lines 278--279
+
+Overfull \hbox (20.00076pt too wide) in paragraph at lines 282--283
 [][][][][][][][][][][][][][][][][][][][][][][][][][]  
  []
 
-[7]
-<../images/halaman-fetch-jikan.png, id=231, 1437.87187pt x 724.95844pt>
+[7] [8]
+<../images/halaman-fetch-jikan.png, id=250, 1437.87187pt x 724.95844pt>
 File: ../images/halaman-fetch-jikan.png Graphic file (type png)
 <use ../images/halaman-fetch-jikan.png>
-Package pdftex.def Info: ../images/halaman-fetch-jikan.png  used on input line 310.
+Package pdftex.def Info: ../images/halaman-fetch-jikan.png  used on input line 317.
 (pdftex.def)             Requested size: 341.43437pt x 172.14622pt.
-<../images/hlm-final.png, id=232, 1128.46594pt x 697.10437pt>
+ [9]
+<../images/hlm-final.png, id=263, 1128.46594pt x 697.10437pt>
 File: ../images/hlm-final.png Graphic file (type png)
 <use ../images/hlm-final.png>
-Package pdftex.def Info: ../images/hlm-final.png  used on input line 318.
+Package pdftex.def Info: ../images/hlm-final.png  used on input line 325.
 (pdftex.def)             Requested size: 341.43437pt x 210.91992pt.
- [8 <../images/halaman-fetch-jikan.png>] (template.bbl
-
-LaTeX Warning: Empty `thebibliography' environment on input line 24.
-
-) [9 <../images/hlm-final.png>] (template.aux)
+ [10 <../images/halaman-fetch-jikan.png> <../images/hlm-final.png>] [11] (template.bbl) [12] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -406,20 +403,20 @@ L3 programming layer <2024-01-04>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 1478B65442E7B3763C97493281A95668;803.
+(rerunfilecheck)             Checksum: CD455031A07A20C406CDB42959961C82;875.
  ) 
 Here is how much of TeX's memory you used:
- 13435 strings out of 474486
- 210819 string characters out of 5744228
- 1989542 words of memory out of 5000000
- 35393 multiletter control sequences out of 15000+600000
- 563258 words of font info for 54 fonts, out of 8000000 for 9000
+ 13446 strings out of 474486
+ 210969 string characters out of 5744228
+ 1980542 words of memory out of 5000000
+ 35397 multiletter control sequences out of 15000+600000
+ 563902 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,79p,462b,4008s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on template.pdf (10 pages, 5855703 bytes).
+ 75i,7n,79p,657b,4008s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on template.pdf (13 pages, 5876261 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 191 named destinations out of 1000 (max. 500000)
- 74 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 360 PDF objects out of 1000 (max. 8388607)
+ 196 named destinations out of 1000 (max. 500000)
+ 82 words of extra memory for PDF output out of 10000 (max. 10000000)
 

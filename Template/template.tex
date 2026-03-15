@@ -118,6 +118,10 @@ Disusun oleh:\\[0.3cm]
 pihak ketiga menjadi struktur data (Array/Object) yang dapat dibaca oleh aplikasi. 
 \end{enumerate}
 \section{Dasar Teori}
+\subsection{API}
+API (Application Programming Interface) adalah antarmuka pemrograman aplikasi yag menjadi perantara komunikasi antar aplikasi atau komponen perangkat lunak. API memungkinkan satu aplikasi meminta data atau layanan dari aplikasi lain tanpa harus mengetahui detail internalnya. API dapat berupa REST API, SOAP API, GraphQL, dan lain-lain, yang masing-masing memiliki cara kerja dan format data yang berbeda \cite{codepolitanAPIPengertian}.
+\newpage
+
 \section{Hasil dan Pemabahasan}
 \subsection{Fetch API dari Jikan API (Manga List)}
 Praktikan memilih Jikan API sebagai sumber data untuk fetch API pada praktikum ini. Jikan API adalah sebuah API yang menyediakan data terkait anime, manga, dan karakter dari situs MyAnimeList. 
@@ -257,7 +261,7 @@ Praktikan memilih Jikan API sebagai sumber data untuk fetch API pada praktikum i
   }
 }
         \end{lstlisting}
-    \item Praktikan melakukan parsing data JSON yang diperoleh dari endpoint tersebut untuk menampilkan informasi seperti judul manga, skor, dan jumlah anggota yang menyukai manga tersebut pada halaman web. Kode untuk melakukan parsing data JSON tersebut dapat menggunakan fungsi json\_decode() seperti berikut:
+    \item Praktikan melakukan parsing data JSON yang diperoleh dari endpoint tersebut untuk menampilkan informasi seperti judul manga, skor, jumlah chapter, dan sinopsis cerita dari manga tersebut pada halaman web. Kode untuk melakukan parsing data JSON tersebut dapat menggunakan fungsi json\_decode() seperti berikut:
         \begin{lstlisting}[style=phphtml]
 <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <?php
@@ -303,6 +307,9 @@ Praktikan memilih Jikan API sebagai sumber data untuk fetch API pada praktikum i
     
 </div>
     \end{lstlisting}
+    Kode program tersebut digunakan untuk mengambil dan menampilkan data sepuluh manga teratas dari API yang disediakan oleh \textit{Jikan API}. Pada bagian awal, program mendefinisikan alamat API menggunakan variabel \texttt{\$url}. Selanjutnya, fungsi \texttt{file\_get\_contents()} digunakan untuk mengambil data dari API dalam format JSON, kemudian data tersebut dikonversi menjadi array PHP menggunakan fungsi \texttt{json\_decode()}. Setelah itu, program melakukan pengecekan untuk memastikan bahwa data berhasil diperoleh sebelum diproses lebih lanjut.
+
+Apabila data tersedia, program melakukan perulangan menggunakan struktur \texttt{foreach} untuk menampilkan setiap manga yang diperoleh dari API. Informasi yang diambil meliputi judul manga, nilai atau \textit{score}, jumlah chapter, gambar sampul, serta sinopsis singkat. Data tersebut kemudian ditampilkan dalam bentuk kartu menggunakan elemen HTML yang dipadukan dengan kelas dari Tailwind CSS untuk mengatur tampilan visual seperti bayangan, tata letak grid, dan efek interaksi. Jika data tidak berhasil diperoleh, program akan menampilkan pesan kesalahan kepada pengguna.
 
     \item Halaman web yang menampilkan data manga dari Jikan API dapat dilihat pada gambar berikut:
     \begin{figure}[H]
@@ -320,8 +327,12 @@ Halaman web gabungan dari fetch API dari VPS publik pada pertemuan 4 dan fetch A
     \end{figure} 
 
 
-
+\newpage
 \section{Kesimpulan}
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa praktikan berhasil melakukan fetch API dari Jikan API untuk mendapatkan data manga dan menampilkannya pada halaman web. Praktikan juga berhasil melakukan parsing data JSON yang kompleks dari Jikan API menjadi struktur data yang dapat dibaca oleh aplikasi. Dengan demikian, tujuan praktikum ini telah tercapai dengan baik.
+
+
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1773573006.19008 "template.aux" "template.bbl" "template" 1773573043.80338 0
-  "./ref.bib" 1773568210.12182 0 d41d8cd98f00b204e9800998ecf8427e ""
+["bibtex template"] 1773581328.42031 "template.aux" "template.bbl" "template" 1773581334.22678 0
+  "./ref.bib" 1773574565.29742 372 72738472806f5156bf675233010b8567 ""
   "D:/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "template.aux" 1773573042.34113 1430 341390cc3e2321d4afe388ffa0889bb9 "pdflatex"
+  "template.aux" 1773581332.68566 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1773573039.03152 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773573043.80504 0
+["pdflatex"] 1773581329.19117 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773581334.22932 0
   "../images/halaman-fetch-jikan.png" 1773572178.59733 1242734 415adfdf7dd37d85b9448592655280c1 ""
   "../images/hlm-final.png" 1773573017.52533 788322 eb70920402b91bd42d11c31a283d96e1 ""
   "../images/jikan-api.png" 1773571452.43188 621736 df40ef2b8774561548d5d6a8bcf0ff56 ""
@@ -15,8 +15,10 @@
   "../images/ugm.png" 1767958562.62108 2028757 04c6fdad5deebfe4be1d85c1de5bd48d ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1763343021.46995 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1095.pk" 1771643711.24726 10392 2b9c619ec25f29b4c9971f68de4d6df6 ""
+  "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk" 1773580044.35108 11368 e7663750f235ab1d5bd3d01ffb769b8e ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1767958122.25231 24224573 5f82ad2ae3ac2ed63391480a509c0180 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tctt1095.tfm" 993062564 1288 9de43f6f9fa5c50dd019bdac984121de ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tctt1200.tfm" 993062566 1284 6abcddffeae037bf4ed0c8e16ae5cd52 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136765053 1524 4414a8315f39513458b80dfc63bff03a ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi6.tfm" 1136765053 1512 f21f83efb36853c0b70002322c1ab3ad ""
@@ -29,11 +31,13 @@
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmti12.tfm" 1136765053 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt10.tfm" 1136765053 768 1321e9409b4137d6fb428ac9dc956269 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt12.tfm" 1136765053 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1247596667 32734 69e00a6b65cedb993666e42eedb3d48f ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1247596667 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb" 1247596666 24252 1e4e051947e12dfb50fee0b7f4e26e3a ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -95,10 +99,10 @@
   "D:/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "D:/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "D:/MiKTeX/tex/latex/titling/titling.sty" 1252048308 7358 95ac619994bd30d405a74f3eca431c84 ""
-  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773573035.24605 9600 a4ee4b5badf285d7fb450d1f31c1a779 ""
-  "template.aux" 1773573042.34113 1430 341390cc3e2321d4afe388ffa0889bb9 "pdflatex"
-  "template.bbl" 1773573006.75666 901 1275951483efd19a714db164ecc0791b "bibtex template"
-  "template.out" 1773573042.34565 803 1478b65442e7b3763c97493281a95668 "pdflatex"
+  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773581329.37725 11631 93a3a64e560921d5da7d4f3cd5e5c955 ""
+  "template.aux" 1773581332.68566 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
+  "template.bbl" 1773581329.05812 1222 035a858e2c3c4169bf45fa5bf681e699 "bibtex template"
+  "template.out" 1773581332.68816 875 cd455031a07a20c406cdb42959961c82 "pdflatex"
   (generated)
   "template.aux"
   "template.log"
