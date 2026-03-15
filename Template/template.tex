@@ -21,6 +21,49 @@
 \renewcommand{\figurename}{Gambar}
 \renewcommand\thesection{\Alph{section}}
 
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codetext}{RGB}{40,40,40}
+\definecolor{linenumcol}{RGB}{120,120,120}
+\definecolor{phpkw}{RGB}{199,0,57}
+\definecolor{phpstr}{RGB}{255,140,0}
+\definecolor{commentcol}{RGB}{0,128,0}
+\definecolor{phpfunc}{RGB}{184,134,11}
+\definecolor{phpvar}{RGB}{199,0,57}
+\definecolor{htmltagcol}{RGB}{0,139,139}
+
+\lstdefinestyle{phphtml}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{codetext},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=4,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{linenumcol},
+    numbersep=10pt,
+    frame=single,
+    rulecolor=\color{gray!40},
+    framesep=5pt,
+    xleftmargin=18pt,
+    % PHP language & keywords (pink/magenta)
+    language=PHP,
+    morekeywords={include, echo, while, if, else},
+    keywordstyle=\color{phpkw}\bfseries,
+    % Strings (orange)
+    stringstyle=\color{phpstr},
+    % Comments (green)
+    commentstyle=\color{commentcol}\itshape,
+    % Functions (yellow/gold)
+    emph={mysqli_num_rows, mysqli_fetch_assoc, mysqli_close},
+    emphstyle=\color{phpfunc},
+    % Variables $... (pink)
+    alsoletter={\$},
+    emph={[2]\$result,\$row,\$koneksi},
+    emphstyle={[2]\color{phpvar}},
+    % HTML tags (cyan)
+    moredelim=[s][\color{htmltagcol}\bfseries]{<}{>},
+}
+
 
 \begin{titlepage}
     \centering
@@ -99,13 +142,38 @@ Pada praktikum ini, praktikan akan menerapkan arsitektur Client-Server dengan me
 
     \item Pada praktikum sebelumnya, praktikan telah membuat database dengan nama sait\_db dan tabel mahasiswa. Pastikan database dan tabel tersebut sudah dibuat sebelum menjalankan REST API di Ubuntu Server.
     \item Jalankan perintah berikut untuk mengimport value dari file mahasiswa.sql yang berada di dalam folder sait\_api ke dalam database sait\_db.
-    \begin{lstlisting}[]
-mysql -u root -p sait_db < /var/www/html/psait/sait_api/mahasiswa.sql
+    \begin{lstlisting}[style=phphtml]
+sudo mysql -u root -p sait_db < /var/www/html/psait/sait_api/mahasiswa.sql
     \end{lstlisting}
+    \item Verifikasi hasil import dengan masuk ke MySQL dan menjalankan perintah-perintah berikut untuk melihat isi tabel mahasiswa.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/sudo-mysql.png}
+    \caption{Verifikasi hasil import dengan melihat isi tabel mahasiswa}
+    \label{verify-import}
+    \end{figure}
+    Dapat dilihat pada gambar \ref{verify-import}, terdapat 4 data mahasiswa yang berhasil diimport ke dalam tabel mahasiswa di database sait\_db. 
+    \item Edit file config.php yang ada di dalam folder sait\_api untuk menyesuaikan dengan konfigurasi database yang telah dibuat. Pastikan nama database, username, dan password sudah benar agar REST API dapat terhubung dengan database.
+     \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/config.png}
+    \caption{Edit file config.php untuk menyesuaikan konfigurasi database}
+    \label{config-php}
+    \end{figure}
 \end{enumerate}
+
 
 \subsection{Test REST API di Postman}
 Setelah REST API berhasil dideploy di Ubuntu Server, langkah selanjutnya adalah melakukan pengujian fungsionalitas REST API (GET, POST, DELETE) menggunakan aplikasi Postman. 
+
+Akan tetapi, sebelum melakukan pengujian, pastikan REST API sudah berjalan di Ubuntu Server dan dapat diakses melalui alamat IP server. \url{http://10.33.35.71/psait/sait_api/mahasiswa\_api.php} Jika REST API sudah berjalan dengan baik, maka akan muncul data mahasiswa dalam format JSON seperti pada gambar \ref{api-running}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/json-format.png}
+    \caption{REST API sudah berjalan dengan baik dan dapat diakses melalui alamat IP server}
+    \label{api-running}
+\end{figure}
+
 \subsubsection{Http Method GET}
 \begin{figure}[H]
     \centering
@@ -134,6 +202,7 @@ Dapat dilihat pada gambar \ref{post}. Method POST berhasil dijalankan dengan sta
 \end{figure}
 Dapat dilihat pada gambar \ref{put}. Method POST berhasil dijalankan dengan status code 200 OK dan dengan pesan "Mahasiswa Updated Successfully". Pada url, terdapat id mahasiswa (id\_mhs=5) yang akan diperbarui. Pada bagian Body, terdapat data yang akan diperbarui yaitu nama dan alamat mahasiswa. Setelah data dikirimkan, server akan memproses data tersebut dan memperbarui informasi mahasiswa dengan id\_mhs=5 di dalam database.
 
+
 \subsubsection{Http Method DELETE}
 \begin{figure}[H]
     \centering
@@ -147,6 +216,17 @@ Berdasarkan gambar \ref{delete}, Method DELETE berhasil dijalankan dengan status
 Siapkan folder \verb|sait_frontend| yang telah diunduh dari source code yang telah disediakan. 
 Buka folder \verb|\laragon\www\psait| yang telah dibuat pada praktikum sebelumnya. 
 Copy folder \verb|sait_frontend| ke dalam folder \verb|\laragon\www\psait|. 
+
+Pastikan api url yang diakses oleh frontend sudah benar dan mengarah ke REST API yang berada pada file mahasiswa\_api.php dalam direktori var/www/html/psait/sait\_api/. Edit file \verb|index.php| baris ke 34 yang ada di dalam folder \verb|sait_frontend| untuk menyesuaikan api url dengan alamat IP server. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/frontend-connect.png}
+    \caption{Edit file index.php untuk menyesuaikan api url dengan alamat IP server}
+    \label{api-url}
+\end{figure}
+
+
+Pastikan telah menjalankan apache di laragon. Buka browser dan akses url \url{http://localhost/psait/sait_frontend/index.php}. Jika frontend berhasil terhubung dengan REST API di Ubuntu Server, maka akan muncul tampilan halaman frontend seperti pada gambar \ref{frontend}.
 
 \begin{figure}[H]
     \centering
