@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex template"] 1773581328.42031 "template.aux" "template.bbl" "template" 1773581334.22678 0
+["bibtex template"] 1777257877.66943 "template.aux" "template.bbl" "template" 1777257882.98861 0
   "./ref.bib" 1773574565.29742 372 72738472806f5156bf675233010b8567 ""
   "D:/MiKTeX/bibtex/bst/ieeetran/IEEEtran.bst" 1440622569 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "template.aux" 1773581332.68566 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
+  "template.aux" 1777257881.63992 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
   (rewritten before read)
-["pdflatex"] 1773581329.19117 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1773581334.22932 0
+["pdflatex"] 1777257878.47758 "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" "template.pdf" "template" 1777257882.99061 0
   "../images/halaman-fetch-jikan.png" 1773572178.59733 1242734 415adfdf7dd37d85b9448592655280c1 ""
   "../images/hlm-final.png" 1773573017.52533 788322 eb70920402b91bd42d11c31a283d96e1 ""
   "../images/jikan-api.png" 1773571452.43188 621736 df40ef2b8774561548d5d6a8bcf0ff56 ""
@@ -99,10 +99,10 @@
   "D:/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "D:/MiKTeX/tex/latex/setspace/setspace.sty" 1670403145 22490 8cac309b79a4c53a4ffce4b1b07aead0 ""
   "D:/MiKTeX/tex/latex/titling/titling.sty" 1252048308 7358 95ac619994bd30d405a74f3eca431c84 ""
-  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1773581329.37725 11631 93a3a64e560921d5da7d4f3cd5e5c955 ""
-  "template.aux" 1773581332.68566 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
-  "template.bbl" 1773581329.05812 1222 035a858e2c3c4169bf45fa5bf681e699 "bibtex template"
-  "template.out" 1773581332.68816 875 cd455031a07a20c406cdb42959961c82 "pdflatex"
+  "d:/TRPL/SEM 4/PSAIT/Laprak/Template/template.tex" 1777257862.37355 11627 b04ff9547d4749ff49e330e7302abc10 ""
+  "template.aux" 1777257881.63992 1618 ecad36ee0873b2f66b94ed609fb65249 "pdflatex"
+  "template.bbl" 1777257878.31855 1222 035a858e2c3c4169bf45fa5bf681e699 "bibtex template"
+  "template.out" 1777257881.64205 875 cd455031a07a20c406cdb42959961c82 "pdflatex"
   (generated)
   "template.aux"
   "template.log"
