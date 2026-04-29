@@ -20,6 +20,14 @@
 \renewcommand{\figurename}{Gambar}
 \renewcommand\thesection{\Alph{section}}
 
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codetext}{RGB}{0,0,0}
+\definecolor{linenumcol}{RGB}{128,128,128}
+\definecolor{phpkw}{RGB}{180,0,120}    % Pink/Magenta
+\definecolor{phpstr}{RGB}{255,100,0}   % Orange
+\definecolor{commentcol}{RGB}{0,128,0} % Hijau
+\definecolor{phpfunc}{RGB}{128,128,0}  % Gold/Yellow
+\definecolor{phpvar}{RGB}{150,0,150}
 
 \lstdefinestyle{phphtml}{
     backgroundcolor=\color{codebg},
@@ -66,8 +74,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 7}}\\[0.3cm]
+    { \textbf{REPLIKASI DATABASE MYSQL DI UBUNTU SERVER}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -104,16 +112,232 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa mampu memahami repplikasi database MySQL di Ubuntu Server.
+    \item Mahasiswa mampu mengkonfigurasi master dan slave MySQL untuk replikasi database
+    \item Mahasiswa mampu operasikan replikasi database MySQL untuk memastikan data konsistensi antara master dan slave.
 \end{enumerate}
+
 \section{Dasar Teori}
-\section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\subsection{Replikasi Database MySQL}
+Replikasi database adalah sistem yang digunakan untuk menyalin, mendistribusikan data, serta melakukan sinkronisasi data antar database. Replikasi database juga dapat membantu meningkatkan kinerja database dengan mempercepat waktu akses dan meminimalkan waktu downtime yang mungkin terjadi jika hanya ada satu database tunggal.
+
+Pada dasarnya sistem replikasi membutuhkan minimal dua buah server untuk digunakan sebagai master dan slave. Dengan menggunakan teknik replikasi, data dapat didistribusikan ke server yang berbeda melalui koneksi jaringan lokal maupun internet.
+
+Selain itu ada yang menyebutkan bahwa Replikasi adalah proses menyalin dan memelihara objek database dalam beberapa database yang membentuk suatu sistem database terdistribusi. Replikasi database dapat meningkatkan kinerja dan melindungi ketersediaan aplikasi karena data pilihan alternatif akses (cadangan) ada \cite{rumahwebReplikasiDatabase}.
+
+\section{Hasil dan Pembahasan}
+\subsection{Hasil Praktikum}
+Pada praktikum ini, mahasiswa melakukan konfigurasi replikasi database MySQL di Ubuntu Server. Proses ini melibatkan beberapa langkah, termasuk pengaturan master dan slave, serta memastikan data konsistensi antara keduanya. Berikut adalah langkah-langkah yang dilakukan:
+\begin{enumerate}
+    \item Mengecek versi MySQL di VPS Master \\
+    Sebelum membuat MySQL slave, cek versi MySQL yang digunakan di VPS Master. Hal tersebut dikarenakan versi MySQL master dengan slave yang sama akan meminimalisir terjadinya error. Cek versi MySQL dapat dilakukan dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo mysql --version
+\end{lstlisting}
+Setelah menjalankan perintah tersebut, akan muncul versi mysql di vps.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/versi-mysql.png}
+    \caption{Versi mysql master (8.0.45)}
+    \label{versi-mysql}
+\end{figure}
+
+\item Download MySQL di komputer slave \\
+MySQL server dapat diunduh pada link url berikut \url{https://dev.mysql.com/downloads/mysql/}
+
+Halaman download dapat dilihat pada gambar \ref{community}. Pilih versi yang sesuai dengan yang ada di vps (versi 8.0.45).
+
+\begin{figure}[H]
+       \centering
+\includegraphics[width=0.9\textwidth]{../images/versi-mysql-community.png}
+    \caption{Donwload MySQL Community versi 8.0.45}
+    \label{community}
+\end{figure}
+Pilih Windows (x86, 64-bit), ZIP Archive lalu klik download. Setelah berhasil mendownload file zip tersebut, extract all lalu tambahkan file my.ini di dalam folder ektrak tersebut. Isi dari konfigurasi file my.ini dapat dilihat pada gambar \ref{my.ini}
+
+\begin{figure}[H]
+       \centering
+\includegraphics[width=0.9\textwidth]{../images/my-ini.png}
+    \caption{Konfigurasi mysql }
+    \label{my.ini}
+\end{figure}
+
+Inisialisasi MySQL dengan perintah berikut. 
+\begin{lstlisting}[language=bash, style=phphtml]
+.\bin\mysqld --defaults-file=my.ini --initialize-insecure --console     
+\end{lstlisting}
+Perintah tersebut digunakan untuk membuat data yang terletak sesuai dengan apa yang telah didefinisikan di my.ini
+\begin{figure}{H}
+       \centering
+\includegraphics[width=1\textwidth]{../images/eksekusi-myini.png}
+    \caption{Inisiasi MySQL}
+    \label{eksekusi-myini}
+\end{figure}
+Untuk menjalankan MySQL dapat dilakukan dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+\bin\mysqld --console 
+\end{lstlisting}
+Perintah tersebut digunakan untuk menjalankan MySQL server dan menjadikan terminal sebagai output log MySQL. 
+\begin{figure}[H]
+       \centering
+       \includegraphics[width=0.9\textwidth]{../images/run-mysql.png}
+    \caption{Menjalankan MySQL Server}
+    \label{run-mysql}
+\end{figure}
+
+Setelah MySQL server berhasil dijalankan, buka terminal baru lalu masukkan perintah berikut. 
+\begin{lstlisting}[language=bash, style=phphtml]
+mysql -u root -P 3333      
+\end{lstlisting}
+
+Gunakan port 3333 seperti yang telah didefinisikan di my.ini. Jika sudah berhasil, tampilan mysql dapat dilihat pada gambar \ref{mysql}
+
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/terminal-mysql.png}
+    \caption{Terminal MySQL}
+    \label{mysql}
+\end{figure}
+
+\item Mengatur konfigurasi MySQL di Master \\
+Agar dapat melakukan replikasi database, maka perlu dilakukan beberapa konfigurasi di MySQL master. Konfigurasi tersebut dilakukan dengan mengubah bind-address menjadi 0.0.0.0 agar dapat diakses oleh pihak luar. Selain itu, perlu juga mengaktifkan server-id dan log-bin dengan cara uncomment (hapus komen \#). Setelah itu, restart MySQL server agar konfigurasi yang telah dibuat dapat diterapkan.
+
+Untuk melakukan konfigurasi tersebut, dapat masuk ke file konfigurasi terlebih dahulu dengan perintah
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+\end{lstlisting}
+
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/konfigurasi-master-mysql.png}
+    \caption{Mengaktifkan server-id dan log-bin di mysqld.cnf}
+    \label{master-config}
+\end{figure}
+
+Setelah selesai mengedit file konfigurasi, tekan CTRL + S untuk menyimpan lalu tekan CTRL + X untuk keluar dari editor. Setelah itu, restart MySQL server dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo systemctl restart mysql
+\end{lstlisting}
+
+\item Membuat MySQL user baru di Master (Ubuntu Server) \\
+Sebelum membuat user baru di Master (Ubuntu Server), cek user yang telah dibuat sebelumnya terlebih dahulu. Masuk ke terminal MySQL Ubuntu server dan jalankan perintah seperti pada gambar berikut.
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/user-master.png}
+    \caption{Cek user yang telah ada di MySQL master}
+    \label{user-master}
+\end{figure}
+
+Pada praktikum ini, mahasiswa akan membuat user baru dengan nama "replica\_user" dengan password "abc". Pembuatan user baru dapat dilakukan dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+CREATE USER 'replica_user'@'%' IDENTIFIED WItH mysql_native_password BY 'abc';
+\end{lstlisting}
+
+Berikan izin akses replication slave ke "replica\_user" dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+GRANT REPLICATION SLAVE ON *.* TO 'replica_user'@'%';
+\end{lstlisting}
+
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/create-user.png}
+    \caption{Membuat user baru untuk replikasi database}
+    \label{create-user}
+\end{figure}
 
 
+\item Mengatur konfigurasi di MySQL Slave \\
+Buka konfigurasi my.ini yang telah dibuat sebelumnya, lalu tambahkan konfigurasi server-id seperti pada gambar berikut
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/my-ini-server-id.png}
+    \caption{Menambahkan server-id di my.ini}
+    \label{konfigurasi-slave}
+\end{figure}
+Dapat dilihat pada gambar tersebut, server-id diinisialisasi dengan id = 2. Server id yang digunakan di MySQL slave harus menggunakan id yang berbeda dengan yang di MySQL master (1). 
+Setelah selesai mengedit file my.ini, simpan perubahan lalu jalankan ulang server dengan perintah yang sama seperti sebelumnya.
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/run-mysql.png}
+    \caption{Menjalankan ulang MySQL Server setelah konfigurasi di my.ini}
+    \label{konfigurasi-slave}
+\end{figure}
 
+\item Mengecek position MySQL Master \\ 
+Masuk kembali ke Ubuntu Server dan buka terminal MySQL. Jalankan perintah berikut untuk mengecek posisi MySQL master.
+\begin{lstlisting}[language=bash, style=phphtml]
+show master status \G
+\end{lstlisting}
+
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/show-master-status.png}
+    \caption{Mengecek posisi di MySQL master}
+    \label{show-master-status}
+\end{figure}
+
+Berdasarkan gambar tersebut, dapat dilihat bahwa posisi master berada di 1322 dengan file mysql-bin.000001. Catat file dan posisi tersebut karena akan digunakan untuk konfigurasi di MySQL slave.
+
+\item Mengatur konfigurasi di MySQL slave bagian 2 \\
+Buka kembali komputer yang digunakan untuk menjalankan MySQL slave, lalu masuk ke terminal MySQL. Jalankan perintah berikut untuk mengatur konfigurasi master di MySQL slave.
+\begin{lstlisting}[language=bash, style=phphtml]
+CHANGE MASTER TO MASTER_HOST='10.33.35.71',
+MASTER_USER='replica_user', MASTER_PASSWORD='abc',
+MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=1322;
+\end{lstlisting}
+Perintah tersebut digunakan untuk mengatur konfigurasi master di MySQL slave. Pastikan untuk mengganti MASTER\_HOST dengan IP address dari VPS Master, MASTER\_USER dengan nama user yang telah dibuat sebelumnya, MASTER\_PASSWORD dengan password yang telah dibuat sebelumnya, serta MASTER\_LOG\_FILE dan MASTER\_LOG\_POS dengan file dan posisi yang telah dicatat sebelumnya.
+\begin{figure}[H]
+       \centering
+    \includegraphics[width=0.9\textwidth]{../images/change-master.png}
+    \caption{Mengatur konfigurasi di MySQL slave}
+    \label{change-master}
+\end{figure}
+
+\item Jalankan MySQL slave \\
+Jalankan MySQL slave dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+start slave;
+\end{lstlisting}
+Perintah tersebut digunakan untuk menjalankan MySQL slave setelah konfigurasi master di MySQL slave selesai dilakukan. Setelah menjalankan perintah tersebut, cek status slave seperti gambar berikut. 
+\begin{figure}[H]
+         \centering
+     \includegraphics[width=0.9\textwidth]{../images/status-replikasi.png}
+     \caption{Status replikasi di MySQL slave}
+     \label{status-slave}
+\end{figure}
+Berdasarkan gambar \ref{status-slave}, status slave menunjukkan bahwa Slave\_IO\_Running dan Slave\_SQL\_Running bernilai Yes, serta tidak ada error yang terjadi. Hal tersebut menandakan bahwa replikasi database MySQL telah berhasil dilakukan.
+
+\item Menguji Replikasi\\
+Untuk menguji apakah replikasi benar-benar berhasil, jalankan perintah berikut di MySQL master dan MySQL slave.
+\begin{lstlisting}[language=bash, style=phphtml]
+    show databases;
+\end{lstlisting}
+Perintah tersebut digunakan untuk menampilkan daftar database yang ada di MySQL slave dan master.
+
+Pada gambar \ref{compare-1}, sebelah kiri adalah tampilan database di MySQL slave, sedangkan di sebelah kanan adalah tampilan database di MySQL master. Dapat dilihat bahwa database yang ada di MySQL slave sama dengan database yang ada di MySQL master, hal tersebut menandakan bahwa replikasi database MySQL telah berhasil dilakukan.
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=0.9\textwidth]{../images/show-databases-1.png}
+     \caption{Perbandingan awal database di MySQL master dan MySQL slave}
+     \label{compare-1}
+\end{figure}
+
+Selanjutnya, buat database baru dengan nama "uji\_coba" di MySQL master. Setelah itu, jalankan kembali perintah "show databases" di MySQL slave untuk mengecek apakah database baru tersebut sudah muncul di MySQL slave.
+\begin{figure}[H]
+    \centering
+     \includegraphics[width=0.9\textwidth]{../images/show-databases-2.png}
+     \caption{Perbandingan database setelah penambahan database di MySQL master}
+     \label{compare-2}
+\end{figure}
+Dapat dilihat pada gambar \ref{compare-2}, database baru dengan nama "uji\_coba" sudah muncul di MySQL slave setelah dibuat di MySQL master. Hal tersebut menandakan bahwa replikasi database MySQL telah berhasil dilakukan.
+\end{enumerate}
+
+\subsection{Tugas dan Analisis}
+Berdasarkan hasil praktikum yang telah dilakukan, pada database MySQL Master terdapat 6 database, sedangkan di database MySQL Slave hanya terdapat 5 database. Mengapa database sait\_db tidak tereplikasi ke MySQL Slave Bagaimana solusi yang harus dilakukan agar database sait\_db juga ter-copy ke MySQL Slave dan ikut tereplikasi ketika terdapat penambahan data.
+
+\newpage
 \section{Kesimpulan}
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
