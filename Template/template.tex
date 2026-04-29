@@ -335,8 +335,54 @@ Dapat dilihat pada gambar \ref{compare-2}, database baru dengan nama "uji\_coba"
 \subsection{Tugas dan Analisis}
 Berdasarkan hasil praktikum yang telah dilakukan, pada database MySQL Master terdapat 6 database, sedangkan di database MySQL Slave hanya terdapat 5 database. Mengapa database sait\_db tidak tereplikasi ke MySQL Slave Bagaimana solusi yang harus dilakukan agar database sait\_db juga ter-copy ke MySQL Slave dan ikut tereplikasi ketika terdapat penambahan data.
 
+\subsection{Hasil Analisis}
+Berdasarkan analisis yang telah dilakukan, database sait\_db tidak tereplikasi ke MySQL Slave karena database tersebut dibuat sebelum konfigurasi replikasi dilakukan. 
+Berikut merupakan langkah-langkah yang dapat dilakukan untuk mengatasi masalah tersebut:
+\begin{enumerate}
+    \item Ekspor Database di Master (VPS Ubuntu) \\
+    Untuk mengekspor database sait\_db, dapat dilakukan dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+    sudo mysqldump -u root -p --databases sait_db > sait_db.sql
+\end{lstlisting}
+\item Download File dari VPS ke Windows (Master ke Slave) \\
+Jalankan perintah scp (secure copy) untuk menyalin file sait\_db.sql dari VPS ke komputer Windows. Perintah scp dapat dilakukan seperti berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+# Format: scp [user_vps]@[ip_vps]:[lokasi_file_di_vps] [lokasi_tujuan_di_windows]
+scp praktikan@10.33.35.71:~/sait_db.sql D:\mysql-8.0.45-winx64\mysql-8.0.45-winx64\Download\
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/import-file-ke-slave.png}
+    \caption{Mengekspor database sait\_db di MySQL master}
+    \label{ekspor-database}
+\end{figure}
+\item Import Database di MySQL Slave \\
+Setelah file sait\_db.sql berhasil disalin ke komputer Windows, langkah selanjutnya adalah membuat database sait\_db baru di MySQL slave. Kemudian, import file sait\_db.sql ke database sait\_db yang baru dibuat tersebut dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+    SOURCE D:/mysql-8.0.45-winx64/mysql-8.0.45-winx64/
+    Download/sait_db.sql;
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/success-import.png}
+    \caption{Proses import database sait\_db di MySQL slave}
+    \label{import-database}
+\end{figure}
+\item Cek Database di MySQL Slave \\
+Setelah proses import selesai, cek kembali database yang ada di MySQL slave. Jika sudah terdapat 1 tabel (mahasiswa), artinya proses replikasi sudah berhasil dilakukan.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../images/show-tables.png}
+    \caption{Database sait\_db di MySQL slave setelah proses import selesai}
+    \label{cek-database-saitdb}
+\end{figure}
+
+\end{enumerate}
+
 \newpage
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa replikasi database MySQL di Ubuntu Server telah berhasil dilakukan. Proses replikasi melibatkan beberapa langkah, termasuk pengaturan master dan slave, serta memastikan data konsistensi antara keduanya. Selain itu, untuk mengatasi masalah database yang tidak tereplikasi, dapat dilakukan dengan mengekspor database di MySQL master, menyalin file ekspor ke komputer Windows, lalu mengimpor file tersebut ke MySQL slave. Dengan langkah-langkah tersebut, database yang sebelumnya tidak tereplikasi dapat berhasil di-copy ke MySQL slave dan ikut tereplikasi ketika terdapat penambahan data di MySQL master.
 \newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
