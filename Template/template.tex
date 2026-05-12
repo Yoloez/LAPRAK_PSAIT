@@ -75,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 8}}\\[0.3cm]
+    { \textbf{SINKRONISASI DATABASE MENGGUNAKAN REST API}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -113,16 +113,202 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa mampu menggunakan REST API dari server ubuntu ke aplikasi frontend di lokal.
+    \item Mahasiswa mampu memodifikasi aplikasi frontend untuk melakukan insert, edit, dan delete.
+    \item Mahasiswa mampu menerapkan sinkronisasi database lokal dengan database yang ada di Server Ubuntu  menggunakan REST API. 
 \end{enumerate}
 \section{Dasar Teori}
+\subsection{API}
+API (Application Programming Interface) adalah antarmuka pemrograman aplikasi yag menjadi perantara komunikasi antar aplikasi atau komponen perangkat lunak. API memungkinkan satu aplikasi meminta data atau layanan dari aplikasi lain tanpa harus mengetahui detail internalnya.API dapat berupa REST API, SOAP API, GraphQL, dan lain-lain, yang masing-masing memiliki cara kerja dan format data yang berbeda \cite{codepolitanAPIPengertian}.
+
+\subsection{REST API}
+REST API adalah kepanjangan dari Representational State Transfer. Secara definisi, REST API adalah arsitektur pertukaran data menggunakan protokol HTTP untuk mengakses, mengambil, dan menggunakan data tersebut dari server API secara langsung.
+
+REST API juga dapat digunakan untuk memperoleh data dari server tanpa perlu kredensial khusus. Contohnya, data statistik gempa bumi yang bersifat data API publik.
+
+REST API berinteraksi melalui metode standar GET, POST, PUT, dan DELETE seperti operation membuat, membaca, memperbarui, dan menghapus (CRUD). Selain itu, REST API juga dapat menggunakan caching untuk menyimpan respons API.L \cite{rumahwebRESTAPI}.
+
 \section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+Pada praktikum sebelumnya, praktikan telah membuat replikasi database dari komputer master (vps) ke slave (komputer lokal). Pada praktikum ini, praktikan akan melakukan sinkronisasi database lokal dengan database yang ada di Server Ubuntu menggunakan REST API.
+Berikut tahapan yang dilakukan praktikan dalam melakukan sinkronisasi database menggunakan REST API:
+\begin{enumerate}
+    \item Mengekspor database mahasiswa dari server ubuntu \\ 
+    Buka VPS, lalu masuk ke folder /var/www/html/psait/sait\_api, lalu jalankan perintah berikut untuk mengekspor database mahasiswa ke dalam format SQL:
+
+    \begin{lstlisting}[style=phphtml]
+mysqldump -u root -p sait_db > mahasiswa.sql
+    \end{lstlisting}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/ekspor-sql.png}
+         \caption{Mengekspor database mahasiswa dari server ubuntu}
+         \label{fig:1}
+    \end{figure}
+
+    \item Import file dari vps ke komputer lokal \\
+    Sebelum import database ke komputer lokal, praktikan harus memindahkan file mahasiswa.sql yang sudah diekspor dari server ubuntu ke komputer lokal. Untuk memindahkan file tersebut, dapat menjalankan perintah berikut di terminal komputer lokal:
+    \begin{lstlisting}[style=phphtml]
+scp praktikan@10.33.35.71:/var/www/html/psait/sait_api/
+mahasiswa.sql "D:/TRPL/SEM 4/PSAIT"
+    \end{lstlisting}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/import-file.png}
+         \caption{Memindahkan file mahasiswa.sql dari server ubuntu ke komputer lokal menggunakan perintah scp}
+         \label{fig:1}
+    \end{figure}
+
+    \item Import database di komputer lokal \\
+    Sebelum melakukan import, hapus semua data di database sait\_db\_2 yang ada di komputer lokal. Masuk ke phpMyAdmin, lalu pilih database sait\_db\_2. Masuk ke menu import, lalu pilih file mahasiswa.sql yang sudah dipindahkan dari server ubuntu, lalu klik tombol Go untuk melakukan import database.    
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/import-db.png}
+         \caption{Import database mahasiswa.sql ke database sait\_db\_2 di komputer lokal menggunakan phpMyAdmin}
+         \label{fig:1}
+    \end{figure}
+    \newpage
+
+    \item Cek tabel mahasiswa di komputer lokal dan vps\\
+    Untuk mengecek tabel mahasiswa di komputer lokal, dapat masuk ke mysql menggunakan perintah:
+    \begin{lstlisting}[style=phphtml]
+mysql -u root -p
+use sait_db_2;
+select * from mahasiswa;
+    \end{lstlisting}
+    Sedangkan pada vps dapat masuk ke mysql menggunakan perintah:
+    \begin{lstlisting}[style=phphtml]
+sudo mysql -u root -p
+use sait_db;
+select * from mahasiswa;
+    \end{lstlisting}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{../images/perbandingan-tabel.png}
+         \caption{Cek tabel mahasiswa di komputer lokal dan vps menggunakan phpMyAdmin}
+         \label{compare}
+    \end{figure}
+Dapat dilihat pada gambar \ref{compare} bahwa tabel mahasiswa di komputer lokal dan vps sudah sama, sehingga sinkronisasi database menggunakan REST API berhasil dilakukan.
+
+    \item Tambahkan konfigurasi database lokal di file config.php \\
+    Buka folder psait/sait\_frontend, lalu tambahkan file config.php dengan isi sebagai berikut:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/config.png}
+         \caption{Menambahkan konfigurasi database lokal di file config.php}
+         \label{config}
+    \end{figure}
+
+    Berdasarkan gambar \ref{config}, dapat dilihat bahwa konfigurasi database telah dilakukan. Konfigurasi tersebut digunakan untuk menghubungkan aplikasi frontend dengan database lokal yang sudah disinkronisasi dengan database di server ubuntu menggunakan REST API.
+
+        \item Tambahkan tampilan tabel untuk menampilkan daftar mahasiswa \\
+        Buka file index.php, lalu tambahkan kode berikut di bawah tabel daftar mahasiswa dari vps.
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/tabel-lokal.png}
+         \caption{Menambahkan tampilan tabel untuk menampilkan daftar mahasiswa dari database lokal}
+         \label{tambah-tabel}
+        \end{figure}
+        Setelah menambahkan kode tersebut, maka akan muncul tabel baru yang menampilkan daftar mahasiswa dari database lokal. Dengan adanya tabel ini, praktikan dapat membandingkan data mahasiswa yang ada di database lokal dengan data mahasiswa yang ada di database vps untuk memastikan bahwa sinkronisasi database menggunakan REST API berhasil dilakukan.
+
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{../images/tabel-komparasi.png}
+         \caption{Hasil tampilan tabel mahasiswa dari database lokal dan database vps}
+         \label{hasil-tabel}
+        \end{figure}
+
+        \item Modifikasi insert.php untuk melakukan insert data ke database lokal juga. \\
+        Untuk melakukan insert data secara bersamaan ke database lokal dan database vps, buka file insert.php, lalu tambahkan kode berikut di bawah kode untuk insert data ke database vps maupun lokal.
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/insert.png}
+         \caption{Modifikasi insert.php untuk melakukan insert data ke database lokal juga}
+         \label{insert}
+        \end{figure}
+            Setelah menambahkan kode tersebut, maka ketika praktikan melakukan insert data melalui form input, data tersebut akan masuk ke database lokal dan database vps secara bersamaan. 
+            
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../images/tambah-data.png}
+         \caption{insert data ke database lokal dan database vps secara bersamaan}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{../images/berhasil-ditambahkan.png}
+             \caption{alert berhasil ditambahkan}
+             \label{hasil-insert}
+        \end{figure}
+        Setelah muncul alert seperti pada gambar \ref{hasil-insert}, maka data yang sudah diinsert akan masuk ke database lokal dan database vps secara bersamaan. Dapat dilihat pada gambar \ref{setelah-insert}
+        \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{../images/setelah-insert.png}
+         \caption{Hasil setelah melakukan insert data ke database lokal dan database vps secara bersamaan}
+         \label{setelah-insert}
+        \end{figure}
+        Dapata dilihat pada gambar \ref{setelah-insert} bahwa data yang sudah diinsert masuk ke database lokal dan database vps secara bersamaan, sehingga sinkronisasi insert menggunakan REST API berhasil dilakukan.
+    \end{enumerate}
+
+\subsection{Tugas dan Analisis}
+
+\subsubsection{Sinkronisasi Edit}
+Untuk melakukan sinkronisasi edit data, praktikan dapat memodifikasi file edit.php dengan menambahkan kode untuk melakukan update data ke database lokal juga. Dengan begitu, ketika praktikan melakukan edit data melalui form edit, data tersebut akan terupdate di database lokal dan database vps secara bersamaan.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/edit.png}
+         \caption{Modifikasi edit.php untuk melakukan update data ke database lokal juga}
+         \label{edit}
+\end{figure}
+Setelah menambahkan kode tersebut, praktikan mencoba melakukan edit data dengan nama hanan melalui form edit.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../images/edit-hanan.png}
+         \caption{Edit data mahasiswa dengan nama hanan melalui form edit}
+         \label{edit-data}
+\end{figure}
+Praktikan mengubah nama hanan menjadi Hanan Fijananto, lalu tekan update data. Maka tampilan akan secara otomatis redirect ke halaman index.php, lalu dapat dilihat pada gambar \ref{setelah-edit} bahwa data yang sudah diedit masuk ke database lokal dan database vps secara bersamaan, sehingga sinkronisasi edit menggunakan REST API berhasil dilakukan.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{../images/setelah-edit.png}
+         \caption{Hasil setelah melakukan edit data ke database lokal dan database vps secara bersamaan}
+         \label{setelah-edit}
+\end{figure}
+
+\subsubsection{Sinkronisasi Delete}
+Untuk melakukan sinkronisasi delete data, praktikan dapat memodifikasi file delete.php dengan menambahkan kode untuk melakukan delete data ke database lokal juga. Dengan begitu, ketika praktikan melakukan delete data melalui tombol delete, data tersebut akan terhapus di database lokal dan database vps secara bersamaan.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../images/delete.png}
+         \caption{Modifikasi delete.php untuk melakukan delete data ke database lokal juga}
+         \label{delete} 
+\end{figure}
+Setelah menambahkan kode tersebut, praktikan mencoba melakukan delete data dengan nama Hanan Fijananto melalui icon sampah di kolom aksi. 
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../images/delete-confirm.png}
+         \caption{Delete confirmation untuk menghapus data mahasiswa dengan nama Hanan Fijananto}
+         \label{delete-data}
+\end{figure}
+Tekan hapus, maka data dengan nama Hanan Fijananto akan terhapus di database lokal dan database vps secara bersamaan. Dapat dilihat pada gambar \ref{setelah-delete} bahwa data yang sudah dihapus tidak muncul lagi di database lokal dan database vps, sehingga sinkronisasi delete menggunakan REST API berhasil dilakukan.
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=1\textwidth]{../images/tabel-komparasi.png}
+         \caption{Hasil setelah melakukan delete data ke database lokal dan database vps secara bersamaan}
+         \label{setelah-delete}
+\end{figure}
 
 
-
+\newpage
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa sinkronisasi database lokal dengan database pada server Ubuntu menggunakan REST API berhasil diterapkan dengan baik. Proses ekspor data dari server, pemindahan file SQL ke komputer lokal, serta impor ke database lokal menunjukkan bahwa data pada kedua sisi dapat disamakan dan diverifikasi melalui perbandingan isi tabel mahasiswa. Selain itu, penambahan konfigurasi database lokal pada file config.php dan penambahan tampilan tabel pada aplikasi frontend memudahkan proses pengamatan serta memastikan bahwa data yang ditampilkan telah selaras dengan data pada server.
+
+Hasil praktikum juga membuktikan bahwa modifikasi pada file insert.php dan edit.php memungkinkan proses penambahan serta pembaruan data dilakukan secara bersamaan pada database lokal dan database VPS. Dengan demikian, perubahan data yang dilakukan melalui antarmuka frontend dapat langsung tersinkronisasi ke kedua database tanpa perbedaan isi. Secara keseluruhan, praktikum ini menunjukkan bahwa REST API efektif digunakan untuk menjaga konsistensi data antara server dan lingkungan lokal, sekaligus mendukung pengelolaan data yang lebih terstruktur, efisien, dan mudah dipantau.
+
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
