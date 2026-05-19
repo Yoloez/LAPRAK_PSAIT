@@ -75,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 9}}\\[0.3cm]
+    { \textbf{API AUTHENTICATION}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -113,16 +113,170 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa dapat melakukan autentikasi pada API
+    \item Mahasiswa menjalankan sistem register yang dapat membuat token 
+    \item Mahasiswa mampu melakukan login menggunakan token yang ada berdasarkan role yang tersedia 
 \end{enumerate}
 \section{Dasar Teori}
-\section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\subsection{API Authentication}
+Autentikasi API adalah proses untuk memvalidasi identitas klien yang mencoba mengakses sumber daya server melalui API. Proses ini memastikan bahwa hanya pengguna atau sistem yang terotorisasi yang dapat berinteraksi dengan API, sehingga melindungi data sensitif dan fungsionalitas dari akses yang tidak sah \cite{echoapiAutentikasiMengapa}.
+
+\newpage
+\section{Hasil dan Pembahasan}
+Pada praktikum kali ini, dilakukan implementasi autentikasi API menggunakan token untuk mengamankan \textit{endpoint}. Proses ini terdiri dari beberapa tahapan utama, yakni registrasi pengguna baru, proses validasi \textit{login} yang menghasilkan pembuatan token, dan penggunaan token tersebut untuk mengakses bagian sistem yang dilindungi (\textit{protected route}).
+
+\subsection{Mempersiapkan source code yang akan digunakan}
+Buat projek baru dengan nama php-jwt yang diperoleh dari hasil clone repository berikut
+\begin{lstlisting}[language=php, style=phphtml]
+git clone https://github.com/hananhanafi/php-jwt-example.git 
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/clone.png}
+    \caption{Clone repository php-jwt-example}
+    \label{fig:structure}
+\end{figure}
+
+Setelah selesai cloning, maka struktur folder dari projek tersebut dapat dilihat pada gambar \ref{fig:struktur-clone}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../images/struktur-clone.png}
+    \caption{Struktur Direktori Projek}
+    \label{fig:struktur-clone}
+\end{figure}
+
+\subsection{Konfigurasi Konektivitas Database}
+Setelah berhasil melakukan cloning, praktikan perlu melakukan konfigurasi database terlebih dahulu. Ubah file database.php sesuai dengan konfigurasi yang digunakan. Sesuaikan host MySQL, nama database yang telah dibuat (jika belum, praktikan dapat membuat database baru dengan nama php\_jwt\_db terlebih dahulu di phpmyadmin), user database dan passwordnya, dan juga port database secara default port yang digunakan untuk MySQL adalah 3306.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/config.png}
+    \caption{Konfigurasi Konektivitas Database}
+    \label{fig:config}
+\end{figure}
+
+\subsection{Menambahkan tabel ke database}
+Setelah melakukan konfigurasi database, praktikan perlu menambahkan tabel ke database yang telah dibuat. Tabel yang digunakan pada praktikum ini adalah tabel users. Tabel tersebut dapat dibuat dengan cara mengimport file php\_jwt\_db.sql yang terdapat pada root projek. Caranya yaitu dengan masuk ke phpmyadmin, pilih database yang telah dibuat, lalu pilih menu import dan pilih file php\_jwt\_db.sql yang terdapat pada root projek. Setelah itu klik go untuk mengimport tabel users ke database.
+
+Setelah menekan tombol go, jika berhasil akan terlihat seperti pada gambar \ref{fig:import}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/import.png}
+    \caption{Hasil import Tabel Users ke Database}
+    \label{fig:import}
+\end{figure}
 
 
+\subsection{Membuat Konfigurasi API di Postman}
+Masuk ke Postman, lalu buat variabel baru dengan nama BASE dan isikan dengan http://localhost/php-jwt. Variabel ini akan digunakan untuk mempermudah dalam melakukan request ke API yang telah dibuat.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/base-variable.png}
+    \caption{Membuat Variabel BASE di Postman}
+    \label{fig:postman}
+\end{figure}
 
+\subsection{Uji register pada Postman}
+Tahap pertama adalah melakukan register untuk membuat akun baru. Praktikan dapat melakukan register dengan cara melakukan request POST ke endpoint api/register dengan body berupa JSON yang berisi nama, email, password, dan role. Setelah itu klik send untuk melakukan request ke API. Jika berhasil, maka akan muncul response dengan status success dan data user yang telah dibuat seperti pada gambar \ref{fig:register}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/register.png}
+    \caption{Uji Register pada Postman}
+    \label{fig:register}
+\end{figure}
+
+\subsection{Uji login pada Postman}
+Tahap kedua adalah melakukan login untuk mendapatkan token. Praktikan dapat melakukan login dengan cara melakukan request POST ke endpoint api/login dengan body berupa JSON yang berisi email dan password. Setelah itu klik send untuk melakukan request ke API. Jika berhasil, maka akan muncul response dengan status success dan data user beserta token yang telah dibuat seperti pada gambar \ref{fig:login}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/login.png}
+    \caption{Uji Login pada Postman}
+    \label{fig:login}
+\end{figure}
+
+Setelah mendapat token jwt, mahasiswa dapat melakukan debugging isi dari token tersebut dengan menggunakan website jwt.io. Pada website tersebut, mahasiswa dapat memasukkan token yang telah didapatkan pada bagian encoded, lalu akan muncul isi dari token tersebut pada bagian decoded seperti pada gambar \ref{fig:jwt}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/jwt.png}
+    \caption{Debugging Token JWT}
+    \label{fig:jwt}
+\end{figure}
+
+\subsection{Uji mengambil data dengan role admin}
+Setelah berhasil melakukan login, praktikan dapat menggunakan token yang telah didapatkan untuk mengakses endpoint yang dilindungi. Pada praktikum ini, terdapat endpoint api/users yang hanya dapat diakses oleh user dengan role admin. Praktikan dapat melakukan request GET ke endpoint api/users dengan menyertakan token pada header Authorization. Jika berhasil, maka akan muncul response dengan status success dan data yang hanya dapat diakses oleh user dengan role admin seperti pada gambar \ref{fig:admin}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/admin.png}
+    \caption{Uji Mengambil Data dengan Role Admin}
+    \label{fig:admin}
+\end{figure}
+
+\section{Tugas dan Analisis}
+Mahasiswa diberi 5 soal terkait dengan implementasi autentikasi API yang telah dilakukan. Berikut adalah soal-soal beserta hasil analisisnya:
+\begin{enumerate}
+    \item Apa yang terjadi ketika melakukan request akses data user menggunakan akun dengan 
+role admin dan jwt token yang valid? \\
+Jawab: \\ Ketika melakukan request akses data user menggunakan akun dengan role admin dan jwt token yang valid, maka request tersebut akan berhasil dan server akan mengembalikan data user yang diminta. Hal ini terjadi karena token yang valid menunjukkan bahwa pengguna telah terautentikasi dengan benar dan memiliki hak akses yang sesuai untuk mengakses data tersebut. hal tersebut dapat dilihat pada gambar \ref{fig:admin} yang menunjukkan bahwa request berhasil dan data user berhasil diakses menggunakan token yang valid.
+    \item  Apa yang terjadi ketika melakukan request akses data user menggunakan akun dengan 
+role admin dan jwt token yang tidak valid?\\
+Jawab:\\
+Ketika melakukan request akses data user menggunakan akun dengan role admin dan jwt token yang tidak valid, maka request tersebut akan gagal dan server akan mengembalikan response dengan status error. Hal ini terjadi karena token yang tidak valid menunjukkan bahwa pengguna tidak terautentikasi dengan benar atau token tersebut telah kedaluwarsa, sehingga server menolak akses ke data user. Response error yang diterima biasanya berupa pesan yang menyatakan bahwa token tidak valid atau akses ditolak, seperti pada gambar \ref{fig:unauth} yang menunjukkan bahwa request gagal karena token tidak valid.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/unauth.png}
+    \caption{Uji Mengakses Data dengan Token Tidak Valid}
+    \label{fig:unauth}
+\end{figure}
+
+\item Apa yang terjadi jika akun dengan role user biasa (bukan admin) mengakses data user?
+\\
+Jawab:\\
+Ketika akun dengan role user biasa (bukan admin) mencoba mengakses data user, maka request tersebut akan gagal dan server akan mengembalikan response dengan status error. Hal ini terjadi karena role user biasa tidak memiliki hak akses yang cukup untuk mengakses data user, sehingga server menolak akses tersebut. Response error yang diterima dapat dilihat pada gambar \ref{user}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/user.png}
+    \caption{Uji Mengakses Data dengan Role User Biasa}
+    \label{user}
+\end{figure}
+\item  Apa yang terjadi jika melakukan register dengan menginput role selain admin dan user 
+biasa? \\
+Jawab:\\
+Jika melakukan register dengan menginput role selain admin dan user, maka proses registrasi akan tetap berhasil karena di dalam file register/index.php tidak terdapat validasi untuk membatasi jenis role yang diinputkan. Dapat dilihat pada gambar \ref{fig:mahasiswa}, bahwa role mahasiswa berhasil dibuat meskipun tidak sesuai dengan role yang telah ditentukan (admin dan user biasa).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/mahasiswa.png}
+    \caption{Uji Register dengan Role Mahasiswa}
+    \label{fig:mahasiswa}
+\end{figure}
+\item Apa yang terjadi jika akun dengan role selain admin dan user biasa mengakses data user?\\
+Jawab:\\
+Jika akun dengan role selain admin dan user biasa mencoba mengakses data user, maka sistem yang dibuat tidak memiliki validasi untuk membatasi jenis role yang dapat mengakses data user. Oleh karena itu, sistem tersebut memiliki mekanisme authorization yang kurang baik.
+\end{enumerate}
+
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{../images/3.png}
+%     \caption{Gambar 3. Mengakses Protected Route Tanpa Token Berserta Keterangan Error}
+%     \label{fig:unauth}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{../images/4.png}
+%     \caption{Gambar 4. Berhasil Mengakses Endpoint Menggunakan Token Sesuai Role}
+%     \label{fig:auth}
+% \end{figure}
+\newpage
 \section{Kesimpulan}
+Berdasarkan hasil praktikum yang telah dilakukan, dapat disimpulkan bahwa implementasi autentikasi API menggunakan token JWT dapat memberikan keamanan yang lebih baik dalam mengakses sumber daya server. Dengan menggunakan token, hanya pengguna yang terautentikasi dengan benar dan memiliki hak akses yang sesuai yang dapat mengakses data atau fungsionalitas tertentu. Selain itu, penggunaan token juga memungkinkan untuk mengelola sesi pengguna dengan lebih efisien, karena token dapat memiliki masa berlaku tertentu dan dapat diperbarui sesuai kebutuhan. Namun, penting untuk memastikan bahwa implementasi autentikasi API dilakukan dengan benar dan aman, termasuk penggunaan algoritma enkripsi yang kuat untuk token dan validasi yang tepat untuk mencegah akses yang tidak sah.
+
+Dengan adanya validasi role, sistem dapat membatasi akses ke sumber daya tertentu hanya untuk pengguna dengan hak akses yang sesuai, sehingga meningkatkan keamanan dan kontrol terhadap data yang sensitif. Namun, perlu diingat bahwa implementasi autentikasi API harus dilakukan dengan hati-hati dan mengikuti praktik terbaik untuk memastikan keamanan yang optimal.
+
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
