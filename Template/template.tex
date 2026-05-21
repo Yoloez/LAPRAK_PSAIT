@@ -75,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 10}}\\[0.3cm]
+    { \textbf{API PHP DENGAN DOCKER}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -113,14 +113,24 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa mampu memahami konsep penggunaan Docker dan membuat 
+PHP API menggunakan Docker 
+\item Mahasiswa diharapkan dapat memahami dan melakukan implementasi verifikasi API 
+menggunakan Docker 
+\item Mahasiswa mampu membuat container, image, dan melakukan manajemen container menggunakan Docker
 \end{enumerate}
 \section{Dasar Teori}
 \section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
 
 
+\subsection{Konfigurasi Database}
+\begin{lstlisting}[language=php, style=phphtml]
+DB_HOST = 10.33.35.71
+DB_PORT = 3306
+DB_USER = php_jwt
+DB_PASSWORD = 123456
+DB_NAME = php_jwt_db    
+\end{lstlisting}
 
 \section{Kesimpulan}
 \renewcommand{\refname}{\section{Daftar Pustaka}}
