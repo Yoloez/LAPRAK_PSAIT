@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt, a4paper]{article}
 \usepackage[a4paper, margin=3cm]{geometry}
 \usepackage{graphicx}
 \usepackage{setspace}
@@ -75,8 +75,8 @@
     % Judul
     { \textbf{LAPORAN PRAKTIKUM}}\\[0.3cm]
     { \textbf{SISTEM ADMINISTRASI DAN INFORMASI TERDISTRIBUSI}}\\[0.3cm]
-    { \textbf{PERTEMUAN 1}}\\[0.3cm]
-    { \textbf{INSTALASI WEB SERVER DAN DATABASE DALAM KOMPUTER YANG BERBEDA}} \\[1.5cm]
+    { \textbf{PERTEMUAN 11}}\\[0.3cm]
+    { \textbf{ORKESTRASI DOCKER DENGAN DOCKER COMPOSE}} \\[1.5cm]
     
     % Logo (ganti ugm.png dengan nama file logo kamu)
     \includegraphics[height=7cm]{../images/ugm.png}
@@ -113,16 +113,240 @@ Disusun oleh:\\[0.3cm]
 
 \section{Tujuan}
 \begin{enumerate}
-    \item 
+    \item Mahasiswa memahami perbedaan antara Dockerfile (membangun image) dan Docker Compose (menjalankan container).
+    \item Mahasiswa mampu menstranslasikan perintah CLI docker run yang panjang menjadi file konfigurasi 
+docker-compose.yml 
+    \item Mahasiswa mampu mengimplementasikan fitur Volumes untuk Hot-Reloading (perubahan kode langsung 
+terlihat tanpa rebuild). 
+\item Mahasiswa mampu mengelola environment variables menggunakan .env yang terintegrasi dengan Docker 
+Compose.
 \end{enumerate}
 \section{Dasar Teori}
-\section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\subsection{Docker Compose}
+Docker-Compose adalah alat untuk mendefinisikan dan menjalankan satu atau beberapa container yang saling terkait dengan sebuah command. Pada implementasinya kita dapat menggunakannya dengan membuat sebuah file berekstensi yaml/yml yang di dalamnya terdapat konfigurasi-konfigurasi terhadap service aplikasi yang akan dijalankan. Gambaran sederhananya seperti menyatukan semua Dockerfile dari setiap service aplikasi ke dalam sebuah file yaml (docker-compose file), dan selanjutnya dengan sebuah command, pengembang dapat membuat dan men-start semua service yang telah didefinisikan pada file yml tersebut. Script konfigurasi nya juga sangat mudah dan mirip dengan argumen-argumen saat kita ingin menjalankan sebuah Dockerfile. Kita bisa menggunakannya di semua lingkungan kerja: production, staging, development, dan testing \cite{key}.
+
+\subsection{Orkestrasi Container}
+Kontainer adalah komponen aplikasi ringan yang dapat di eksekusi yang menggabungkan kode sumber aplikasi dengan semua pustaka sistem operasi (OS) dan ketergantungan yang diperlukan untuk menjalankan kode di lingkungan apa pun. 
+
+Kemampuan untuk membuat kontainer sudah ada sejak beberapa dekade yang lalu, tetapi baru tersedia secara luas pada tahun 2008 ketika Linux menyertakan fungsi kontainer di dalam kernelnya. Ini menjadi lebih penting setelah kedatangan platform containerisasi sumber terbuka Docker pada tahun 2013. (Docker sangat populer sehingga frasa "kontainer Docker" dan kata "kontainer" sering digunakan secara bergantian). Saat ini, kontainer kompatibel dengan banyak sistem operasi lain selain Linux, termasuk Windows \cite{ibmYangDimaksud}.
+\newpage
+
+\section{Hasil dan Pembahasan}
+Pada pertemuan ini, mahasiswa melanjutkan praktikum sebelumnya yaitu terkait dengan membuat container dengan Dockerfile. Pada pertemuan ini, mahasiswa akan mempelajari bagaimana menjalankan container dengan menggunakan Docker Compose.
+\subsection{Hapus container pada pertemuan sebelumnya}
+Sebelum memulai praktikum, mahasiswa diminta untuk menghapus container yang telah dibuat pada pertemuan sebelumnya. Hal ini dilakukan agar tidak terjadi konflik antara container yang lama dengan container yang akan dibuat pada pertemuan ini. 
+\subsection{Membuat file docker-compose.yml}
+Buat file docker-compose.yml di root projek. Ada dua bagian utama dalam file docker-compose.yml, yaitu bagian services dan networks. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/docker-yaml.png}
+    \caption{Contoh file docker-compose.yml}
+    \label{fig:yaml}
+\end{figure}
+
+\subsection{Menjalankan container dengan Docker Compose}
+Setelah membuat file docker-compose.yml,  mahasiswa dapat menjalankan command docker-compose up -d untuk menjalankan container secara detached (background) dan melihat perubahan yang terjadi pada container.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/compose-up.png}
+    \caption{Menjalankan container dengan Docker Compose}
+    \label{fig:compose-up}
+\end{figure}
+
+\subsection{Mengecek status docker compose}
+Setelah menjalankan command docker-compose up -d, mahasiswa dapat mengecek status container dengan menggunakan command 
+\begin{lstlisting}[language=bash, style=phphtml ]
+    docker-compose ps -a
+\end{lstlisting}
+Command ini akan menampilkan daftar container yang sedang berjalan beserta statusnya.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/cek-status.png}
+    \caption{Mengecek status docker compose}
+    \label{fig:compose-ps}
+\end{figure}
+
+\subsection{Build image ulang salah satu service docker compose}
+rebuild salah satu service pada docker compose dapat dilakukan dengan menggunakan command
+\begin{lstlisting}[language=bash, style=phphtml]
+    docker-compose build nama\_service
+\end{lstlisting}
+Command ini akan membangun ulang image untuk service yang telah ditentukan. Setelah itu, restart service dengan command
+\begin{lstlisting}[language=bash, style=phphtml]
+    docker-compose restart nama\_service
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/rebuild-service.png}
+    \caption{Build ulang salah satu service docker compose}
+    \label{fig:rebuild}
+\end{figure}
+
+\subsection{Menambahkan service baru pada docker compose}
+Menambahkan service baru yaitu database\_mysql pada docker compose dapat dilakukan dengan menambahkan konfigurasi service baru pada file docker-compose.yml. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/service-mysql.png}
+    \caption{Menambahkan service baru pada docker compose}
+    \label{fig:tambah-service}
+\end{figure}
+
+Setelah itu, tambahkan persistent volume untuk menyimpan data database agar tidak hilang saat container direstart.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../images/persistent.png}
+    \caption{Menambahkan persistent volume pada docker compose}
+    \label{fig:persistent-volume}
+\end{figure}
+
+Sekarang, karena service be-jwt akan bergantung pada database\_mysql, maka tambahkan konfigurasi depends\_on pada service be-jwt.
+\begin{lstlisting}[language=bash, style=phphtml]
+    be-jwt:
+        depends\_on:
+            - database_mysql
+\end{lstlisting}
+
+Service be-jwt tidak begitu saja akan menggunakan service database\_mysql yang telah dibuat. Praktikan perlu mengubah file .env dan mengarahkan ke service database\_mysql. Di file .env, ubah DB\_HOST menjadi nama service database yang telah dibuat seperti pada gambar  Konfigurasi DB\_HOST database\_mysql ini akan ditranslate oleh docker sendiri. Namun, praktikan tetap bisa mengetahui IP Address nya dengan masuk ke sistem Docker. Berikut adalah contoh konfigurasi pada file .env
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/env.png}
+    \caption{Mengubah konfigurasi DB\_HOST pada file .env}
+    \label{fig:env}
+\end{figure}
+
+Secara keseluruhan, pembuatan docker-compose.yml dengan menambahkan service database\_mysql dapat dilihat pada gambar \ref{fig:compose-lengkap}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/compose-lengkap.png}
+    \caption{File docker-compose.yml dengan service database\_mysql}
+    \label{fig:compose-lengkap}
+\end{figure}
+Untuk menerapkan semua perubahan yang telah dilakukan, jalankan perintah
+\begin{lstlisting}[language=bash, style=phphtml]
+    docker-compose up -d 
+\end{lstlisting}
+Dapat dilihat pada gambar \ref{fig:compose-up-lengkap} bahwa semua service telah berjalan dengan baik, termasuk service database\_mysql yang baru ditambahkan.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/compose-up-new.png}
+    \caption{Menjalankan docker compose dengan service database\_mysql}
+    \label{fig:compose-up-lengkap}
+\end{figure}
+
+\subsection{Mengecek api di Postman}
+Setelah semua service berjalan dengan baik, mahasiswa dapat mengecek API dengan database dari Docker. Pastikan untuk mengubah URL endpoint API sesuai dengan port yang telah ditentukan pada file docker-compose.yml. Berikut url dari BASE. 
+\begin{lstlisting}[language=bash, style=phphtml]
+    http://10.33.35.71:8080/api/
+\end{lstlisting}
+
+Seperti biasa, jalankan tiga enpdoint untuk mengecek apakah API sudah berjalan dengan baik, yaitu endpoint untuk register, login, serta menampilkan semua data user. Berikut adalah contoh hasil pengecekan API di Postman.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/register.png}
+    \caption{Pengecekan endpoint register API di Postman}
+    \label{fig:postman}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/login.png}
+    \caption{Pengecekan endpoint login API di Postman}
+    \label{fig:postman-login}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/users.png}
+    \caption{Pengecekan endpoint get all user API di Postman}
+    \label{fig:postman-get-all}
+\end{figure}
+\subsection{Uji coba hot reload}
+Hot reload adalah fitur yang memungkinkan perubahan kode langsung terlihat tanpa perlu melakukan rebuild pada container. Untuk menguji coba fitur hot reload, mahasiswa melakukan perubahan pada file index.php di service be-jwt. Perubahan tersebut dengan menambahkan endpoint /docker dengan respons yang dapat dilihat pada gambar \ref{fig:hot-reload}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/hot-reload.png}
+    \caption{Menambahkan endpoint /docker pada file index.php}
+    \label{fig:hot-reload}
+\end{figure}
+Setelah melakukan perubahan, simpan file tersebut dan cek kembali langsung di browser dengan url http://10.33.35.71:8080/docker. Akan muncul respons seperti pada gambar \ref{fig:hot-reload-result} yang menandakan bahwa perubahan kode telah langsung terlihat tanpa perlu melakukan rebuild pada container.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/hot-reload-working.png}
+    \caption{Hasil pengecekan endpoint /docker setelah melakukan perubahan kode}
+    \label{fig:hot-reload-result}
+\end{figure}
+
+\section{Tugas dan Analisis}
+\begin{enumerate}
+    \item Tambahkan service phpMyAdmin ke dalam orkestrasi Docker Compose! Forward port phpMyAdmin tersebut ke port selain port 8080 agar tidak tabrakan\\
+Untuk menambahkan service phpMyAdmin, tambahkan konfigurasi service baru pada file docker-compose.yml seperti pada gambar \ref{fig:tambah-phpmyadmin}. Pastikan untuk mengubah port forwarding selain 8080 (mahasiswa menggunakan port 8081) agar tidak tabrakan dengan service be-jwt yang telah dibuat sebelumnya.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{../images/service-phpMyAdmin.png}
+    \caption{Menambahkan service phpMyAdmin pada docker compose}
+    \label{fig:tambah-phpmyadmin}
+\end{figure}
+Berdasarkan gambar \ref{fig:tambah-phpmyadmin}, mahasiswa mendefinisikan sebuah \textit{service} bernama \texttt{phpmyadmin} yang berfungsi sebagai antarmuka grafis berbasis web untuk mengelola basis data MySQL secara mudah, tanpa harus menggunakan baris perintah atau terminal.
+
+Secara lebih terperinci, konfigurasi tersebut diawali dengan penggunaan citra resmi versi terbaru dari Docker Hub yang dideklarasikan melalui sintaks \texttt{image: phpmyadmin:latest}. Kontainer ini kemudian diberi identitas khusus berupa nama \texttt{phpmyadmin\_jwt} melalui parameter \texttt{container\_name}. Agar layanan dapat diakses oleh pengguna dari luar kontainer, terdapat pengaturan \texttt{ports: - "8081:80"} yang berfungsi memetakan port internal kontainer (port 80) ke port komputer lokal mahasiswa (port 8081). Dengan demikian, mahasiswa dapat mengakses antarmuka phpMyAdmin secara langsung melalui peramban web dengan alamat \texttt{http://localhost:8081}. 
+
+Selanjutnya, terdapat blok \texttt{environment} yang memuat variabel lingkungan esensial agar phpMyAdmin dapat terhubung dengan kontainer basis data. Melalui parameter \texttt{PMA\_HOST}, konfigurasi ini diarahkan untuk mengenali kontainer basis data yang bernama \texttt{database\_mysql} melalui jaringan internal pada port standar 3306 (\texttt{PMA\_PORT}). Sistem keamanan atau kata sandi utama juga diselaraskan menggunakan variabel \texttt{MYSQL\_ROOT\_PASSWORD}. Untuk memastikan kelancaran proses pemuatan sistem, direktif \texttt{depends\_on} digunakan guna menjamin bahwa kontainer \texttt{database\_mysql} akan dijalankan terlebih dahulu sebelum kontainer phpMyAdmin diaktifkan. Seluruh interaksi dan komunikasi antar-kontainer ini diwadahi di dalam sebuah jaringan virtual Docker yang sama, yang didefinisikan oleh mahasiswa pada bagian \texttt{networks} dengan nama \texttt{psait}.
+
+
+    \item Lakukan CRUD database aplikasi php\_jwt-db dengan menggunakan phpMyAdmin yang telah dimuat di Docker Compose! Pastikan semua CRUD berjalan untuk memastikan keberhasilan penambahan service phpMyAdmin yang kalian lakukan! \\
+    \begin{enumerate}
+        \item CREATE \\
+        Mahasiswa melakukan penambahan data user baru dengan last\_name coba secara langsung di phpMyAdmin, akan muncul pesan berhasil seperti pada gambar \ref{fig:create-phpmyadmin}.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{../images/insert.png}
+            \caption{Menambahkan data user baru di phpMyAdmin}
+            \label{fig:create-phpmyadmin}
+        \end{figure}
+        \item UPDATE \\
+        Mahasiswa melakukan perubahan data user coba dengan mengubah last\_name menjadi coba edit secara langsung di phpMyAdmin
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{../images/update.png}
+            \caption{Mengubah data user coba di phpMyAdmin}
+            \label{fig:update-phpmyadmin}
+        \end{figure}
+        \item DELETE \\
+        Mahasiswa melakukan penghapusan data user coba edit secara langsung di phpMyAdmin, akan muncul konfirmasi dialog seperti pada gambar \ref{fig:delete-phpmyadmin}.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=.8\textwidth]{../images/delete.png}
+            \caption{Menghapus data user coba edit di phpMyAdmin}
+            \label{fig:delete-phpmyadmin}
+        \end{figure}
+        \item READ \\
+        Mahasiswa melakukan pengecekan data user coba edit yang baru diubah \ref{fig:read-phpmyadmin}. 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{../images/update-hasil.png}
+            \caption{Mengecek data user coba yang telah diubah di phpMyAdmin}
+            \label{fig:read-phpmyadmin}
+        \end{figure}
+        Mahasiswa juga melakukan pengecekan data user coba yang telah dihapus seperti pada gambar \ref{fig:read-delete-phpmyadmin}.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\textwidth]{../images/read.png}
+            \caption{Mengecek data user coba yang telah dihapus di phpMyAdmin}
+            \label{fig:read-delete-phpmyadmin}
+        \end{figure}
+    \end{enumerate}
+\end{enumerate}
+\newpage
+
+
 
 
 
 \section{Kesimpulan}
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa penggunaan Docker Compose sangat mempermudah proses orkestrasi dan manajemen banyak kontainer secara bersamaan apabila dibandingkan dengan mengeksekusi perintah CLI secara manual. Mahasiswa telah berhasil menyusun dan mengonfigurasi berkas \texttt{docker-compose.yml} untuk mengintegrasikan layanan aplikasi pemrograman antarmuka (API), basis data MySQL, serta antarmuka phpMyAdmin ke dalam satu jaringan virtual yang saling terhubung. Selain itu, mahasiswa juga mampu mengimplementasikan fitur \textit{hot-reloading} dengan memanfaatkan \textit{volumes} sehingga perubahan pada kode sumber dapat langsung diamati tanpa perlu membangun ulang (\textit{rebuild}) citra kontainer, serta memahami penerapan manajemen variabel lingkungan menggunakan berkas \texttt{.env}.
+
+Penerapan arsitektur tersebut terbukti berjalan dengan baik secara fungsional. Keberhasilan praktikum ini dibuktikan dengan berjalannya pengujian titik akhir (\textit{endpoint}) API secara lancar melalui aplikasi Postman. Selain itu, integrasi antarmuka phpMyAdmin juga beroperasi sesuai harapan, yang ditunjukkan melalui keberhasilan mahasiswa dalam melakukan berbagai operasi CRUD (Create, Read, Update, Delete) pada basis data secara langsung tanpa mengalami kendala.
+
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
