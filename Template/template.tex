@@ -28,6 +28,7 @@
 \definecolor{commentcol}{RGB}{0,128,0} % Hijau
 \definecolor{phpfunc}{RGB}{128,128,0}  % Gold/Yellow
 \definecolor{phpvar}{RGB}{150,0,150}
+\definecolor{htmltagcol}{RGB}{0,25,10} % Cyan
 
 
 \lstdefinestyle{phphtml}{
@@ -128,18 +129,281 @@ Docker ini diperkenalkan pada tahun 2013 oleh Solomon Hykes pada acara PyCon. Be
 \section{Hasil dan Pemabahasan}
 Pada praktikum ini, praktikan diminta untuk menghubungkan API PHP yang telah dibuat sebelumnya dengan Docker pada ubuntu server. Berikut adalah langkah-langkah yang dilakukan:
 \subsection{Membaca dokumentasi resmi Docker}
-Praktikan membaca dokumentasi resmi Docker untuk memahami konsep dasar, cara kerja, dan perintah-perintah yang digunakan dalam Docker. Dokumentasi ini sangat penting untuk memahami bagaimana Docker bekerja dan bagaimana cara menggunakannya dengan benar.
+Praktikan membaca dokumentasi resmi Docker untuk memahami konsep dasar, cara kerja, dan perintah-perintah yang digunakan dalam Docker. Dokumentasi ini sangat penting untuk memahami bagaimana Docker bekerja dan bagaimana cara menggunakannya dengan benar. Buka situs rsemi Docker di \url{https://docs.docker.com/engine/install/ubuntu} untuk mempelajari lebih lanjut bagaimana cara menginstall Docker di VPS.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/docs-docker.png}
+    \caption{Dokumentasi resmi Docker untuk instalasi di Ubuntu}
+    \label{fig:yaml}
+\end{figure}
+\subsection{Menyiapkan repository Docker di VPS}
+Setelah membaca dokumentasi, praktikan dapat menyiapkan repository docker di VPS dengan menjalankan perintah berikut di terminal:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/docker-docs-repository.png}
+    \caption{Menyiapkan repository Docker di VPS}
+    \label{fig:yaml}
+\end{figure}
 
-\subsection{Konfigurasi Database}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/prepare-repository.png}
+    \caption{Hasil menyiapkan repository Docker di VPS}
+    \label{fig:yaml}
+\end{figure}
+
+\subsection{Menginstall Docker Engine di VPS}
+Selanjutnya, sesuai dokumentasi resmi Docker, praktikan dapat menginstall Docker Engine dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/install-docker.png}
+    \caption{Menginstall Docker Engine di VPS}
+    \label{fig:yaml}
+\end{figure}
+
+\subsection{Test status Docker}
+Praktikan dapat melakukan test apakah instalasi docker telah berhasil dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo systemctl status docker
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/status-docker.png}
+    \caption{Test status Docker}
+    \label{fig:status-docker}
+\end{figure}
+Dapat dilihat pada gambar \ref{fig:status-docker}, bahwa Docker telah berhasil diinstall dan sedang berjalan dengan status active (running). Hal ini menunjukkan bahwa Docker Engine telah siap digunakan untuk membuat dan menjalankan container. Jika belum berjalan, dapat menjalankan perintah 
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo systemctl start docker 
+\end{lstlisting}
+untuk memulai layanan Docker.
+
+\subsection{Verifikasi Instalasi Docker}
+Praktikan dapat melakukan pengecekan sistem Docker. Docker telah menyediakan sebuah image bernama hello-world yang dapat digunakan untuk melakukan verifikasi instalasi Docker. Praktikan dapat menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo docker run hello-world
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/hello-world.png}
+    \caption{Verifikasi Instalasi Docker dengan menjalankan image hello-world}
+    \label{fig:hello-world}
+\end{figure}
+
+\subsection{Membuat folder baru di home direktori}
+Praktikan dapat mencoba menggunakan Docker dengan membuat folder baru di home direktori dengan nama php-jwt-api. Praktikan dapat menjalankan seperti pada gambar \ref{fig:mkdir} di terminal:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/mkdir.png}
+    \caption{Membuat folder baru di home direktori dengan nama php-jwt-api}
+    \label{fig:mkdir}
+\end{figure}
+
+\subsection{Memindahkan aplikasi ke folder baru}
+Setelah membuat folder baru, praktikan dapat memindahkan aplikasi PHP API (php-jwt) yang telah dibuat pada pertemuan sebelumnya ke dalam folder php-jwt-api dengan menggunakan scp (secure copy) untuk mentransfer file dari lokal ke VPS. Praktikan dapat masuk ke terminal root folder php-jwt di komputer lokal, kemudian jalankan perintah seeprti pada gambar \ref{fig:scp}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/scp.png}
+    \caption{Memindahkan folder php-jwt ke folder baru menggunakan scp}
+    \label{fig:scp}
+\end{figure}
+Setelah proses transfer selesai, praktikan dapat masuk ke folder php-jwt-api di VPS, lalu cek file database.php dan ubah sedikit konfigurasinya agar virtual networknya dapat terhubung dengan localhost docker, bukan vps. Praktikan dapat mengubah konfigurasi database.php seperti pada gambar \ref{fig:config-db}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/config-db.png}
+    \caption{Mengubah konfigurasi database.php untuk menghubungkan dengan localhost docker}
+    \label{fig:config-db}
+\end{figure}
+Ubah juga konfigurasi DB\_HOST di file .env agar sesuai dengan IP VPS seperti berikut:
 \begin{lstlisting}[language=php, style=phphtml]
 DB_HOST = 10.33.35.71
 DB_PORT = 3306
 DB_USER = php_jwt
 DB_PASSWORD = 123456
-DB_NAME = php_jwt_db    
+DB_NAME = php_jwt_db
+\end{lstlisting}
+\subsection{Cek aplikasi dengan development mode sebelum membuat Docker Image}
+Sebelum membuat Docker Image, praktikan dapat melakukan pengecekan aplikasi dengan menjalankan aplikasi dalam development mode untuk memastikan bahwa aplikasi berjalan dengan baik di lingkungan VPS. Praktikan dapat menjalankan perintah berikut di terminal:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/php-server.png}
+    \caption{Cek aplikasi dengan development mode sebelum membuat Docker Image}
+    \label{fig:test-dev-mode}
+\end{figure}
+Lalu, akses cek di browser dengan alamat http://10.33.35.71:8080/. Jika aplikasi berjalan dengan baik, maka akan muncul tampilan seperti pada gambar \ref{fig:dev-mode}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/dev-mode.png}
+    \caption{Tampilan aplikasi berjalan dengan baik di development mode}
+    \label{fig:dev-mode}
+\end{figure}
+
+\subsection{Membuat aplikasi produksi}
+Praktikan menambahkan file .htaccess pada root projek yang bertujuan untuk membantu navigasi URl di apache beserta aturannya.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/htaccess.png}
+    \caption{Menambahkan file .htaccess untuk membantu navigasi URL di apache}
+    \label{fig:htaccess}
+\end{figure}
+Selanjutnya, karena folder tidak akan ditempatkan  di folder di dalam html apache, maka praktikan perlu menambahkan router untuk mempermudah navigasi aplikasi. Ubah indeks.php di root project menjadi seperti berikut
+\begin{lstlisting}[language=php, style=phphtml]
+<?php 
+ob_start();
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type,Access-Control-Allow-Headers,
+Authorization,X-Requested-With");
+ 
+$requestUri = $_SERVER['REQUEST_URI']; 
+$requestUri = strtok($requestUri, '?'); 
+if ($requestUri !== '/' && substr($requestUri, -1) === '/') { 
+    $requestUri = rtrim($requestUri, '/'); 
+} 
+switch ($requestUri) { 
+     
+    case '/api/login': 
+        if (file_exists('api/login/index.php')) { 
+            require 'api/login/index.php'; 
+        } else { 
+            http_response_code(500); 
+            echo json_encode(["message" => "File api/login/index.php tidak ditemukan!"]); 
+        }
+          break; 
+ 
+    case '/api/register': 
+        if (file_exists('api/register/index.php')) { 
+            require 'api/register/index.php'; 
+        } else { 
+            http_response_code(500); 
+            echo json_encode(["message" => "File api/register/index.php tidak ditemukan!"]); 
+        } 
+        break; 
+ 
+    case '/api/users': 
+        if (file_exists('api/users/index.php')) { 
+            require 'api/users/index.php'; 
+        } else { 
+            http_response_code(500); 
+            echo json_encode(["message" => "File api/users/index.php tidak ditemukan!"]); 
+        } 
+        break; 
+
+    case '/': 
+    case '/index.php': 
+        http_response_code(200); 
+        echo json_encode(array("message" => "Welcome to the API service")); 
+        break; 
+ 
+    default: 
+        http_response_code(404); 
+        echo json_encode(array( 
+            "message" => "Endpoint not found.",  
+            "debug_uri" => $requestUri  
+        )); 
+        break; 
+} 
+?>
+\end{lstlisting}
+Selanjutnya, ubah import-import di file api/login/index.php, api/register/index.php, dan api/users/index.php menjadi seperti berikut:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/DIR.png} 
+    \caption{Mengubah import di file api/login/index.php, api/register/index.php, dan api/users/index.php}
+    \label{fig:import}
+\end{figure}
+Konstanta \_\_DIR\_\_ yang praktikan tambahkan digunakan untuk memastikan bahwa impor tersebut dibaca dari lokasi file berada, jika tidak dilakukan seperti itu, lokasi impor dapat berbeda dan dapat menyebabkan navigasi impor yang salah.
+\subsection{Membuat Script Dockerfile}
+Script Dockerfile digunakan untuk membuat Docker Image yang berisi aplikasi PHP API yang telah dibuat. Praktikan dapat membuat file Dockerfile di root project dengan isi seperti berikut:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/dockerfile.png}
+    \caption{Script Dockerfile untuk membuat Docker Image}
+    \label{fig:dockerfile}
+\end{figure}
+Berdasarkan gambar \ref{fig:dockerfile},Secara garis besar, proses pembangunan image dimulai dengan menentukan fondasi sistem melalui perintah FROM php:8.2-apache, yang menetapkan bahwa kontainer akan menggunakan sistem operasi dasar dengan PHP versi 8.2 dan peladen web (web server) Apache yang telah terpasang. Selanjutnya, perintah RUN docker-php-ext-install pdo\_mysql dieksekusi untuk memasang ekstensi pdo\_mysql ke dalam lingkungan PHP. Ekstensi ini sangat krusial karena bertugas sebagai jembatan pembuka akses agar aplikasi PHP mampu terhubung dan berkomunikasi dengan sistem basis data MySQL. Kemudian, instruksi RUN a2enmod rewrite headers dijalankan untuk mengaktifkan dua modul penting pada Apache. Modul rewrite (mod\_rewrite) diperlukan agar server mengenali fitur manipulasi arah URL (seperti routing API menggunakan berkas .htaccess), sedangkan modul headers diperlukan untuk mengatur tajuk (header) pada respons HTTP asinkron, seperti pengaturan izin CORS (Cross-Origin Resource Sharing).
+
+Agar peladen web mengizinkan berkas .htaccess berjalan semestinya, terdapat perintah pemrosesan teks tingkat lanjut (sed) untuk menyunting nilai AllowOverride None menjadi AllowOverride All di dalam konfigurasi induk /etc/apache2/apache2.conf. Langkah berikutnya diikui dengan perintah rm -f /var/www/html/index.html yang berfungsi untuk menghapus halaman bawaan (index.html) dari instalasi awal Apache. Hal ini ditujukan supaya berkas bawaan tersebut tidak bertabrakan penamaannya dengan halaman indeks utama milik aplikasi PHP (seperti index.php) yang hendak kita jalankan. Setelah itu, modifikasi porta (port) jaringan dilakukan secara otomatis juga dengan perintah sed; instruksi tersebut mendikte peladen Apache agar mengubah porta yang mulanya berjalan standar pada porta 80 menjadi porta target 8080. Perubahan nomor porta ini dilakukan pada berkas ports.conf serta berkas peladen virtual 000-default.conf, yang berguna agar tidak terjadi tumpang tindih (conflict) apabila porta 80 pada ruang sistem (host) telah digunakan oleh layanan lain.
+
+Pada tahap pemindahan kode sumber aplikasi, perintah WORKDIR /var/www/html menetapkan direktori tersebut sebagai direktori kerja utama (working directory). Dengan penetapan ini, instruksi selanjutnya yaitu COPY . /var/www/html akan menyalin instan seluruh berkas-berkas aplikasi PHP yang ada di mesin lokal saat membangun Docker (build context) ke dalam direktori pengelolaan web server tersebut di dalam container. Tahapan ini diakhiri dengan instruksi EXPOSE 8080, yang secara teknis berfungsi sebagai dokumentasi jaringan untuk memberitahu Docker bahwa container ini akan mengizinkan dan menerima lalu lintas permintaan jaringan pada porta 8080. Akhirnya, baris penutup CMD ["apache2-foreground"] adalah pengaturan perintah bawaan yang memaksa layanan Apache untuk terus berjalan pada mode tampilan utama layar (foreground). Ini merupakan langkah pamungkas yang wajib ada, karena dengan menjalankan Apache pada mode tersebut, siklus hidup sistem operasi di dalam container akan dibiarkan terus berjalan tanpa henti untuk melayani aplikasi perantara dan tidak akan terhenti mendadak.
+
+\subsection{Build Docker Image}
+Setelah membuat Dockerfile, praktikan dapat melakukan build Docker Image dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker build -t php-jwt-example .
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/build-docker-image.png}
+    \caption{Build Docker Image dengan perintah docker build}
+    \label{fig:build-image}
+\end{figure}
+Setelah proses build selesai, praktikan dapat melihat daftar Docker Image yang telah dibuat dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo docker images
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/list-docker-image.png}
+    \caption{Melihat daftar Docker Image yang telah dibuat}
+    \label{fig:list-image}
+\end{figure}
+
+
+
+
+\section{Tugas dan Analisis}
+\begin{enumerate}
+    \item Bagaimana cara menghapus Image Container Docker php-jwt yang telah dibuat? \\
+    Jawab:\\
+    Untuk menghapus Image Container Docker php-jwt yang telah dibuat, containernya harus dihapus terlebih dahulu. Praktikan dapat melihat terlebih dahulu daftar container yang sedang berjalan dengan perintah:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker ps -a
+\end{lstlisting}
+Setelah melihat daftar container, praktikan dapat menghentikan container (jwt-container) yang sedang berjalan dengan perintah:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker stop jwt-container
+\end{lstlisting}
+Setelah container dihentikan, praktikan dapat menghapus container tersebut dengan perintah:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker rm jwt-container
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/tugas-1.png}
+    \caption{Menghapus Container Docker jwt-container}
+    \label{fig:remove-container}
+\end{figure}
+Setelah container dihapus, praktikan dapat menghapus image php-jwt-example dengan perintah:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker rmi php-jwt-example
 \end{lstlisting}
 
+    \item Bagaimana jika source code terdapat perubahan dan Image dan Container ingin diperbarui? \\
+    Jawab:\\
+    Jika source code terdapat perubahan dan Image serta Container ingin diperbarui, praktikan dapat melakukan build ulang (rebuild) karena Docker image bersifat immutable. Praktikan dapat melakukan build ulang dengan menghentikan container yang sedang berjalan, lalu hapus container tersebut, kemudian buat ulang Docker Image dengan perintah berikut:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker build -t php-jwt-example.
+\end{lstlisting}
+Pastikan nama image yang digunakan sama dengan nama image sebelumnya agar tidak terjadi duplikasi image. Setelah build ulang selesai, praktikan dapat menjalankan container baru dengan perintah:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker run -d -p 8080:80 --env-file .env --name jwt-container php-jwt-example
+\end{lstlisting}
+\end{enumerate}
+\newpage
+
 \section{Kesimpulan}
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa Docker adalah sebuah platform yang memungkinkan untuk mengemas aplikasi beserta semua dependensinya ke dalam sebuah container yang dapat dijalankan di berbagai lingkungan. Dengan menggunakan Docker, praktikan dapat dengan mudah membuat, mengelola, dan menjalankan aplikasi tanpa harus khawatir tentang perbedaan lingkungan atau konfigurasi. Praktikum ini memberikan pemahaman tentang cara menghubungkan API PHP dengan Docker, serta bagaimana melakukan verifikasi dan manajemen container menggunakan Docker. Dengan demikian, Docker dapat menjadi alat yang sangat berguna untuk pengembangan dan deployment aplikasi secara efisien dan konsisten.
+
+Untuk tugas tambahan, praktikan dapat menghapus Image Container Docker php-jwt yang telah dibuat dengan menghentikan container terlebih dahulu, lalu menghapus container tersebut, dan akhirnya menghapus image php-jwt-example. Jika terdapat perubahan pada source code dan ingin memperbarui Image serta Container, praktikan dapat melakukan build ulang (rebuild) dengan menghentikan container yang sedang berjalan, menghapus container tersebut, membuat ulang Docker Image dengan perintah build, dan menjalankan container baru dengan perintah run.
+\newpage
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
