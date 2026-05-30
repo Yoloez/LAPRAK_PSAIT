@@ -356,7 +356,61 @@ sudo docker images
     \label{fig:list-image}
 \end{figure}
 
+\subsection{Menjalankan Image sebagai Container}
+Setelah membuat images, aplikasi belum dapat dijalankan secara langsung tanpa menggunakan php development server. Oleh karena itu, praktikan dapat menjalankan image yang telah dibuat sebagai container dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+docker run -d -p 8081:8080 --env-file .env --name jwt-container php-jwt-example
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/run-image.png}
+    \caption{Menjalankan Image sebagai Container dengan perintah docker run}
+    \label{fig:run-container}
+\end{figure}
+Melalui perintah tersebut, praktikan menjalankan sebuah kontainer Docker baru berbasis image yang ditentukan di latar belakang (detached mode), sehingga terminal tetap dapat digunakan untuk instruksi selanjutnya. Dalam proses ini, praktikan memberikan identitas khusus pada kontainer dengan nama jwt-container untuk mempermudah manajemen dan pelacakan. Selain itu, praktikan melakukan pemetaan port 8080 pada perangkat lokal ke port 8080 di dalam kontainer, yang memungkinkan aplikasi di dalamnya dapat diakses dari luar melalui peramban web. Terakhir, praktikan mengintegrasikan file .env ke dalam kontainer untuk menyuntikkan seluruh variabel lingkungan (environment variables) yang diperlukan, sehingga konfigurasi aplikasi dapat termuat secara otomatis dan aman saat kontainer mulai beroperasi.
 
+Setelah menjalankan container, praktikan dapat melihat daftar container yang sedang berjalan dengan menjalankan perintah berikut di terminal:
+\begin{lstlisting}[language=bash, style=phphtml]
+sudo docker ps -a
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/docker-ps-a.png}
+    \caption{Melihat daftar Container yang sedang berjalan}
+    \label{fig:ps-container}
+\end{figure}
+
+\subsection{Cek aplikasi di Browser}
+Setelah menjalankan container, dan melihat statusnya sudah up, praktikan dapat mengakses aplikasi di browser dengan alamat http://10.33.35.71:8081. Jika aplikasi berjalan dengan baik, maka akan muncul tampilan seperti pada gambar \ref{fig:app-container}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/8081.png}
+    \caption{Tampilan aplikasi berjalan dengan baik di dalam Container}
+    \label{fig:app-container}
+\end{figure}
+
+\subsection{Uji di Postman}
+Praktikan dapat menguji aplikasi yang berjalan di dalam container dengan menggunakan Postman untuk melakukan request ke endpoint API. Praktikan dapat melakukan request ke endpoint register, login, dan users untuk memastikan bahwa API berfungsi dengan baik. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/register.png}
+    \caption{Uji API register dengan Postman}
+    \label{fig:postman}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/login.png}
+    \caption{Uji API login dengan Postman}
+    \label{fig:postman-login}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/users.png}
+    \caption{Uji API users dengan Postman}
+    \label{fig:postman-users}
+\end{figure}
 
 
 \section{Tugas dan Analisis}
@@ -394,7 +448,7 @@ docker build -t php-jwt-example.
 \end{lstlisting}
 Pastikan nama image yang digunakan sama dengan nama image sebelumnya agar tidak terjadi duplikasi image. Setelah build ulang selesai, praktikan dapat menjalankan container baru dengan perintah:
 \begin{lstlisting}[language=bash, style=phphtml]
-docker run -d -p 8080:80 --env-file .env --name jwt-container php-jwt-example
+docker run -d -p 8081:8080 --env-file .env --name jwt-container php-jwt-example
 \end{lstlisting}
 \end{enumerate}
 \newpage

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  30 MAY 2026 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2026.1.9)  30 MAY 2026 17:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -336,7 +336,7 @@ Package hyperref Info: Link coloring OFF on input line 68.
 \@outlinefile=\write3
 \openout3 = `template.out'.
 
-<../images/ugm.png, id=75, 1606.0pt x 1606.0pt>
+<../images/ugm.png, id=87, 1606.0pt x 1606.0pt>
 File: ../images/ugm.png Graphic file (type png)
 <use ../images/ugm.png>
 Package pdftex.def Info: ../images/ugm.png  used on input line 83.
@@ -359,18 +359,18 @@ Overfull \hbox (3.07596pt too wide) in paragraph at lines 130--131
 \OT1/cmr/m/n/12 telah dibuat se-belum-nya den-gan Docker pada ubuntu server. Berikut adalah langkah-
  []
 
-<../images/docs-docker.png, id=94, 1251.17438pt x 725.71124pt>
+<../images/docs-docker.png, id=106, 1251.17438pt x 725.71124pt>
 File: ../images/docs-docker.png Graphic file (type png)
 <use ../images/docs-docker.png>
 Package pdftex.def Info: ../images/docs-docker.png  used on input line 135.
 (pdftex.def)             Requested size: 341.43437pt x 198.03754pt.
-<../images/docker-docs-repository.png, id=95, 706.89093pt x 546.54187pt>
+<../images/docker-docs-repository.png, id=107, 706.89093pt x 546.54187pt>
 File: ../images/docker-docs-repository.png Graphic file (type png)
 <use ../images/docker-docs-repository.png>
 Package pdftex.def Info: ../images/docker-docs-repository.png  used on input line 143.
 (pdftex.def)             Requested size: 384.1096pt x 296.97958pt.
 [2 <../images/docs-docker.png>]
-<../images/prepare-repository.png, id=104, 654.19406pt x 509.65407pt>
+<../images/prepare-repository.png, id=116, 654.19406pt x 509.65407pt>
 File: ../images/prepare-repository.png Graphic file (type png)
 <use ../images/prepare-repository.png>
 Package pdftex.def Info: ../images/prepare-repository.png  used on input line 150.
@@ -389,51 +389,51 @@ Overfull \hbox (9.77774pt too wide) in paragraph at lines 156--157
  []
 
 [3 <../images/docker-docs-repository.png> <../images/prepare-repository.png>]
-<../images/install-docker.png, id=113, 689.57625pt x 176.91093pt>
+<../images/install-docker.png, id=125, 689.57625pt x 176.91093pt>
 File: ../images/install-docker.png Graphic file (type png)
 <use ../images/install-docker.png>
 Package pdftex.def Info: ../images/install-docker.png  used on input line 163.
 (pdftex.def)             Requested size: 384.1096pt x 98.54305pt.
-<../images/status-docker.png, id=114, 651.18282pt x 254.45062pt>
+<../images/status-docker.png, id=126, 651.18282pt x 254.45062pt>
 File: ../images/status-docker.png Graphic file (type png)
 <use ../images/status-docker.png>
 Package pdftex.def Info: ../images/status-docker.png  used on input line 175.
 (pdftex.def)             Requested size: 341.43437pt x 133.41774pt.
  [4 <../images/install-docker.png> <../images/status-docker.png>]
-<../images/hello-world.png, id=130, 589.4522pt x 479.54156pt>
+<../images/hello-world.png, id=142, 589.4522pt x 479.54156pt>
 File: ../images/hello-world.png Graphic file (type png)
 <use ../images/hello-world.png>
 Package pdftex.def Info: ../images/hello-world.png  used on input line 192.
 (pdftex.def)             Requested size: 341.43437pt x 277.77576pt.
-<../images/mkdir.png, id=132, 325.215pt x 100.87688pt>
+<../images/mkdir.png, id=144, 325.215pt x 100.87688pt>
 File: ../images/mkdir.png Graphic file (type png)
 <use ../images/mkdir.png>
 Package pdftex.def Info: ../images/mkdir.png  used on input line 201.
 (pdftex.def)             Requested size: 341.43437pt x 105.91614pt.
  [5 <../images/hello-world.png>]
-<../images/scp.png, id=144, 1072.75781pt x 353.06906pt>
+<../images/scp.png, id=156, 1072.75781pt x 353.06906pt>
 File: ../images/scp.png Graphic file (type png)
 <use ../images/scp.png>
 Package pdftex.def Info: ../images/scp.png  used on input line 210.
 (pdftex.def)             Requested size: 426.79135pt x 140.46548pt.
-<../images/config-db.png, id=146, 959.83594pt x 551.05875pt>
+<../images/config-db.png, id=158, 959.83594pt x 551.05875pt>
 File: ../images/config-db.png Graphic file (type png)
 <use ../images/config-db.png>
 Package pdftex.def Info: ../images/config-db.png  used on input line 217.
 (pdftex.def)             Requested size: 341.43437pt x 196.02661pt.
  [6 <../images/mkdir.png> <../images/scp.png>]
-<../images/php-server.png, id=156, 613.54219pt x 73.77562pt>
+<../images/php-server.png, id=168, 613.54219pt x 73.77562pt>
 File: ../images/php-server.png Graphic file (type png)
 <use ../images/php-server.png>
 Package pdftex.def Info: ../images/php-server.png  used on input line 233.
 (pdftex.def)             Requested size: 341.43437pt x 41.05626pt.
  [7 <../images/config-db.png>]
-<../images/dev-mode.png, id=170, 421.575pt x 187.45032pt>
+<../images/dev-mode.png, id=182, 421.575pt x 187.45032pt>
 File: ../images/dev-mode.png Graphic file (type png)
 <use ../images/dev-mode.png>
 Package pdftex.def Info: ../images/dev-mode.png  used on input line 240.
 (pdftex.def)             Requested size: 341.43437pt x 151.81961pt.
-<../images/htaccess.png, id=171, 413.29407pt x 201.00093pt>
+<../images/htaccess.png, id=183, 413.29407pt x 201.00093pt>
 File: ../images/htaccess.png Graphic file (type png)
 <use ../images/htaccess.png>
 Package pdftex.def Info: ../images/htaccess.png  used on input line 249.
@@ -455,7 +455,7 @@ LaTeX Font Warning: Font shape `TS1/cmtt/bx/n' undefined
 (Font)              for symbol `textdollar' on input line 265.
 
 [9 <../images/htaccess.png>] [10]
-<../images/DIR.png, id=234, 459.96844pt x 91.84312pt>
+<../images/DIR.png, id=246, 459.96844pt x 91.84312pt>
 File: ../images/DIR.png Graphic file (type png)
 <use ../images/DIR.png>
 Package pdftex.def Info: ../images/DIR.png  used on input line 318.
@@ -466,7 +466,7 @@ Overfull \hbox (2.01392pt too wide) in paragraph at lines 315--321
  []
 
 [11 <../images/DIR.png>]
-<../images/dockerfile.png, id=258, 546.54187pt x 268.75406pt>
+<../images/dockerfile.png, id=270, 546.54187pt x 268.75406pt>
 File: ../images/dockerfile.png Graphic file (type png)
 <use ../images/dockerfile.png>
 Package pdftex.def Info: ../images/dockerfile.png  used on input line 327.
@@ -487,33 +487,66 @@ Overfull \hbox (19.4208pt too wide) in paragraph at lines 335--336
  []
 
 [13]
-<../images/build-docker-image.png, id=271, 663.98062pt x 158.09062pt>
+<../images/build-docker-image.png, id=283, 663.98062pt x 158.09062pt>
 File: ../images/build-docker-image.png Graphic file (type png)
 <use ../images/build-docker-image.png>
 Package pdftex.def Info: ../images/build-docker-image.png  used on input line 344.
 (pdftex.def)             Requested size: 341.43437pt x 81.29333pt.
-<../images/list-docker-image.png, id=272, 669.2503pt x 91.84312pt>
+<../images/list-docker-image.png, id=284, 669.2503pt x 91.84312pt>
 File: ../images/list-docker-image.png Graphic file (type png)
 <use ../images/list-docker-image.png>
 Package pdftex.def Info: ../images/list-docker-image.png  used on input line 354.
 (pdftex.def)             Requested size: 341.43437pt x 46.85757pt.
-
-Overfull \hbox (8.33748pt too wide) in paragraph at lines 364--367
+ [14 <../images/build-docker-image.png> <../images/list-docker-image.png>]
+<../images/run-image.png, id=297, 819.8128pt x 46.67438pt>
+File: ../images/run-image.png Graphic file (type png)
+<use ../images/run-image.png>
+Package pdftex.def Info: ../images/run-image.png  used on input line 366.
+(pdftex.def)             Requested size: 426.79135pt x 24.29929pt.
+<../images/docker-ps-a.png, id=298, 1236.87094pt x 113.67468pt>
+File: ../images/docker-ps-a.png Graphic file (type png)
+<use ../images/docker-ps-a.png>
+Package pdftex.def Info: ../images/docker-ps-a.png  used on input line 378.
+(pdftex.def)             Requested size: 426.79135pt x 39.22473pt.
+<../images/8081.png, id=300, 335.00156pt x 143.78719pt>
+File: ../images/8081.png Graphic file (type png)
+<use ../images/8081.png>
+Package pdftex.def Info: ../images/8081.png  used on input line 387.
+(pdftex.def)             Requested size: 341.43437pt x 146.54689pt.
+ [15 <../images/run-image.png> <../images/docker-ps-a.png>]
+<../images/register.png, id=313, 903.375pt x 403.5075pt>
+File: ../images/register.png Graphic file (type png)
+<use ../images/register.png>
+Package pdftex.def Info: ../images/register.png  used on input line 396.
+(pdftex.def)             Requested size: 426.79135pt x 190.63367pt.
+ [16 <../images/8081.png>]
+<../images/login.png, id=320, 903.375pt x 478.03593pt>
+File: ../images/login.png Graphic file (type png)
+<use ../images/login.png>
+Package pdftex.def Info: ../images/login.png  used on input line 403.
+(pdftex.def)             Requested size: 426.79135pt x 225.844pt.
+<../images/users.png, id=321, 922.94812pt x 551.81157pt>
+File: ../images/users.png Graphic file (type png)
+<use ../images/users.png>
+Package pdftex.def Info: ../images/users.png  used on input line 410.
+(pdftex.def)             Requested size: 426.79135pt x 255.16675pt.
+ [17 <../images/register.png> <../images/login.png>]
+Overfull \hbox (8.33748pt too wide) in paragraph at lines 418--421
 []\OT1/cmr/m/n/12 Bagaimana cara meng-ha-pus Im-age Con-tainer Docker php-jwt yang telah dibuat? 
  []
 
-[14 <../images/build-docker-image.png> <../images/list-docker-image.png>]
-<../images/tugas-1.png, id=286, 1207.51125pt x 321.45094pt>
+[18 <../images/users.png>]
+<../images/tugas-1.png, id=342, 1207.51125pt x 321.45094pt>
 File: ../images/tugas-1.png Graphic file (type png)
 <use ../images/tugas-1.png>
-Package pdftex.def Info: ../images/tugas-1.png  used on input line 380.
+Package pdftex.def Info: ../images/tugas-1.png  used on input line 434.
 (pdftex.def)             Requested size: 426.79135pt x 113.61311pt.
 
-Overfull \hbox (0.83893pt too wide) in paragraph at lines 384--385
+Overfull \hbox (0.83893pt too wide) in paragraph at lines 438--439
 \OT1/cmr/m/n/12 Setelah con-tainer di-ha-pus, prak-tikan da-pat meng-ha-pus im-age php-jwt-example
  []
 
-[15 <../images/tugas-1.png>] [16] [17] (template.bbl) [18] (template.aux)
+[19 <../images/tugas-1.png>] [20] (template.bbl) [21] (template.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -526,20 +559,20 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 0E2DFF14E2512282B44375B425F77DDF;3260.
+(rerunfilecheck)             Checksum: E334E3EEFC28F3C19E60A8E17EBA8775;3821.
  ) 
 Here is how much of TeX's memory you used:
- 13594 strings out of 474486
- 214436 string characters out of 5744228
+ 13661 strings out of 474486
+ 215942 string characters out of 5744228
  1987542 words of memory out of 5000000
- 35588 multiletter control sequences out of 15000+600000
+ 35639 multiletter control sequences out of 15000+600000
  563258 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,1157b,3092s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1095.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on template.pdf (19 pages, 3515020 bytes).
+Output written on template.pdf (22 pages, 3684870 bytes).
 PDF statistics:
- 381 PDF objects out of 1000 (max. 8388607)
- 151 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 167 named destinations out of 1000 (max. 500000)
+ 289 words of extra memory for PDF output out of 10000 (max. 10000000)
 
