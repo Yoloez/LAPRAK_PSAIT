@@ -1,0 +1,16 @@
+\contentsline {section}{\numberline {A}Tujuan}{2}{section.1}%
+\contentsline {section}{\numberline {B}Dasar Teori}{2}{section.2}%
+\contentsline {subsection}{\numberline {B.1}CI/CD}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {B.2}git dan gitea}{3}{subsection.2.2}%
+\contentsline {section}{\numberline {C}Hasil dan Pembahasan}{4}{section.3}%
+\contentsline {subsection}{\numberline {C.1}Persiapan Infrastruktur}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {C.2}Persiapan objek aplikasi}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {C.3}Instalasi Gitea menggunakan Docker Compose}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {C.4}Clone Repository}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {C.5}Push aplikasi}{14}{subsection.3.5}%
+\contentsline {subsection}{\numberline {C.6}Cek action CICD di aplikasi}{15}{subsection.3.6}%
+\contentsline {section}{\numberline {D}Tugas dan Analisis}{16}{section.4}%
+\contentsline {subsubsection}{\numberline {D.0.1}Implementasi file test dan pembaruan workflow}{16}{subsubsection.4.0.1}%
+\contentsline {subsubsection}{\numberline {D.0.2}Analisis Skenario kegagalan pipeline}{18}{subsubsection.4.0.2}%
+\contentsline {section}{\numberline {E}Kesimpulan}{20}{section.5}%
+\contentsline {section}{\numberline {F}Daftar Pustaka}{21}{section.6}%

@@ -18,6 +18,7 @@
 \usepackage{chngcntr}
 
 \renewcommand{\figurename}{Gambar}
+\renewcommand{\contentsname}{Daftar Isi} % Menyesuaikan judul daftar isi ke Bahasa Indonesia
 \renewcommand\thesection{\Alph{section}}
 
 \definecolor{codebg}{RGB}{245,245,245}
@@ -79,7 +80,7 @@
     { \textbf{PERTEMUAN 12}}\\[0.3cm]
     { \textbf{CI/CD PIPELINE LOKAL DENGAN GITEA ACTIONS}} \\[1.5cm]
     
-    % Logo (ganti ugm.png dengan nama file logo kamu)
+    % Logo
     \includegraphics[height=7cm]{../images/ugm.png}
     
     % Identitas
@@ -110,13 +111,18 @@ Disusun oleh:\\[0.3cm]
     
 \end{titlepage}
 
+% Halaman Daftar Isi
+\onehalfspacing
+\tableofcontents
+\clearpage % Membuat halaman baru setelah daftar isi
+
 \doublespacing 
 
 \section{Tujuan}
 \begin{enumerate}
     \item Memahami konsep dasar CI/CD (Continuous Integration \& Continuous Deployment) dalam pengembangan perangkat lunak modern
     \item Mengimplementasikan otomatisasi deployment menggunakan Gitea Actions
-    \item Membuat script workflow .yaml untuk memerintahkan server melakuakn update aplikasi secara otomatis via SSH 
+    \item Membuat script workflow .yaml untuk memerintahkan server melakukan update aplikasi secara otomatis via SSH 
     \item Membangun infrastruktur CI/CD mandiri menggunakan Gitea dan Gitea Runner 
 \end{enumerate}
 
@@ -124,20 +130,266 @@ Disusun oleh:\\[0.3cm]
 \subsection{CI/CD}
 Continuous integration (CI) adalah pengintegrasian kode ke dalam repositori kode kemudian menjalankan pengujian secara otomatis, cepat, dan sering. Continuous Integration dapat dilakukan dengan menggunakan perintah commit.
 
-Sementara continous delivery atau continuous deployment (CD) adalah praktik yang dilakukan setelah proses CI selesai dan seluruh kode berhasil terintegrasi, sehingga aplikasi bisa dibangun lalu dirilis secara otomatis.
+Sementara continuous delivery atau continuous deployment (CD) adalah praktik yang dilakukan setelah proses CI selesai dan seluruh kode berhasil terintegrasi, sehingga aplikasi bisa dibangun lalu dirilis secara otomatis.
 
-CI/CD pipeline ini biasa digunakan dalam pengembangan perangkat lunak. CI/CD pipeline ini menjadi penghubung antara tim pengembang dengan tim operasional yang di dalamnya terdapat tiga fase yang berupa continuous integration, continuous delivery, dan continuous  deployment. Ketiga fase tersebut akan dilakukan secara terus menerus dan otomatis untuk mendapatkan perangkat lunak yang andal dan bebas dari bug \cite{dicodingCICDDeveloper}.
+CI/CD pipeline ini biasa digunakan dalam pengembangan perangkat lunak. CI/CD pipeline ini menjadi penghubung antara tim pengembang dengan tim operasional yang di dalamnya terdapat tiga fase yang berupa continuous integration, continuous delivery, dan continuous deployment. Ketiga fase tersebut akan dilakukan secara terus menerus dan otomatis untuk mendapatkan perangkat lunak yang andal dan bebas dari bug \cite{dicodingCICDDeveloper}.
 
 \subsection{git dan gitea}
+Git adalah sistem kontrol versi terdistribusi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak. Git memungkinkan banyak pengembang untuk bekerja pada proyek yang sama secara bersamaan tanpa konflik, dengan menyimpan riwayat perubahan dan memungkinkan kolaborasi yang efisien \cite{codepolitanGitPanduan}.
 
+Gitea adalah platform Git repository hosting berbasis open source yang dirancang untuk dijalankan secara self hosted. Artinya, Gitea diinstal dan dijalankan di server milik sendiri, seperti Cloud VPS. Semua data, konfigurasi, dan akses pengguna sepenuhnya berada di bawah kendali pemilik server. Gitea menyediakan fitur-fitur seperti manajemen repositori, kolaborasi tim, issue tracking, pull request, dan integrasi dengan layanan lain. Dengan menggunakan Gitea, pengguna dapat mengelola proyek Git mereka dengan mudah tanpa harus bergantung pada layanan hosting Git pihak ketiga \cite{plasawebhostGiteaGitHub}.
+\newpage
 
-\section{Hasil dan Pemabahasan}
-Vps adalah sebuah server yang berjalan secara virtual di dalam sebuah server fisik. VPS memungkinkan pengguna untuk memiliki kontrol penuh atas lingkungan server mereka tanpa harus mengelola perangkat keras fisik. Dalam praktik ini, kita akan menggunakan VirtualBox untuk membuat dan mengelola VPS. VirtualBox adalah perangkat lunak virtualisasi yang memungkinkan kita untuk menjalankan beberapa sistem operasi secara bersamaan di dalam satu mesin fisik. Dengan menggunakan VirtualBox, kita dapat membuat VPS yang berjalan di dalam lingkungan yang terisolasi, memungkinkan kita untuk menguji dan mengembangkan aplikasi tanpa mempengaruhi sistem utama. Dalam praktik ini, kita akan menginstal Ubuntu sebagai sistem operasi di dalam VPS dan meng
-\subsection{}
+\section{Hasil dan Pembahasan}
+\subsection{Persiapan Infrastruktur}
+Pastikan tempat penyimpanan dan ram dari vps masih tersedia. Untuk mengecek sisa penyimpanan dan ram, dapat menggunakan perintah berikut:
+\begin{lstlisting}[style=phphtml]
+df -h
+\end{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/df-h.png}
+    \caption{Hasil perintah df -h untuk mengecek sisa penyimpanan}
+    \label{fig:df}
+\end{figure}
+Berdasarkan gambar \ref{fig:df}, sisa penyimpanan kurang cukup untuk menginstal Gitea dan Gitea Runner. Oleh karena itu, perlu dilakukan pembersihan image atau container yang tidak diperlukan untuk memberikan ruang yang cukup bagi instalasi Gitea dan Gitea Runner.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/remove-container.png}
+    \caption{Hasil perintah docker system prune untuk membersihkan image dan container yang tidak diperlukan}
+    \label{fig:docker-prune}
+\end{figure}
+Setelah menghentikan container tersebut, hapus container yang tidak terpakai dengan perintah berikut:
+\begin{lstlisting}[style=phphtml]
+docker system prune -a
+\end{lstlisting}
 
+\subsection{Persiapan objek aplikasi}
+Gunakan php-jwt-example yang telah dibuat pada pertemuan sebelumnya. Namun ubah kode docker-compose.yml untuk menyesuaikan dengan kebutuhan aplikasi. Matikan service database mysql di be-jwt (dapat dilihat pada gambar \ref{compose-yml}), dan ubah file .env sesuai dengan koneksi ke Mysql.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/docker-compose-be-jwt.png}
+    \caption{File docker-compose.yml yang telah diubah untuk menyesuaikan dengan kebutuhan aplikasi}
+    \label{fig:compose-yml}
+\end{figure}
+\begin{lstlisting}[style=phphtml]
+DB_HOST=http://10.33.35.71
+DB_PORT=3306
+DB_DATABASE=php_jwt_db
+DB_USERNAME=php_jwt
+DB_PASSWORD=password123
+\end{lstlisting}
+Pastikan bahwa sistem service mysql di vps masih menyala dengan baik. Jika tidak menyala, maka jalankan perintah berikut untuk menyalakan kembali service mysql:
+\begin{lstlisting}[style=phphtml]
+sudo systemctl start mysql
+\end{lstlisting}
 
+\subsection{Instalasi Gitea menggunakan Docker Compose}
+Buat folder bernama gitea di home direktori
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../images/mkdir.png}
+    \caption{Perintah untuk membuat folder gitea di home direktori}
+    \label{fig:mkdir-gitea}
+\end{figure}
+Di dalam folder tersebut, buat file bernama docker-compose.yml untuk proses instalasi gitea. Berikut adalah isi dari file docker-compose.yml untuk instalasi gitea:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/install-gitea-docker-compose.png}
+    \caption{Isi file docker-compose.yml untuk instalasi gitea}
+    \label{fig:compose-gitea}
+\end{figure}
+File \texttt{docker-compose.yml} tersebut digunakan untuk menjalankan layanan \texttt{Gitea} dalam sebuah kontainer Docker dengan image \texttt{docker.gitea.com/gitea:1.25.3}. Konfigurasi tersebut mengatur lingkungan eksekusi, penyimpanan data persisten pada direktori \texttt{./gitea/data}, serta menghubungkan kontainer ke jaringan Docker bernama \texttt{gitea}. Port \texttt{3000} diekspos untuk akses antarmuka web Gitea, sedangkan port \texttt{22} dipetakan untuk layanan SSH yang digunakan dalam operasi Git.
+
+Jalankan service tersebut dengan perintah berikut
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/compose-up-gitea.png}
+    \caption{Perintah untuk menjalankan service Gitea menggunakan Docker Compose}
+    \label{fig:docker-compose-up}
+\end{figure}
+Setelah menjalankan perintah tersebut, tunggu beberapa saat hingga service Gitea berjalan dengan baik. Setelah itu, akses Gitea melalui browser dengan alamat \texttt{http://10.33.35.71:3000}. Pada halaman pertama, abaikan perubahan konfigurasi dan klik install.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/init-config.png}
+    \caption{Halaman instalasi Gitea}
+    \label{fig:install-gitea}
+\end{figure}
+selanjutnya dapat langsung membuat akun git baru dan melakukan konfigurasi di laptop praktikan. Setelah melakukan registrasi, akan terlihat halaman dashboard Gitea seperti pada gambar \ref{fig:dashboard-gitea}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/gitea-dashboard.png}
+    \caption{Halaman dashboard Gitea setelah berhasil melakukan registrasi akun}
+    \label{fig:dashboard-gitea}
+\end{figure}
+
+Pada tahap selanjutnya, buat runner agar dapat menjalankan cicd di gitea. Buka menu site administration, lalu pilih side bar action. Di situ terdapat registration token yang dapat digunakan untuk mendaftarkan runner.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/hlm-action-runner.png}
+    \caption{Menu untuk membuat runner di Gitea}
+    \label{fig:runner-menu}
+\end{figure}
+
+Salin token tersebut, lalu paste di file docker-compose.yml untuk konfigurasi gitea runner. Tambahkan juga beberapa environtment juga seperti pada gambar \ref{fig:runner-compose}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/update-docker-compose.png}
+    \caption{Konfigurasi file docker-compose.yml untuk gitea runner}
+    \label{fig:runner-compose}
+\end{figure}
+Jalankan docker compose up -d kembali untuk menjalankan service gitea runner. Setelah itu, cek kembali di halaman action runner, maka runner yang telah dibuat akan muncul di sana.
+
+Selanjutnya, buat repository baru di Gitea dengan nama \texttt{php-jwt-example} untuk menyimpan kode aplikasi yang telah dibuat sebelumnya. Sebelum melakukan commit, dan push kode, hapus terlebih dahulu remote asli agar tidak melakukan push ke repository aslinya. Gunakan perintah berikut untuk menghapus remote asli:
+\begin{lstlisting}[style=phphtml]
+    rm -rf .git
+\end{lstlisting}
+Setelah itu, pastikan tambahkan .gitignore untuk mengabaikan file .env agar tidak ikut terpush ke repository. Sebelum melakukan push, pastikan mendaftarkan git credential dengan email dan name terlebih dahulu dengan perintah berikut
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../images/git-config.png}
+    \caption{Perintah untuk mendaftarkan git credential dengan email dan name}
+    \label{fig:git-config}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/git-push.png}
+    \caption{Perintah untuk melakukan push kode ke repository}
+    \label{fig:git-push}
+\end{figure}
+
+\subsection{Clone Repository}
+Setelah melakukan push kode ke repository, maka kode tersebut akan tersimpan di repository Gitea. Clone repository tersebut ke dalam komputer lokal dengan perintah berikut:
+\begin{lstlisting}[style=phphtml]
+git clone http://10.33.35.71:300/yoloez/php-jwt-example.git
+\end{lstlisting}
+Masuk ke dalam projek tersebut di vscode lokal, lalu buat file deploys.yaml di dalam folder .gitea/workflows dengan isi sebagai berikut:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/deploys-yaml.png}
+    \caption{Isi file deploys.yaml untuk konfigurasi workflow Gitea Actions}
+    \label{fig:deploys-yaml}
+\end{figure}
+
+File \texttt{deploys.yaml} tersebut digunakan untuk mendefinisikan workflow Gitea Actions yang akan dijalankan setiap kali terjadi push ke branch \texttt{main}. Workflow ini terdiri dari beberapa langkah, termasuk checkout kode, setup SSH, dan menjalankan perintah deployment melalui SSH ke server tujuan.
+
+Selanjutnya, tambahkan secret variabel di gitea untuk menyimpan private key yang digunakan untuk koneksi SSH ke server. Private tersebut terdiri dari ip vps, username vps, dan password vps. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/secret-variable.png}
+    \caption{Menu untuk menambahkan secret variabel di Gitea}
+    \label{fig:secret-gitea}
+\end{figure}
+
+Sebelum melakukan push kode, tambahkan endpoint /api/cicd untuk mengecek sebelum terjadi perubahan. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/cicd.png}
+    \caption{Penambahan endpoint /api/cicd untuk mengecek sebelum terjadi perubahan}
+    \label{fig:api-endpoint}
+\end{figure}
+
+Akan muncuil message seperti pada gambar \ref{fig:api-response} ketika endpoint tersebut diakses. Setelah itu, lakukan push kode ke repository untuk menjalankan workflow Gitea Actions.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/cicd-tampilan.png}
+    \caption{Response ketika endpoint /api/cicd diakses}
+    \label{fig:api-response}
+\end{figure}
+
+\subsection{Push aplikasi}
+Masukkan semua perubahan ke staging area dengan git add ., lalu tambahkan commit message. Saat melakukan push, akan muncul tampilan seperti pada gambar \ref{fig:push-gitea} yang menunjukkan bahwa perlu melakukan authorization application terlebih dahulu. Klik authorize untuk memberikan akses ke Gitea Actions agar dapat menjalankan workflow yang telah dibuat sebelumnya.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/authorization.png}
+    \caption{Tampilan ketika melakukan push kode ke repository Gitea}
+    \label{fig:push-gitea}
+\end{figure}
+Setelah melakukan push, maka workflow Gitea Actions akan berjalan secara otomatis. Untuk melihat prosesnya, dapat membuka menu Actions di repository Gitea. Di sana akan terlihat bahwa workflow sedang berjalan dan menjalankan langkah-langkah yang telah didefinisikan di file deploys.yaml. Jika semua langkah berhasil dijalankan, maka aplikasi akan terdeploy secara otomatis ke server tujuan melalui SSH.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/gitea-action.png}
+    \caption{Tampilan ketika workflow Gitea Actions sedang berjalan}
+    \label{fig:action-running}
+\end{figure}
+
+\subsection{Cek action CICD di aplikasi}
+Buka kembali endpoint /api/cicd untuk mengecek apakah aplikasi sudah terdeploy dengan baik. Jika aplikasi sudah terdeploy, maka akan muncul response seperti pada gambar \ref{fig:api-response-deploy} yang menunjukkan bahwa aplikasi sudah berhasil diupdate dengan perubahan terbaru.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/cicd-deploy.png}
+    \caption{Response ketika endpoint /api/cicd diakses setelah aplikasi terdeploy}
+    \label{fig:api-response-deploy}
+\end{figure}
+
+\section{Tugas dan Analisis}
+Mahasiswa diminta membuat folder baru bernama test dan tambahkan file bernama test\_matematika\_sederhana.php. Isi dari file tersebut yaitu 
+\begin{lstlisting}[style=phphtml]
+    <?php 
+// Logika sederhana 
+$a = 5; 
+$b = 10; 
+$hasil = $a + $b; 
+ 
+echo "Menjalankan Test: $a + $b ... \n"; 
+ 
+// Logika Validasi 
+if ($hasil == 15) { 
+    echo "[SUKSES] Perhitungan benar. Silakan lanjut deploy.\n"; 
+    exit(0); // Kode 0 artinya Aman/Sukses 
+} else { 
+    echo "[GAGAL] Perhitungan salah! Jangan deploy ke server!\n"; 
+    exit(1); // Kode 1 (atau selain 0) artinya Error/Stop 
+} 
+?> 
+\end{lstlisting}
+
+\subsubsection{Implementasi file test dan pembaruan workflow}
+Mahasiswa diminta  menjalankan file test tersebut ke dalam Actions workflows yang telah kita dibuat. Modifikasi deploys.yaml agar runner yang ada di gitea mampu membatalkan aksi deploy jika logika sederhana tersebut salah! Screenshots juga detail workflow Actions yang ada di Gitea ketika sudah selesai berjalan!
+
+File deploys.yaml kemudian diperbarui untuk mengintegrasikan tahap pengujian. Job baru bernama run-testing ditambahkan dan dikonfigurasi untuk berjalan sebelum job deploy-ke-server. Dependency antar-job ini ditegaskan melalui direktif needs: run-testing pada job deploy. Di dalam job run-testing, langkah-langkahnya meliputi instalasi PHP dan curl pada runner, pengunduh
+an file test dari Gitea melalui API raw, dan eksekusi skrip test menggunakan perintah php test\_matematika\_sederhana.php.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/2.png}
+    \caption{File deploys.yaml yang telah diperbarui untuk mengintegrasikan tahap pengujian}
+    \label{fig:deploys-yaml-update}
+\end{figure}
+Setelah file test dan workflow yang diperbarui dipush ke repository Gitea, maka workflow akan berjalan secara otomatis. Hasil eksekusi pipeline dengan dua job ditampilkan pada Gambar \ref{output-1}. Keduajob, yaiturun-testing (10 detik)dan deploy-ke-server (4 menit 57 detik), berhasil diselesaikan dengan status sukses, yang membuktikan bahwa integrasi unit test ke dalam pipeline berjalan dengan benar
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/output-1.png}
+    \caption{Output hasil eksekusi pipeline dengan dua job di Gitea Actions}
+    \label{output-1}    
+\end{figure}
+
+\subsubsection{Analisis Skenario kegagalan pipeline}
+Untuk memahami mekanisme proteksi yang diberikan oleh unit test, dilakukan simulasi kegagalan dengan sengaja mengubah nilai variabel \$a dari 5 menjadi 55 pada file test\_matematika\_sederhana.php. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/3.png}
+    \caption{Merubah nilai variabel \$a untuk mensimulasikan kegagalan pada unit test}
+    \label{output-2}
+\end{figure}
+Lakukan commit dan push perubahan tersebut ke repository Gitea, maka workflow akan berjalan secara otomatis. Hasil eksekusi pipeline dengan dua job ditampilkan pada Gambar \ref{output-2}. Job run-testing gagal dengan status error, yang menunjukkan bahwa unit test berhasil mendeteksi kesalahan logika dalam skrip test. Akibatnya, job deploy-ke-server tidak dijalankan, yang membuktikan bahwa mekanisme proteksi terhadap kesalahan telah berfungsi dengan baik.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../images/output-deploy-failed.png}
+    \caption{Pipeline job unit test gagal dan job deploy tidak dieksekusi}
+    \label{output-2}
+\end{figure}
+
+\newpage
 \section{Kesimpulan}
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa implementasi CI/CD Pipeline menggunakan Gitea Actions berhasil diterapkan untuk mengotomatisasi proses integrasi dan deployment aplikasi. Infrastruktur yang dibangun mencakup instalasi Gitea, konfigurasi Gitea Runner, pengelolaan repositori, serta pembuatan workflow berbasis \texttt{deploys.yaml} yang dijalankan secara otomatis setiap kali terjadi perubahan pada branch \texttt{main}. Melalui mekanisme ini, proses deployment aplikasi ke server dapat dilakukan secara lebih cepat, konsisten, dan efisien tanpa memerlukan intervensi manual, sehingga mendukung praktik pengembangan perangkat lunak modern yang lebih andal.
+
+Selain itu, integrasi tahap pengujian (testing) ke dalam pipeline membuktikan pentingnya validasi otomatis sebelum proses deployment dilakukan. Hasil pengujian menunjukkan bahwa ketika skrip uji berjalan dengan sukses, proses deployment dapat dilanjutkan dan aplikasi berhasil diperbarui pada server. Sebaliknya, ketika terjadi kesalahan logika pada skrip pengujian, workflow secara otomatis menghentikan proses deployment sehingga perubahan yang bermasalah tidak diterapkan ke lingkungan produksi. Dengan demikian, penggunaan Gitea Actions tidak hanya meningkatkan otomatisasi proses pengembangan, tetapi juga memberikan mekanisme proteksi yang efektif untuk menjaga kualitas dan stabilitas aplikasi.
+\newpage
+
 \renewcommand{\refname}{\section{Daftar Pustaka}}
 \bibliographystyle{IEEEtran}
 \bibliography{ref}
